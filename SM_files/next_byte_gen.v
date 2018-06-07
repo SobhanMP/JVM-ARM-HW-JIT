@@ -5,11 +5,13 @@ module next_byte_gen #(
         output reg next_byte,
         output reg ready,
 
+        input wire [ADDRESS_WIDTH - 1:0] pc_reset_value,
+        input wire pc_reset,
         input wire start,
         input wire clk
     );
 
-    reg [ADDRESS_WIDTH-1:0] pc; 
+    reg [ADDRESS_WIDTH - 1:0] pc; 
 
     jvm_memory #(.SIZE(RAM_SIZE), .ADDRESS_WIDTH(ADDRESS_WIDTH))
     mem
@@ -22,8 +24,12 @@ module next_byte_gen #(
         .rwn(1'b1),
         .start(start)
     );
-    always @(clk) begin 
-    if(start & ready) begin
+
+    always @(posedge clk or negedge pc_reset) begin 
+    if (pc_reset == 0) begin
+        pc <= pc_reset_value;
+    end
+    else if(start & ready) begin
             pc <= pc + 1;
         end 
     end

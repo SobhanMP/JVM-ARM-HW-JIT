@@ -22,7 +22,7 @@ module jvm_memory #(
     `ifdef SIMULATION
         always @(posedge clk or negedge reset)
         begin
-            if(reset) begin
+            if(reset == 0) begin
                 for(i=0; i< SIZE - 1; i = i+1) begin
                     array[i] <= 8'b0000_0000;
                 end
