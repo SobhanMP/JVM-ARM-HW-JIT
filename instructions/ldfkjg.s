@@ -26,27 +26,27 @@ myasm
 	;#fconst_0
 	vsub.f32 s0, s0, s0
 	add sp, #4
-	vstr.f32 s0, [sp]
+	vpush.f32 {s0}
 
 	;#fconst_1
 	vmov.f32 s0, #1
 	add sp, #4
-	vstr.f32 s0, [sp]
+	vpush.f32 {s0}
 
 	;#fconst_2
 	vmov.f32 s0, #2
 	add sp, #4
-	vstr.f32 s0, [sp]
+	vpush.f32 {s0}
 
 	;#dconst_0
 	vsub.f64 d0, d0, d0
 	add sp, #8
-	vstr.f64 d0, [sp]
+	vpush.f64 {d0}
 
 	;#dconst_1
 	vmov.f64 d0, #1
 	add sp, #8
-	vstr.f64 d0, [sp]
+	vpush.f64 {d0}
 
 	;#fdiv check who to devide by who
 
