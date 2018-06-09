@@ -81,9 +81,9 @@ myasm
 	vpush.f32 {s0}
 
 	;#fneg
-	vldr.f32 s1, [sp]
-	vneg.f32 s0, s1
-	vstr.f32 s0, [sp]
+	vpop {s0}
+	vneg.f32 s0
+	vpush {s0}
 
 
 	;#frem
