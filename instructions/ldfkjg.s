@@ -66,9 +66,7 @@ myasm
 
 	;#fload_0
 	vldr.f32 s0, [fp]
-	add sp, #4
-	vstr.f32 s0, [sp]
-
+	vpush.f32 {s0}
 
 	;#fload_1
 	vldr.f32 s0, [fp, #4]
