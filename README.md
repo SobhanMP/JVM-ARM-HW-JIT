@@ -45,3 +45,15 @@
 |pop       |57                 |0101 0111                               |                                       |value →                                                                                   |discard the top value on the stack                                                                                                                                                       |
 |pop2      |58                 |0101 1000                               |                                       |{value2, value1} →                                                                        |discard the top two values on the stack (or one value, if it is a double or long)                                                                                                        |
 |swap      |5f                 |0101 1111                               |                                       |value2, value1 → value1, value2                                                           |swaps two top words on the stack (note that value1 and value2 must not be double or long)                                                                                                |
+
+### Structure
+
+#### ROMS
+
+* A rom for next instruction addresses in asscociate with a rom which holds the instruction id associated with current address.
+* A rom to hold unique instructions.
+* A rom to hold the instruction of pushing a word into stack.
+
+#### Argument Passing
+
+* We deal with instruction like functions and we use stack to store passed arguments.
