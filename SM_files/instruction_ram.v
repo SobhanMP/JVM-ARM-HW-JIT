@@ -21,7 +21,7 @@ memory #(.SIZE(RAM_SIZE), .ADDRESS_WIDTH(ADDRESS_WIDTH))
         .reset(1'b1),
         .address(pc),
         .rwn(1'b1),
-        .start(start)
+        .start(start),
         .data_in(instr)
     );
 
