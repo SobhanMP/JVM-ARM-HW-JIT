@@ -187,20 +187,28 @@ myasm1
 	vpop.f32 {s0}
 	vcvt.s32.f32 s1, s0
 	vpush.f32 {s1}
-
-	;#f2l
-	vpop.f32 {s0}
-	vcvt.s32.f32 s0, s0
-	mov r0, #0
-	vmov r1, s0
-	vmov d0, r1, r0
-	vpush.f64 {d0}
-	;#d2f
-	vpop.f64 {d0}
-	vcvt.f32.f64 s0, d0
-	vpush.f32 {s0}
+myasm
+;	;#t
+;	vmov.f32 s0, #11.0
+;	vpush.f32 {s0}
+;
+;	;#f2l
+;	pop {r0}
+;	push {fp, lr}
+;	import __aeabi_f2lz
+;	bl __aeabi_f2lz
+;	pop {fp, lr}
+;	push {r0, r1}
 
 ;	;#t
+;	vmov.f64 d1, #1
+;	vpush.f64 {d1}
+;	;#d2f
+;	vpop.f64 {d1}
+;	vcvt.f32.f64 s0, d1
+;	vpush.f32 {s0}
+;	;#t
+;	vpop.f32 {s1}
 ;	vmov.f64 d0, #11
 ;	vmov.f64 d1, #12
 ;	vpush.f64 {d0, d1}
