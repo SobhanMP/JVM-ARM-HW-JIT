@@ -34,6 +34,8 @@ myasm
 	vpush.f32 {s0}
 
 	;#fconst_2
+
+
 	vmov.f32 s0, #2
 	add sp, #4
 	vpush.f32 {s0}
@@ -63,6 +65,12 @@ myasm
 	vadd.f32 s0,s1
 	vstr.f32 s0, [sp]
 
+	;#fload
+	pop {r0}
+	mov r0, r0, LSL#2
+	add r0, fp
+	vldr.f32 s0, [r0]
+	vpush.f32 {s0}
 
 	;#fload_0
 	vldr.f32 s0, [fp]
@@ -86,6 +94,59 @@ myasm
 	pushlt {r0}
 
 
+	;#fcmpl
+  	vpop.f32 {s0, s1}
+  	vcmp.f32 s0,s1
+
+	subeq r0,r0,r0
+	pusheq {r0}
+
+	movgt r0,#1
+	pushgt {r0}
+
+	movlt r0,#-1
+	pushlt {r0}
+
+	;#dcmpg
+  	vpop.f64 {d0, d1}
+  	vcmp.f64 d0,d1
+
+	subeq r0,r0,r0
+	pusheq {r0}
+
+	movgt r0,#1
+	pushgt {r0}
+
+	movlt r0,#-1
+	pushlt {r0}
+
+
+	;#dcmpl
+  	vpop.f64 {d0, d1}
+  	vcmp.f64 d0,d1
+
+	subeq r0,r0,r0
+	pusheq {r0}
+
+	movgt r0,#1
+	pushgt {r0}
+
+	movlt r0,#-1
+	pushlt {r0}
+
+	;#d2i
+	vpop.f64 {d0}
+	vcvt.s32.f64 s0, d0
+	vpush.f32 {s0}
+
+
+	;#d2l
+	vpop.f64 {d0}
+	vcvt.s32.f64 s0, d0
+	mov r0, #0
+	vmov r1, s0
+	vmov d0, r1, r0
+	vpush.f64 {d0}
 
 	;#float_2
 	vldr.f32 s0, [fp, #8]
@@ -118,37 +179,64 @@ myasm
 	vpush.f64 {d0}
 
 	;#f2i
-	vldr.f32 s0, [sp]
+	vpop.f32 {s0}
 	vcvt.s32.f32 s1, s0
-	vstr.f32 s1, [sp]
+	vpush.f32 {s1}
 
+	;#f2l
+	vpop.f32 {s0}
+	vcvt.s32.f32 s0, s0
+	mov r0, #0
+	vmov r1, s0
+	vmov d0, r1, r0
+	vpush.f64 {d0}
 	;#d2f
-	vldr.f64 d0, [sp]
+	vpop.f64 {d0}
 	vcvt.f32.f64 s0, d0
-	vstr.f32 s0, [sp]
+	vpush.f32 {s0}
 
 	;#dadd
-	vldr.f64 d0, [sp]
-	sub sp, #8
-	vldr.f64 d1, [sp]
-	vadd.f64 d2,d1,d0
-	vstr.f64 d2, [sp]
+	vpop.f64 {d0,d1}
+	vadd.f64 d0,d0,d1
+	vpush.f64 {d0}
 
 	;#dsub
-	vldr.f64 d0, [sp]
-	sub sp, #8
-	vldr.f64 d1, [sp]
-	vsub.f64 d2,d1,d0
-	vstr.f64 d2, [sp]
-
+	vpop.f64 {d0,d1}
+	vsub.f64 d0,d0,d1
+	vpush.f64 {d0}
 
 
 
 	;faload
-;	dmda sp!, {r0, r1}
-;	mov r1, r1, ASL#2
-;	vldr.f32 s0, [r0, r1]
-;	vstmib.f32 sp!, {s0}
+	pop {r0, r1}
+	mov r1, r1, LSL#2
+	add r0, r1
+	vldr.f32 s0, [r0]
+	vpush.f32 {s0}
+
+	;fastore
+	vpop.f32 {s0}
+	pop {r0, r1}
+	mov r1, r1, LSL#2
+	add r0, r1
+	vstr.f32 s0, [r0]
+
+	;daload
+	pop {r0, r1}
+	mov r1, r1, LSL#3
+	add r0, r1
+
+	vldr.f64 d0, [r0]
+	vpush.f64 {d0}
+
+	;dastore
+	vpop.f64 {d0}
+	pop {r0, r1}
+	mov r1, r1, LSL#3
+	add r0, r1
+
+	vstr.f64 d0, [r0]
+
 
 	bx lr
 
