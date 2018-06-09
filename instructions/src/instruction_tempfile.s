@@ -72,6 +72,21 @@ myasm
 	vldr.f32 s0, [fp, #4]
 	vpush.f32 {s0}
 
+	;#fcmpg
+  	vpop.f32 {s0, s1}
+  	vcmp.f32 s0,s1
+
+	subeq r0,r0,r0
+	pusheq {r0}
+
+	movgt r0,#1
+	pushgt {r0}
+
+	movlt r0,#-1
+	pushlt {r0}
+
+
+
 	;#float_2
 	vldr.f32 s0, [fp, #8]
 	vpush.f32 {s0}
