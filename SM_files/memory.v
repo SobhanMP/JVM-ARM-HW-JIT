@@ -1,4 +1,4 @@
-module jvm_memory #(
+module memory #(
     parameter SIZE = 256,
     parameter ADDRESS_WIDTH = 8)   
     (
@@ -6,15 +6,15 @@ module jvm_memory #(
         output wire ready,
         input wire clk,
         input wire reset,
-        input wire [ADDRESS_WIDTH - 1:0]address,
-        input wire [7:0] data_in,
+        input wire [ADDRESS_WIDTH - 1:0] address,
+        input wire [31:0] data_in,
         input wire rwn,
         input wire start
     );
 	reg [7:0] array[SIZE -1:0];
 	reg state;
 	reg [7:0] ad_t;
-	reg [7:0] data_t;
+	reg [31:0] data_t;
 	reg [1:0] counter;
 	reg rwn_t;
 	integer i;
@@ -65,7 +65,7 @@ module jvm_memory #(
                 if(rwn_t)
                     data_out <= array[ad_t];
                 else begin
-                    array[ad_t] <= data_t[7:0];
+                    array[ad_t] <= data_t;
                 end
                 state=0;
             end

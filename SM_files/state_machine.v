@@ -1,12 +1,12 @@
-module adr_rom(output n_addr, input addr);//used to store next address of the instruction
+module addr_rom(output [31:0] n_addr, input [31:0] addr); //used to store next address of the instruction
 ....
 endmodule
 
-module inst_rom(output [31:0]data, input addr);
+module conv_rom(output [31:0] inst_id, input [31:0] addr); // instrs
 ...
 endmodule
 
-module conv_rom(output [31:0]data, input addr);
+module inst_rom(output [31:0] instr, input [31:0] inst_id); // address of instrs
 ...
 endmodule
 
@@ -14,11 +14,11 @@ module count_rom(output [4:0] count, input [7:0] opcode);
 ...
 endmodule
 
-module push_1byte_rom()
+module push_1byte_rom();
 ...
 endmodule
 
-module push_2byte_rom()
+module push_2byte_rom();
 ...
 endmodule
 
@@ -26,8 +26,10 @@ module state_machine(
         input wire clk
     );
     wire next_byte;
-    wire ready;
+    wire ready_jvm;
+    wire ready_arm;
     reg start_fetch;
+    reg start_write;
     reg is_wide;
     reg state;
     reg waiting;
@@ -43,7 +45,7 @@ module state_machine(
     nbg
     (
         .next_byte(next_byte),
-        .ready(ready),
+        .ready(ready_jvm),
 
         .pc_reset(1'b1),
         .start(start_fetch),
@@ -55,11 +57,32 @@ module state_machine(
     reg [7:0] opcode;
     reg [7:0] mem_reg;
     reg [15:0] push_reg;
+    wire [31:0] next_addr;
+    reg [31:0] current_addr;
+    wire [31:0] instr_id;
+    reg [31:0] instr_id_reg;
+    wire [31:0] instr_wire;
+    reg [31:0] word_to_write;
+
+    addr_rom next_addr(
+        .addr(current_addr),
+        .n_addr(next_addr)
+    );
+
+    conv_rom converter(
+        .inst_id(instr_id),
+        .addr(current_addr)
+    );
+
+    inst_rom instrs(
+        .inst_id(instr_id_reg),
+        .instr(instr_wire)
+    );
 
     cnt count_rom(
         .count(param_bits),
         .opcode(opcode)
-    )
+    );
 
     always @(posedge clk) begin
         case(state)
@@ -71,7 +94,7 @@ module state_machine(
                         next_state <= FETCH_INSTRUCTION;
                     1'b1:
                         start_fetch <= 1'b0;
-                        if(ready == 1'b1) begin
+                        if(ready_jvm == 1'b1) begin
                             opcode <= next_byte;
                             waiting <= 1'b0;
                             next_state <= CHECK_WIDE;
@@ -128,7 +151,38 @@ module state_machine(
                             next_state <= FETCH_PARAMS;
                         end
                 endcase
-            PUSH_TO_STACK
+            PUSH_TO_STACK:
+
+            WRITE_TO_ROM:
+                instr_id_reg <= inst_id;
+                current_addr <= next_addr;
+                word_to_write <= instr_wire;
+
+
+            WRITE_INSTRUCTION:
+                case(waiting)
+                    1'b0:
+                        start_write <= 1'b1;
+                        waiting <= 1'b1';
+                        next_state <= WRITE_INSTRUCTION;
+                    1'b1:
+                        start_write <= 1'b0;
+                        if(ready_arm == 1'b1) begin
+                            waiting <= 1'b0;
+                            if (next_addr == 0) begin
+                                next_state <= FETCH_INSTRUCTION
+                            end
+                            else begin
+                                next_state <= WRITE_TO_ROM;
+                            end
+                        end
+                        else begin
+                            waiting <= 1'b1;
+                            next_state <= WRITE_INSTRUCTION;
+                        end
+                endcase
+
+
         endcase
     end
 
