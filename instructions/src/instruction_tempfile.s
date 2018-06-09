@@ -22,81 +22,74 @@ StartHere
 	export myasm
 myasm
 
-;
-;
-;
-;	;#fconst_0
-;	vsub.f32 s0, s0, s0
-;	vpush.f32 {s0}
-;
-;	;#fconst_1
-;	vmov.f32 s0, #1
-;	vpush.f32 {s0}
-;
-;	;#fconst_2
-;	vmov.f32 s0, #2
-;	vpush.f32 {s0}
-;
-;	;#dconst_0
-;	vsub.f64 d0, d0, d0
-;	vpush.f64 {d0}
-;
-;	;#dconst_1
-;	vmov.f64 d0, #1
-;	vpush.f64 {d0}
-;
-;	;#testcase
-;	vpop.f64 {d0}
-;	vpop.f64 {d0}
-;	vpop.f32 {s0}
-;	vpop.f32 {s0}
-;	vpop.f32 {s0}
-;	vpop.f32 {s0}
-	;#testcase
-;	vmov.f32 s0, #30
-;	vmov.f32 s1, #27
-;	vpush.f32 {s0,s1}
-;
-;	;#fdiv check who to devide by who
-;	vpop.f32 {s0, s1}
-;	vdiv.f32 s0,s1
-;	vpush {s0}
-;;#testcase
-;	vpop.f32 {s1}
-;	vmov.f32 s0, #30
-;	vmov.f32 s1, #27
-;	vpush.f32 {s0,s1}
+
+
+
+	;#fconst_0
+	;vsub.f32 s0, s0, s0
+	;vpush.f32 {s0}
+
+	;#fconst_1
+	;vmov.f32 s0, #1
+	;vpush.f32 {s0}
+
+	;#fconst_2
+	;vmov.f32 s0, #2
+	;vpush.f32 {s0}
+
+	;#dconst_0
+	;vsub.f64 d0, d0, d0
+	;vpush.f64 {d0}
+
+	;#dconst_1
+	;vmov.f64 d0, #1
+	;vpush.f64 {d0}
+
+
+	;#fdiv check who to devide by who
+	;vpop.f32 {s0, s1}
+	;vdiv.f32 s0,s1
+	;vpush {s0}
 
 	;#fmul
-	vpop.f32 {s0, s1}
-	vmul.f32 s0,s1
-	vpush.f32 {s0}
-;#testcase
-	vpop.f32 {s1}
-	vmov.f32 s0, #30
-	vmov.f32 s1, #27
-	vpush.f32 {s0,s1}
+	;vpop.f32 {s0, s1}
+	;vmul.f32 s0,s1
+	;vpush.f32 {s0}
+
 
 	;#fadd
-	vpop.f32 {s0, s1}
-	vadd.f32 s0,s1
-	vstr.f32 s0, [sp]
-	;#t
-	vpop.f32 {s1}
+	;vpop.f32 {s0, s1}
+	;vadd.f32 s0,s1
+	;vpush.f32 {s0}
+	;vpop.f32 {s1}
+
 	;#fload
-	pop {r0}
-	mov r0, r0, LSL#2
-	add r0, fp
-	vldr.f32 s0, [r0]
-	vpush.f32 {s0}
+	;pop {r0}
+	;mov r0, r0, LSL#2
+	;add r0, fp
+	;vldr.f32 s0, [r0]
+	;vpush.f32 {s0}
+
+
+
 
 	;#fload_0
-	vldr.f32 s0, [fp]
-	vpush.f32 {s0}
+	;vldr.f32 s0, [fp]
+	;vpush.f32 {s0}
 
 	;#fload_1
-	vldr.f32 s0, [fp, #4]
+	;vldr.f32 s0, [fp, #4]
+	;vpush.f32 {s0}
+
+
+	;#fload_2
+	vldr.f32 s0, [fp, #8]
 	vpush.f32 {s0}
+
+	;#fload_3
+	vldr.f32 s0, [fp, #12]
+	vpush.f32 {s0}
+
 
 	;#fcmpg
   	vpop.f32 {s0, s1}
@@ -166,13 +159,7 @@ myasm
 	vmov d0, r1, r0
 	vpush.f64 {d0}
 
-	;#float_2
-	vldr.f32 s0, [fp, #8]
-	vpush.f32 {s0}
 
-	;#float_3
-	vldr.f32 s0, [fp, #12]
-	vpush.f32 {s0}
 
 	;#fneg
 	vpop {s0}
