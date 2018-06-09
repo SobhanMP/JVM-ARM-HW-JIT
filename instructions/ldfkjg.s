@@ -70,18 +70,15 @@ myasm
 
 	;#fload_1
 	vldr.f32 s0, [fp, #4]
-	add sp, #4
-	vstr.f32 s0, [sp]
+	vpush.f32 {s0}
 
 	;#float_2
 	vldr.f32 s0, [fp, #8]
-	add sp, #4
-	vstr.f32 s0, [sp]
+	vpush.f32 {s0}
 
 	;#float_3
 	vldr.f32 s0, [fp, #12]
-	add sp, #4
-	vstr.f32 s0, [sp]
+	vpush.f32 {s0}
 
 	;#fneg
 	vldr.f32 s1, [sp]
