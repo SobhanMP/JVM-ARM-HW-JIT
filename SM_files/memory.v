@@ -2,7 +2,7 @@ module memory #(
     parameter SIZE = 256,
     parameter ADDRESS_WIDTH = 8)   
     (
-        output reg [7:0] data_out,
+        output reg [31:0] data_out,
         output wire ready,
         input wire clk,
         input wire reset,
@@ -23,7 +23,7 @@ module memory #(
         always @(posedge clk or negedge reset)
         begin
             if(reset == 0) begin
-                for(i=0; i< SIZE - 1; i = i+1) begin
+                for(i=0; i < SIZE - 1; i = i+1) begin
                     array[i] <= 8'b0000_0000;
                 end
                 state <= 0;
@@ -39,10 +39,13 @@ module memory #(
                 counter <= counter-1;
             else if(state) begin
                 if(rwn_t)
-                    data_out <= array[ad_t];
+                    data_out={array[(ad_t+3)%SIZE], array[(ad_t+2)%SIZE], array[(ad_t+1)%SIZE], array[ad_t]};
                 else begin
-                    array[ad_t] <= data_t[7:0]
-                end
+                    array[ad_t] <= data_t[7:0];
+				    array[(ad_t+1)%SIZE] <= data_t[15:8];
+				    array[(ad_t+2)%SIZE] <= data_t[23:16];
+				    array[(ad_t+3)%SIZE] <= data_t[31:24];
+                end 
                 state <= 0;
             end
         end
@@ -50,10 +53,10 @@ module memory #(
         always @(posedge clk or posedge reset)
         begin
             if(reset) begin
-                for(i=0; i<SIZE; i=i+1) begin
+                for(i = 0; i< SIZE; i = i + 1) begin
                     array[i] <= 8'b0000_0000;
                 end
-                state=0;
+                state <=0 ;
             end
             else if(start & ~state) begin
                 ad_t <= address[7:0];
@@ -63,11 +66,14 @@ module memory #(
             end
             else if(state) begin
                 if(rwn_t)
-                    data_out <= array[ad_t];
+                    data_out={array[(ad_t+3)%SIZE], array[(ad_t+2)%SIZE], array[(ad_t+1)%SIZE], array[ad_t]};
                 else begin
-                    array[ad_t] <= data_t;
+                    array[ad_t%SIZE]   <= data_t[7:0];
+				    array[(ad_t+1)%SIZE] <= data_t[15:8];
+				    array[(ad_t+2)%SIZE] <= data_t[23:16];
+				    array[(ad_t+3)%SIZE] <= data_t[31:24];
                 end
-                state=0;
+                state <=0 ;
             end
         end
     `endif

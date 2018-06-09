@@ -22,9 +22,6 @@ StartHere
 	export myasm
 myasm1
 
-
-
-
 	;#fconst_0
 	;vsub.f32 s0, s0, s0
 	;vpush.f32 {s0}
@@ -45,7 +42,6 @@ myasm1
 	;vmov.f64 d0, #1
 	;vpush.f64 {d0}
 
-
 	;#fdiv check who to devide by who
 	;vpop.f32 {s0, s1}
 	;vdiv.f32 s0,s1
@@ -55,7 +51,6 @@ myasm1
 	;vpop.f32 {s0, s1}
 	;vmul.f32 s0,s1
 	;vpush.f32 {s0}
-
 
 	;#fadd
 	;vpop.f32 {s0, s1}
@@ -70,9 +65,6 @@ myasm1
 	;vldr.f32 s0, [r0]
 	;vpush.f32 {s0}
 
-
-
-
 	;#fload_0
 	;vldr.f32 s0, [fp]
 	;vpush.f32 {s0}
@@ -81,69 +73,57 @@ myasm1
 	;vldr.f32 s0, [fp, #4]
 	;vpush.f32 {s0}
 
-
 	;#fload_2
-	vldr.f32 s0, [fp, #8]
-	vpush.f32 {s0}
+	;vldr.f32 s0, [fp, #8]
+	;vpush.f32 {s0}
 
 	;#fload_3
-	vldr.f32 s0, [fp, #12]
-	vpush.f32 {s0}
-
+	;vldr.f32 s0, [fp, #12]
+	;vpush.f32 {s0}
 
 	;#fcmpg
-  	vpop.f32 {s0, s1}
-  	vcmp.f32 s0,s1
-
-	subeq r0,r0,r0
-	pusheq {r0}
-
-	movgt r0,#1
-	pushgt {r0}
-
-	movlt r0,#-1
-	pushlt {r0}
-
+  	;vpop.f32 {s0, s1}
+  	;vcmp.f32 s0,s1
+  	;VMRS APSR_nzcv, FPSCR
+	;subeq r0,r0,r0
+	;pusheq {r0}
+	;movgt r0,#1
+	;pushgt {r0}
+	;movlt r0,#-1
+	;pushlt {r0}
 
 	;#fcmpl
-  	vpop.f32 {s0, s1}
-  	vcmp.f32 s0,s1
-
-	subeq r0,r0,r0
-	pusheq {r0}
-
-	movgt r0,#1
-	pushgt {r0}
-
-	movlt r0,#-1
-	pushlt {r0}
+  	;vpop.f32 {s0, s1}
+  	;vcmp.f32 s0,s1
+  	;VMRS APSR_nzcv, FPSCR
+	;subeq r0,r0,r0
+	;pusheq {r0}
+	;movgt r0,#1
+	;pushgt {r0}
+	;movlt r0,#-1
+	;pushlt {r0}
 
 	;#dcmpg
-  	vpop.f64 {d0, d1}
-  	vcmp.f64 d0,d1
-
-	subeq r0,r0,r0
-	pusheq {r0}
-
-	movgt r0,#1
-	pushgt {r0}
-
-	movlt r0,#-1
-	pushlt {r0}
-
+  	;vpop.f64 {d0, d1}
+  	;vcmp.f64 d0,d1
+  	;VMRS APSR_nzcv, FPSCR
+	;subeq r0,r0,r0
+	;pusheq {r0}
+	;movgt r0,#1
+	;pushgt {r0}
+	;movlt r0,#-1
+	;pushlt {r0}
 
 	;#dcmpl
-  	vpop.f64 {d0, d1}
-  	vcmp.f64 d0,d1
-
-	subeq r0,r0,r0
-	pusheq {r0}
-
-	movgt r0,#1
-	pushgt {r0}
-
-	movlt r0,#-1
-	pushlt {r0}
+  	;vpop.f64 {d0, d1}
+  	;vcmp.f64 d0,d1
+  	;VMRS APSR_nzcv, FPSCR
+	;subeq r0,r0,r0
+	;pusheq {r0}
+	;movgt r0,#1
+	;pushgt {r0}
+	;movlt r0,#-1
+	;pushlt {r0}
 
 	;#d2i
 	vpop.f64 {d0}
