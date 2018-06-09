@@ -89,18 +89,18 @@ myasm
 	;#frem
 	vpop {s0, s1}
 	vdiv.f32 s2,s0,s1
-	vcvt.s32.f32 s4,s2
-	vcvt.f32.s32 s2,s4
-	vmul.f32 s3,s2,s1
-	vsub.f32 s4,s0,s3
+	vcvt.s32.f32 s2
+	vcvt.f32.s32 s2
+	vmul.f32 s2,s1
+	vsub.f32 s0,s2
 
-	vstr.f32 s4, [sp]
+	vpush.f32 {s0}
+
 
 	;#f2d
-	vldr.f32 s0, [sp]
-	vcvt.f64.f32 d1, s0
-	vstr.f64 d1, [sp]
-	add sp, #4
+	vpop.f32 {s0}
+	vcvt.f64.f32 d0, s0
+	vpush.f64 {d0}
 
 	;#f2i
 	vldr.f32 s0, [sp]
