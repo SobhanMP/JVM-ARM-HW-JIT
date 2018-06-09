@@ -59,11 +59,9 @@ myasm
 	vstr.f32 s0, [sp]
 
 	;#fadd
-	vldr.f32 s0, [sp]
-	sub sp, #4
-	vldr.f32 s1, [sp]
-	vadd.f32 s2,s1,s0
-	vstr.f32 s2, [sp]
+	vpop.f32 {s0, s1}
+	vadd.f32 s0,s1
+	vstr.f32 s0, [sp]
 
 
 	;#fload_0
