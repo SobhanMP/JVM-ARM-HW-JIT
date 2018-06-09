@@ -20,7 +20,7 @@ StartHere
 
 	area mycode, code
 	export myasm
-myasm
+myasm1
 
 ;
 ;
@@ -213,47 +213,104 @@ myasm
 	vcvt.f32.f64 s0, d0
 	vpush.f32 {s0}
 
-	;#dadd
-	vpop.f64 {d0,d1}
-	vadd.f64 d0,d0,d1
-	vpush.f64 {d0}
+;	;#t
+;	vmov.f64 d0, #11
+;	vmov.f64 d1, #12
+;	vpush.f64 {d0, d1}
+;	;#dadd
+;	vpop.f64 {d0,d1}
+;	vadd.f64 d0,d1
+;	vpush.f64 {d0}
+;	;#t
+;	vpop.f64 {d1}
+;
+;	vmov.f64 d0, #11
+;	vmov.f64 d1, #12
+;	vpush.f64 {d0, d1}
+;
+;	;#dsub
+;	vpop.f64 {d0,d1}
+;	vsub.f64 d0,d1
+;	vpush.f64 {d0}
+;	;#t
+;	vpop.f64 {d1}
 
-	;#dsub
-	vpop.f64 {d0,d1}
-	vsub.f64 d0,d0,d1
-	vpush.f64 {d0}
+;	;#testcase
+;	mov r0, #0x80000000
+;	mov r1, #1
+;	mov r2, #4
+;	add r2, r0
+;	vmov.f32 s0, #10
+;	vstr.f32 s0, [r2]
+;	mov r1, #1
+;	push {r0, r1}
+;;	;#faload
+;	pop {r0, r1}
+;	mov r1, r1, LSL#2
+;	add r0, r1
+;	vldr.f32 s0, [r0]
+;	vpush.f32 {s0}
+;	;#test
+;	vpop.f32 {s1}
 
+;
+;	mov r0, #0x80000000
+;	mov r1, #1
+;	push {r0, r1}
+;	vmov.f32 s0, #12
+;	vpush.f32 {s0}
+;
+;	;fastore
+;	vpop.f32 {s0}
+;	pop {r0, r1}
+;	mov r1, r1, LSL#2
+;	add r0, r1
+;	vstr.f32 s0, [r0]
+;;#t
+;	mov r0, #0x80000000
+;	mov r2, #4
+;	add r2, r0
+;	vldr.f32 s1, [r2]
+;
+;	;#testcase
+;	mov r0, #0x80000000
+;	mov r1, #1
+;	mov r2, #8
+;	add r2, r0
+;	vmov.f64 d0, #10
+;	vstr.f64 d0, [r2]
+;	mov r1, #1
+;	push {r0, r1}
+;
+;	;daload
+;	pop {r0, r1}
+;	mov r1, r1, LSL#3
+;	add r0, r1
+;
+;	vldr.f64 d0, [r0]
+;	vpush.f64 {d0}
+;	;#test
+;	vpop.f64 {d1}
 
-
-	;faload
-	pop {r0, r1}
-	mov r1, r1, LSL#2
-	add r0, r1
-	vldr.f32 s0, [r0]
-	vpush.f32 {s0}
-
-	;fastore
-	vpop.f32 {s0}
-	pop {r0, r1}
-	mov r1, r1, LSL#2
-	add r0, r1
-	vstr.f32 s0, [r0]
-
-	;daload
-	pop {r0, r1}
-	mov r1, r1, LSL#3
-	add r0, r1
-
-	vldr.f64 d0, [r0]
-	vpush.f64 {d0}
-
-	;dastore
-	vpop.f64 {d0}
-	pop {r0, r1}
-	mov r1, r1, LSL#3
-	add r0, r1
-
-	vstr.f64 d0, [r0]
+;
+;	mov r0, #0x80000000
+;	mov r1, #1
+;	push {r0, r1}
+;	vmov.f64 d0, #12
+;	vpush.f64 {d0}
+;
+;	;dastore
+;	vpop.f64 {d0}
+;	pop {r0, r1}
+;	mov r1, r1, LSL#3
+;	add r0, r1
+;
+;	vstr.f64 d0, [r0]
+;	;#t
+;	mov r0, #0x80000000
+;	mov r2, #8
+;	add r2, r0
+;	vldr.f64 d1, [r2]
 
 
 	bx lr
