@@ -54,11 +54,9 @@ myasm
 	vpush {s0}
 
 	;#fmul
-	vldr.f32 s0, [sp]
-	sub sp, #4
-	vldr.f32 s1, [sp]
-	vmul.f32 s2,s1,s0
-	vstr.f32 s2, [sp]
+	vpop.f32 {s0, s1}
+	vmul.f32 s0,s1
+	vstr.f32 s0, [sp]
 
 	;#fadd
 	vldr.f32 s0, [sp]
