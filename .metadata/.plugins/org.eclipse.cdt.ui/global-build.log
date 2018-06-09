@@ -1,0 +1,579 @@
+
+**** Build of configuration Debug for project test ****
+
+Nothing to build for project test
+13:22:38 **** Build of configuration Debug for project test ****
+make all 
+Building target: test.axf
+Invoking: ARM Linker 5
+armlink --cpu=Cortex-A7.no_neon --entry=StartHere --ro_base=0x80000000 --info=sizes -o "test.axf"   
+Fatal error: L6087U: Could not determine the endianness for linking from the explicitly specified object files.
+Finished: 0 information, 0 warning, 0 error and 1 fatal error messages.
+make: *** [test.axf] Error 1
+makefile:63: recipe for target 'test.axf' failed
+13:26:17 **** Build of configuration Debug for project dsf ****
+make all 
+Building file: ../src/dsf.c
+Invoking: ARM C Compiler 5
+armcc -O0 -g --md --depend_format=unix_escaped --no_depend_system_headers --depend_dir="src" -c -o "src/dsf.o" "../src/dsf.c"
+Finished building: ../src/dsf.c
+ 
+Building target: dsf.axf
+Invoking: ARM Linker 5
+armlink --info=sizes -o "dsf.axf"  ./src/dsf.o   
+
+==============================================================================
+
+Image component sizes
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
+
+        40         20          0          0          0       1871   dsf.o
+
+    ----------------------------------------------------------------------
+        40         20         16          0          0       1871   Object Totals
+         0          0         16          0          0          0   (incl. Generated)
+         0          0          0          0          0          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Member Name
+
+         8          0          0          0          0         68   __main.o
+         0          0          0          0          0          0   __rtentry.o
+        12          0          0          0          0          0   __rtentry2.o
+         8          0          0          0          0          0   __rtentry4.o
+        60          8          0          0          0          0   __scatter.o
+        44          0          0          0          0          0   __scatter_zi.o
+        12          0          0          0          0         68   defsig_exit.o
+        80          0          0          0          0         88   defsig_general.o
+        88         56          0          0          0         76   defsig_rtmem_inner.o
+        16          0          0          0          0         80   defsig_rtmem_outer.o
+        60         36          0          0          0         76   defsig_rtred_inner.o
+        16          0          0          0          0         80   defsig_rtred_outer.o
+        24          0          0          0          0         80   exit.o
+       116          0          0          0          0        100   fclose.o
+       808          4          0          0          0        100   flsbuf.o
+       360          8          0          0          0        144   fopen.o
+        48          0          0          0          0         68   fputc.o
+       412          0          0          0          0        100   fseek.o
+       112          0          0          0          0         76   ftell.o
+       164          0          0          0          0         80   h1_alloc.o
+        84          0          0          0          0         68   h1_extend.o
+       132          0          0          0          0         80   h1_free.o
+        28          0          0          0          0         84   h1_init.o
+       116          4          0          4          0         92   heapauxa.o
+         8          0          0          0          0        136   hguard.o
+         0          0          0          0          0          0   indicate_semi.o
+       224          0          0          0          0        184   init_alloc.o
+       484         68          0          0          0        112   initio.o
+         4          0          0          0          0          0   libinit.o
+        16          0          0          0          0          0   libinit2.o
+         4          0          0          0          0          0   libshutdown.o
+         8          0          0          0          0          0   libshutdown2.o
+        12          4          0          0         96         68   libspace.o
+         0          0          0          0          0          0   maybetermalloc1.o
+        56          4          0          0          0         80   puts.o
+        12          4          0          0          0         68   rt_errno_addr_intlibspace.o
+        12          4          0          0          0         68   rt_heap_descriptor_intlibspace.o
+        84          0          0          0          0         80   rt_memclr_w.o
+         4          0          0          0          0          0   rtexit.o
+        12          0          0          0          0          0   rtexit2.o
+       112          0          0          0          0         80   setvbuf.o
+       396          4          0          0          0        164   stdio.o
+         0          0          0         12        252          0   stdio_streams.o
+       100          4          0          0          0         68   strlen.o
+        20          4          0          0          0         68   sys_exit.o
+       196          0         12          0          0        252   sys_io.o
+        76          8          0          0          0         80   sys_stackheap.o
+        96          0          0          0          0         80   sys_stackheap_outer.o
+        24          0          0          0          0         76   sys_wrch.o
+         4          0          0          0          0         68   use_no_semi.o
+
+    ----------------------------------------------------------------------
+      4772        220         12         16        348       3340   Library Totals
+         0          0          0          0          0          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Name
+
+      4772        220         12         16        348       3340   c_4.l
+
+    ----------------------------------------------------------------------
+      4772        220         12         16        348       3340   Library Totals
+
+    ----------------------------------------------------------------------
+
+==============================================================================
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
+
+      4812        240         28         16        348       3527   Grand Totals
+      4812        240         28         16        348       3527   ELF Image Totals
+      4812        240         28         16          0          0   ROM Totals
+
+==============================================================================
+
+    Total RO  Size (Code + RO Data)                 4840 (   4.73kB)
+    Total RW  Size (RW Data + ZI Data)               364 (   0.36kB)
+    Total ROM Size (Code + RO Data + RW Data)       4856 (   4.74kB)
+
+==============================================================================
+
+Finished building target: dsf.axf
+ 
+13:26:19 **** Incremental Build of configuration Debug for project test ****
+make all 
+Building target: test.axf
+Invoking: ARM Linker 5
+armlink --cpu=Cortex-A7.no_neon --entry=StartHere --ro_base=0x80000000 --info=sizes -o "test.axf"   
+Fatal error: L6087U: Could not determine the endianness for linking from the explicitly specified object files.
+Finished: 0 information, 0 warning, 0 error and 1 fatal error messages.
+make: *** [test.axf] Error 1
+makefile:63: recipe for target 'test.axf' failed
+13:27:20 **** Auto Build of configuration Debug for project test ****
+make all 
+Building target: test.axf
+Invoking: ARM Linker 5
+armlink --cpu=Cortex-A7.no_neon --entry=StartHere --ro_base=0x80000000 --info=sizes -o "test.axf"   
+Fatal error: L6087U: Could not determine the endianness for linking from the explicitly specified object files.
+Finished: 0 information, 0 warning, 0 error and 1 fatal error messages.
+makefile:63: recipe for target 'test.axf' failed
+make: *** [test.axf] Error 1
+13:27:21 **** Incremental Build of configuration Debug for project dsf ****
+make all 
+make: Nothing to be done for 'all'.
+13:27:21 **** Incremental Build of configuration Debug for project test ****
+make all 
+Building target: test.axf
+Invoking: ARM Linker 5
+armlink --cpu=Cortex-A7.no_neon --entry=StartHere --ro_base=0x80000000 --info=sizes -o "test.axf"   
+Fatal error: L6087U: Could not determine the endianness for linking from the explicitly specified object files.
+Finished: 0 information, 0 warning, 0 error and 1 fatal error messages.
+make: *** [test.axf] Error 1
+makefile:63: recipe for target 'test.axf' failed
+13:27:50 **** Incremental Build of configuration Debug for project test ****
+make all 
+Building target: test.axf
+Invoking: ARM Linker 5
+armlink --cpu=Cortex-A7.no_neon --entry=StartHere --ro_base=0x80000000 --info=sizes -o "test.axf"   
+Fatal error: L6087U: Could not determine the endianness for linking from the explicitly specified object files.
+Finished: 0 information, 0 warning, 0 error and 1 fatal error messages.
+makefile:63: recipe for target 'test.axf' failed
+make: *** [test.axf] Error 1
+13:28:15 **** Auto Build of configuration Debug for project test ****
+make all 
+Building target: test.axf
+Invoking: ARM Linker 5
+armlink --cpu=Cortex-A7.no_neon --entry=StartHere --ro_base=0x80000000 --info=sizes -o "test.axf"   
+Fatal error: L6087U: Could not determine the endianness for linking from the explicitly specified object files.
+Finished: 0 information, 0 warning, 0 error and 1 fatal error messages.
+makefile:63: recipe for target 'test.axf' failed
+make: *** [test.axf] Error 1
+13:28:16 **** Incremental Build of configuration Debug for project test ****
+make all 
+Building target: test.axf
+Invoking: ARM Linker 5
+armlink --cpu=Cortex-A7.no_neon --entry=StartHere --ro_base=0x80000000 --info=sizes -o "test.axf"   
+Fatal error: L6087U: Could not determine the endianness for linking from the explicitly specified object files.
+Finished: 0 information, 0 warning, 0 error and 1 fatal error messages.
+makefile:63: recipe for target 'test.axf' failed
+make: *** [test.axf] Error 1
+13:30:01 **** Build of configuration Debug for project sdf ****
+make all 
+Building file: ../src/sdf.c
+Invoking: ARM C Compiler 5
+armcc -O0 -g --md --depend_format=unix_escaped --no_depend_system_headers --depend_dir="src" -c -o "src/sdf.o" "../src/sdf.c"
+Finished building: ../src/sdf.c
+ 
+Building target: sdf.axf
+Invoking: ARM Linker 5
+armlink --info=sizes -o "sdf.axf"  ./src/sdf.o   
+
+==============================================================================
+
+Image component sizes
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
+
+        40         20          0          0          0       1871   sdf.o
+
+    ----------------------------------------------------------------------
+        40         20         16          0          0       1871   Object Totals
+         0          0         16          0          0          0   (incl. Generated)
+         0          0          0          0          0          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Member Name
+
+         8          0          0          0          0         68   __main.o
+         0          0          0          0          0          0   __rtentry.o
+        12          0          0          0          0          0   __rtentry2.o
+         8          0          0          0          0          0   __rtentry4.o
+        60          8          0          0          0          0   __scatter.o
+        44          0          0          0          0          0   __scatter_zi.o
+        12          0          0          0          0         68   defsig_exit.o
+        80          0          0          0          0         88   defsig_general.o
+        88         56          0          0          0         76   defsig_rtmem_inner.o
+        16          0          0          0          0         80   defsig_rtmem_outer.o
+        60         36          0          0          0         76   defsig_rtred_inner.o
+        16          0          0          0          0         80   defsig_rtred_outer.o
+        24          0          0          0          0         80   exit.o
+       116          0          0          0          0        100   fclose.o
+       808          4          0          0          0        100   flsbuf.o
+       360          8          0          0          0        144   fopen.o
+        48          0          0          0          0         68   fputc.o
+       412          0          0          0          0        100   fseek.o
+       112          0          0          0          0         76   ftell.o
+       164          0          0          0          0         80   h1_alloc.o
+        84          0          0          0          0         68   h1_extend.o
+       132          0          0          0          0         80   h1_free.o
+        28          0          0          0          0         84   h1_init.o
+       116          4          0          4          0         92   heapauxa.o
+         8          0          0          0          0        136   hguard.o
+         0          0          0          0          0          0   indicate_semi.o
+       224          0          0          0          0        184   init_alloc.o
+       484         68          0          0          0        112   initio.o
+         4          0          0          0          0          0   libinit.o
+        16          0          0          0          0          0   libinit2.o
+         4          0          0          0          0          0   libshutdown.o
+         8          0          0          0          0          0   libshutdown2.o
+        12          4          0          0         96         68   libspace.o
+         0          0          0          0          0          0   maybetermalloc1.o
+        56          4          0          0          0         80   puts.o
+        12          4          0          0          0         68   rt_errno_addr_intlibspace.o
+        12          4          0          0          0         68   rt_heap_descriptor_intlibspace.o
+        84          0          0          0          0         80   rt_memclr_w.o
+         4          0          0          0          0          0   rtexit.o
+        12          0          0          0          0          0   rtexit2.o
+       112          0          0          0          0         80   setvbuf.o
+       396          4          0          0          0        164   stdio.o
+         0          0          0         12        252          0   stdio_streams.o
+       100          4          0          0          0         68   strlen.o
+        20          4          0          0          0         68   sys_exit.o
+       196          0         12          0          0        252   sys_io.o
+        76          8          0          0          0         80   sys_stackheap.o
+        96          0          0          0          0         80   sys_stackheap_outer.o
+        24          0          0          0          0         76   sys_wrch.o
+         4          0          0          0          0         68   use_no_semi.o
+
+    ----------------------------------------------------------------------
+      4772        220         12         16        348       3340   Library Totals
+         0          0          0          0          0          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Name
+
+      4772        220         12         16        348       3340   c_4.l
+
+    ----------------------------------------------------------------------
+      4772        220         12         16        348       3340   Library Totals
+
+    ----------------------------------------------------------------------
+
+==============================================================================
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
+
+      4812        240         28         16        348       3527   Grand Totals
+      4812        240         28         16        348       3527   ELF Image Totals
+      4812        240         28         16          0          0   ROM Totals
+
+==============================================================================
+
+    Total RO  Size (Code + RO Data)                 4840 (   4.73kB)
+    Total RW  Size (RW Data + ZI Data)               364 (   0.36kB)
+    Total ROM Size (Code + RO Data + RW Data)       4856 (   4.74kB)
+
+==============================================================================
+
+Finished building target: sdf.axf
+ 
+13:33:33 **** Build of configuration Debug for project Instructions ****
+make all 
+Building file: ../src/Instructions.c
+Invoking: ARM C Compiler 5
+armcc -O0 -g --md --depend_format=unix_escaped --no_depend_system_headers --depend_dir="src" -c -o "src/Instructions.o" "../src/Instructions.c"
+Finished building: ../src/Instructions.c
+ 
+Building file: ../src/instruction_tempfile.s
+Invoking: ARM Assembler 5
+armasm -g --md --depend_format=unix_escaped --depend="src/instruction_tempfile.d" -o "src/instruction_tempfile.o" "../src/instruction_tempfile.s"
+"../src/instruction_tempfile.s", line 16: Error: A1854E: Unknown opcode 'VMSR', maybe wrong target CPU?
+   16 00000018  VMSR FPEXC, r3
+"../src/instruction_tempfile.s", line 27: Error: A1854E: Unknown opcode 'vsub.f32', maybe wrong target CPU?
+   27 00000000  vsub.f32 s0, s0, s0
+"../src/instruction_tempfile.s", line 29: Error: A1854E: Unknown opcode 'vpush.f32', maybe wrong target CPU?
+   29 00000004  vpush.f32 {s0}
+"../src/instruction_tempfile.s", line 32: Error: A1854E: Unknown opcode 'vmov.f32', maybe wrong target CPU?
+   32 00000004  vmov.f32 s0, #1
+"../src/instruction_tempfile.s", line 34: Error: A1854E: Unknown opcode 'vpush.f32', maybe wrong target CPU?
+   34 00000008  vpush.f32 {s0}
+"../src/instruction_tempfile.s", line 37: Error: A1854E: Unknown opcode 'vmov.f32', maybe wrong target CPU?
+   37 00000008  vmov.f32 s0, #2
+"../src/instruction_tempfile.s", line 39: Error: A1854E: Unknown opcode 'vpush.f32', maybe wrong target CPU?
+   39 0000000c  vpush.f32 {s0}
+"../src/instruction_tempfile.s", line 42: Error: A1854E: Unknown opcode 'vsub.f64', maybe wrong target CPU?
+   42 0000000c  vsub.f64 d0, d0, d0
+"../src/instruction_tempfile.s", line 44: Error: A1854E: Unknown opcode 'vpush.f64', maybe wrong target CPU?
+   44 00000010  vpush.f64 {d0}
+"../src/instruction_tempfile.s", line 47: Error: A1854E: Unknown opcode 'vmov.f64', maybe wrong target CPU?
+   47 00000010  vmov.f64 d0, #1
+"../src/instruction_tempfile.s", line 49: Error: A1854E: Unknown opcode 'vpush.f64', maybe wrong target CPU?
+   49 00000014  vpush.f64 {d0}
+"../src/instruction_tempfile.s", line 52: Error: A1854E: Unknown opcode 'vpop.f32', maybe wrong target CPU?
+   52 00000014  vpop.f32 {s0, s1}
+"../src/instruction_tempfile.s", line 53: Error: A1854E: Unknown opcode 'vdiv.f32', maybe wrong target CPU?
+   53 00000014  vdiv.f32 s0,s1
+"../src/instruction_tempfile.s", line 54: Error: A1854E: Unknown opcode 'vpush', maybe wrong target CPU?
+   54 00000014  vpush {s0}
+"../src/instruction_tempfile.s", line 57: Error: A1854E: Unknown opcode 'vpop.f32', maybe wrong target CPU?
+   57 00000014  vpop.f32 {s0, s1}
+"../src/instruction_tempfile.s", line 58: Error: A1854E: Unknown opcode 'vmul.f32', maybe wrong target CPU?
+   58 00000014  vmul.f32 s0,s1
+"../src/instruction_tempfile.s", line 59: Error: A1854E: Unknown opcode 'vstr.f32', maybe wrong target CPU?
+   59 00000014  vstr.f32 s0, [sp]
+"../src/instruction_tempfile.s", line 62: Error: A1854E: Unknown opcode 'vpop.f32', maybe wrong target CPU?
+   62 00000014  vpop.f32 {s0, s1}
+"../src/instruction_tempfile.s", line 63: Error: A1854E: Unknown opcode 'vadd.f32', maybe wrong target CPU?
+   63 00000014  vadd.f32 s0,s1
+"../src/instruction_tempfile.s", line 64: Error: A1854E: Unknown opcode 'vstr.f32', maybe wrong target CPU?
+   64 00000014  vstr.f32 s0, [sp]
+"../src/instruction_tempfile.s", line 68: Error: A1854E: Unknown opcode 'vldr.f32', maybe wrong target CPU?
+   68 00000014  vldr.f32 s0, [fp]
+"../src/instruction_tempfile.s", line 69: Error: A1854E: Unknown opcode 'vpush.f32', maybe wrong target CPU?
+   69 00000014  vpush.f32 {s0}
+"../src/instruction_tempfile.s", line 72: Error: A1854E: Unknown opcode 'vldr.f32', maybe wrong target CPU?
+   72 00000014  vldr.f32 s0, [fp, #4]
+"../src/instruction_tempfile.s", line 73: Error: A1854E: Unknown opcode 'vpush.f32', maybe wrong target CPU?
+   73 00000014  vpush.f32 {s0}
+"../src/instruction_tempfile.s", line 76: Error: A1854E: Unknown opcode 'vldr.f32', maybe wrong target CPU?
+   76 00000014  vldr.f32 s0, [fp, #8]
+"../src/instruction_tempfile.s", line 77: Error: A1854E: Unknown opcode 'vpush.f32', maybe wrong target CPU?
+   77 00000014  vpush.f32 {s0}
+"../src/instruction_tempfile.s", line 80: Error: A1854E: Unknown opcode 'vldr.f32', maybe wrong target CPU?
+   80 00000014  vldr.f32 s0, [fp, #12]
+"../src/instruction_tempfile.s", line 81: Error: A1854E: Unknown opcode 'vpush.f32', maybe wrong target CPU?
+   81 00000014  vpush.f32 {s0}
+"../src/instruction_tempfile.s", line 84: Error: A1854E: Unknown opcode 'vpop', maybe wrong target CPU?
+   84 00000014  vpop {s0}
+"../src/instruction_tempfile.s", line 85: Error: A1854E: Unknown opcode 'vneg.f32', maybe wrong target CPU?
+   85 00000014  vneg.f32 s0
+"../src/instruction_tempfile.s", line 86: Error: A1854E: Unknown opcode 'vpush', maybe wrong target CPU?
+   86 00000014  vpush {s0}
+"../src/instruction_tempfile.s", line 90: Error: A1854E: Unknown opcode 'vpop', maybe wrong target CPU?
+   90 00000014  vpop {s0, s1}
+"../src/instruction_tempfile.s", line 91: Error: A1854E: Unknown opcode 'vdiv.f32', maybe wrong target CPU?
+   91 00000014  vdiv.f32 s2,s0,s1
+"../src/instruction_tempfile.s", line 92: Error: A1854E: Unknown opcode 'vcvt.s32.f32', maybe wrong target CPU?
+   92 00000014  vcvt.s32.f32 s2
+"../src/instruction_tempfile.s", line 93: Error: A1854E: Unknown opcode 'vcvt.f32.s32', maybe wrong target CPU?
+   93 00000014  vcvt.f32.s32 s2
+"../src/instruction_tempfile.s", line 94: Error: A1854E: Unknown opcode 'vmul.f32', maybe wrong target CPU?
+   94 00000014  vmul.f32 s2,s1
+"../src/instruction_tempfile.s", line 95: Error: A1854E: Unknown opcode 'vsub.f32', maybe wrong target CPU?
+   95 00000014  vsub.f32 s0,s2
+"../src/instruction_tempfile.s", line 97: Error: A1854E: Unknown opcode 'vpush.f32', maybe wrong target CPU?
+   97 00000014  vpush.f32 {s0}
+"../src/instruction_tempfile.s", line 101: Error: A1854E: Unknown opcode 'vpop.f32', maybe wrong target CPU?
+  101 00000014  vpop.f32 {s0}
+"../src/instruction_tempfile.s", line 102: Error: A1854E: Unknown opcode 'vcvt.f64.f32', maybe wrong target CPU?
+  102 00000014  vcvt.f64.f32 d0, s0
+"../src/instruction_tempfile.s", line 103: Error: A1854E: Unknown opcode 'vpush.f64', maybe wrong target CPU?
+  103 00000014  vpush.f64 {d0}
+"../src/instruction_tempfile.s", line 106: Error: A1854E: Unknown opcode 'vldr.f32', maybe wrong target CPU?
+  106 00000014  vldr.f32 s0, [sp]
+"../src/instruction_tempfile.s", line 107: Error: A1854E: Unknown opcode 'vcvt.s32.f32', maybe wrong target CPU?
+  107 00000014  vcvt.s32.f32 s1, s0
+"../src/instruction_tempfile.s", line 108: Error: A1854E: Unknown opcode 'vstr.f32', maybe wrong target CPU?
+  108 00000014  vstr.f32 s1, [sp]
+"../src/instruction_tempfile.s", line 111: Error: A1854E: Unknown opcode 'vldr.f64', maybe wrong target CPU?
+  111 00000014  vldr.f64 d0, [sp]
+"../src/instruction_tempfile.s", line 112: Error: A1854E: Unknown opcode 'vcvt.f32.f64', maybe wrong target CPU?
+  112 00000014  vcvt.f32.f64 s0, d0
+"../src/instruction_tempfile.s", line 113: Error: A1854E: Unknown opcode 'vstr.f32', maybe wrong target CPU?
+  113 00000014  vstr.f32 s0, [sp]
+"../src/instruction_tempfile.s", line 116: Error: A1854E: Unknown opcode 'vldr.f64', maybe wrong target CPU?
+  116 00000014  vldr.f64 d0, [sp]
+"../src/instruction_tempfile.s", line 118: Error: A1854E: Unknown opcode 'vldr.f64', maybe wrong target CPU?
+  118 00000018  vldr.f64 d1, [sp]
+"../src/instruction_tempfile.s", line 119: Error: A1854E: Unknown opcode 'vadd.f64', maybe wrong target CPU?
+  119 00000018  vadd.f64 d2,d1,d0
+51 Errors, 0 Warnings
+src/subdir.mk:32: recipe for target 'src/instruction_tempfile.o' failed
+make: *** [src/instruction_tempfile.o] Error 8
+13:35:29 **** Incremental Build of configuration Debug for project Instructions ****
+make all 
+Building file: ../src/Instructions.c
+Invoking: ARM C Compiler 5
+armcc --cpu=Cortex-A7.no_neon --apcs=/hardfp --fpmode=std --arm -O0 -g --md --depend_format=unix_escaped --no_depend_system_headers --depend_dir="src" -c -o "src/Instructions.o" "../src/Instructions.c"
+Finished building: ../src/Instructions.c
+ 
+Building file: ../src/instruction_tempfile.s
+Invoking: ARM Assembler 5
+armasm --cpu=Cortex-A7.no_neon --apcs=/hardfp --fpmode=std --arm -g --md --depend_format=unix_escaped --depend="src/instruction_tempfile.d" -o "src/instruction_tempfile.o" "../src/instruction_tempfile.s"
+"../src/instruction_tempfile.s", line 85 (column 13): Error: A1106E: Missing comma
+   85 00000084  vneg.f32 s0
+                           ^
+"../src/instruction_tempfile.s", line 92 (column 17): Error: A1106E: Missing comma
+   92 00000090  vcvt.s32.f32 s2
+                               ^
+"../src/instruction_tempfile.s", line 93 (column 17): Error: A1106E: Missing comma
+   93 00000090  vcvt.f32.s32 s2
+                               ^
+3 Errors, 0 Warnings
+src/subdir.mk:32: recipe for target 'src/instruction_tempfile.o' failed
+make: *** [src/instruction_tempfile.o] Error 1
+13:35:40 **** Incremental Build of configuration Debug for project Instructions ****
+make all 
+Building file: ../src/instruction_tempfile.s
+Invoking: ARM Assembler 5
+armasm --cpu=Cortex-A7.no_neon --apcs=/hardfp --fpmode=std --arm -g --md --depend_format=unix_escaped --depend="src/instruction_tempfile.d" -o "src/instruction_tempfile.o" "../src/instruction_tempfile.s"
+"../src/instruction_tempfile.s", line 92 (column 17): Error: A1106E: Missing comma
+   92 00000094  vcvt.s32.f32 s2
+                               ^
+"../src/instruction_tempfile.s", line 93 (column 17): Error: A1106E: Missing comma
+   93 00000094  vcvt.f32.s32 s2
+                               ^
+2 Errors, 0 Warnings
+src/subdir.mk:32: recipe for target 'src/instruction_tempfile.o' failed
+make: *** [src/instruction_tempfile.o] Error 1
+13:35:48 **** Incremental Build of configuration Debug for project Instructions ****
+make all 
+Building file: ../src/instruction_tempfile.s
+Invoking: ARM Assembler 5
+armasm --cpu=Cortex-A7.no_neon --apcs=/hardfp --fpmode=std --arm -g --md --depend_format=unix_escaped --depend="src/instruction_tempfile.d" -o "src/instruction_tempfile.o" "../src/instruction_tempfile.s"
+Finished building: ../src/instruction_tempfile.s
+ 
+Building target: Instructions.axf
+Invoking: ARM Linker 5
+armlink --cpu=Cortex-A7.no_neon --entry=StartHere --ro_base=0x800000000 --info=sizes -o "Instructions.axf"  ./src/Instructions.o ./src/instruction_tempfile.o   
+Error: L6225E: Number 0x800000000... is too long.
+Finished: 0 information, 0 warning and 1 error messages.
+makefile:63: recipe for target 'Instructions.axf' failed
+make: *** [Instructions.axf] Error 1
+13:36:26 **** Incremental Build of configuration Debug for project Instructions ****
+make all 
+Building target: Instructions.axf
+Invoking: ARM Linker 5
+armlink --cpu=Cortex-A7.no_neon --entry=StartHere --ro_base=0x80000000 --info=sizes -o "Instructions.axf"  ./src/Instructions.o ./src/instruction_tempfile.o   
+
+==============================================================================
+
+Image component sizes
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
+
+        44         20          0          0          0       1943   Instructions.o
+       280          0          0          0          0        636   instruction_tempfile.o
+
+    ----------------------------------------------------------------------
+       324         20         16          0          0       2579   Object Totals
+         0          0         16          0          0          0   (incl. Generated)
+         0          0          0          0          0          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Member Name
+
+         8          0          0          0          0         68   __main.o
+         0          0          0          0          0          0   __rtentry.o
+        12          0          0          0          0          0   __rtentry2.o
+         6          0          0          0          0          0   __rtentry4.o
+        52          8          0          0          0          0   __scatter.o
+        28          0          0          0          0          0   __scatter_zi.o
+        10          0          0          0          0         68   defsig_exit.o
+        50          0          0          0          0         88   defsig_general.o
+        80         58          0          0          0         76   defsig_rtmem_inner.o
+        14          0          0          0          0         80   defsig_rtmem_outer.o
+        52         38          0          0          0         76   defsig_rtred_inner.o
+        14          0          0          0          0         80   defsig_rtred_outer.o
+        18          0          0          0          0         80   exit.o
+        76          0          0          0          0         88   fclose.o
+       470          0          0          0          0         88   flsbuf.o
+       236          4          0          0          0        128   fopen.o
+        26          0          0          0          0         68   fputc.o
+       248          6          0          0          0         84   fseek.o
+        66          0          0          0          0         76   ftell.o
+        94          0          0          0          0         80   h1_alloc.o
+        48          0          0          0          0         68   h1_extend.o
+        78          0          0          0          0         80   h1_free.o
+        14          0          0          0          0         84   h1_init.o
+        80          6          0          4          0         96   heapauxa.o
+         4          0          0          0          0        136   hguard.o
+         0          0          0          0          0          0   indicate_semi.o
+       136          0          0          0          0        168   init_alloc.o
+       312         46          0          0          0        112   initio.o
+         2          0          0          0          0          0   libinit.o
+        18          0          0          0          0          0   libinit2.o
+         2          0          0          0          0          0   libshutdown.o
+         6          0          0          0          0          0   libshutdown2.o
+         8          4          0          0         96         68   libspace.o
+         0          0          0          0          0          0   maybetermalloc1.o
+        44          4          0          0          0         84   puts.o
+         8          4          0          0          0         68   rt_errno_addr_intlibspace.o
+         8          4          0          0          0         68   rt_heap_descriptor_intlibspace.o
+        78          0          0          0          0         80   rt_memclr_w.o
+         2          0          0          0          0          0   rtexit.o
+        10          0          0          0          0          0   rtexit2.o
+        70          0          0          0          0         80   setvbuf.o
+       240          6          0          0          0        156   stdio.o
+         0          0          0         12        252          0   stdio_streams.o
+        58          0          0          0          0         68   strlen.o
+        12          4          0          0          0         68   sys_exit.o
+       102          0         12          0          0        240   sys_io.o
+        48          8          0          0          0         80   sys_stackheap.o
+        74          0          0          0          0         80   sys_stackheap_outer.o
+        14          0          0          0          0         76   sys_wrch.o
+         2          0          0          0          0         68   use_no_semi.o
+        10          0          0          0          0        116   fpinit.o
+
+    ----------------------------------------------------------------------
+      3070        200         14         16        348       3372   Library Totals
+        22          0          2          0          0          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Name
+
+      3038        200         12         16        348       3256   c_2.l
+        10          0          0          0          0        116   fz_2v.l
+
+    ----------------------------------------------------------------------
+      3070        200         14         16        348       3372   Library Totals
+
+    ----------------------------------------------------------------------
+
+==============================================================================
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
+
+      3394        220         30         16        348       4319   Grand Totals
+      3394        220         30         16        348       4319   ELF Image Totals
+      3394        220         30         16          0          0   ROM Totals
+
+==============================================================================
+
+    Total RO  Size (Code + RO Data)                 3424 (   3.34kB)
+    Total RW  Size (RW Data + ZI Data)               364 (   0.36kB)
+    Total ROM Size (Code + RO Data + RW Data)       3440 (   3.36kB)
+
+==============================================================================
+
+Finished building target: Instructions.axf
+ 
+13:42:29 **** Incremental Build of configuration Debug for project Instructions ****
+make all 
+make: Nothing to be done for 'all'.
+13:43:04 **** Incremental Build of configuration Debug for project Instructions ****
+make all 
+make: Nothing to be done for 'all'.

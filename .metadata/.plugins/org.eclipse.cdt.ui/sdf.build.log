@@ -1,0 +1,117 @@
+13:30:01 **** Build of configuration Debug for project sdf ****
+make all 
+Building file: ../src/sdf.c
+Invoking: ARM C Compiler 5
+armcc -O0 -g --md --depend_format=unix_escaped --no_depend_system_headers --depend_dir="src" -c -o "src/sdf.o" "../src/sdf.c"
+Finished building: ../src/sdf.c
+ 
+Building target: sdf.axf
+Invoking: ARM Linker 5
+armlink --info=sizes -o "sdf.axf"  ./src/sdf.o   
+
+==============================================================================
+
+Image component sizes
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
+
+        40         20          0          0          0       1871   sdf.o
+
+    ----------------------------------------------------------------------
+        40         20         16          0          0       1871   Object Totals
+         0          0         16          0          0          0   (incl. Generated)
+         0          0          0          0          0          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Member Name
+
+         8          0          0          0          0         68   __main.o
+         0          0          0          0          0          0   __rtentry.o
+        12          0          0          0          0          0   __rtentry2.o
+         8          0          0          0          0          0   __rtentry4.o
+        60          8          0          0          0          0   __scatter.o
+        44          0          0          0          0          0   __scatter_zi.o
+        12          0          0          0          0         68   defsig_exit.o
+        80          0          0          0          0         88   defsig_general.o
+        88         56          0          0          0         76   defsig_rtmem_inner.o
+        16          0          0          0          0         80   defsig_rtmem_outer.o
+        60         36          0          0          0         76   defsig_rtred_inner.o
+        16          0          0          0          0         80   defsig_rtred_outer.o
+        24          0          0          0          0         80   exit.o
+       116          0          0          0          0        100   fclose.o
+       808          4          0          0          0        100   flsbuf.o
+       360          8          0          0          0        144   fopen.o
+        48          0          0          0          0         68   fputc.o
+       412          0          0          0          0        100   fseek.o
+       112          0          0          0          0         76   ftell.o
+       164          0          0          0          0         80   h1_alloc.o
+        84          0          0          0          0         68   h1_extend.o
+       132          0          0          0          0         80   h1_free.o
+        28          0          0          0          0         84   h1_init.o
+       116          4          0          4          0         92   heapauxa.o
+         8          0          0          0          0        136   hguard.o
+         0          0          0          0          0          0   indicate_semi.o
+       224          0          0          0          0        184   init_alloc.o
+       484         68          0          0          0        112   initio.o
+         4          0          0          0          0          0   libinit.o
+        16          0          0          0          0          0   libinit2.o
+         4          0          0          0          0          0   libshutdown.o
+         8          0          0          0          0          0   libshutdown2.o
+        12          4          0          0         96         68   libspace.o
+         0          0          0          0          0          0   maybetermalloc1.o
+        56          4          0          0          0         80   puts.o
+        12          4          0          0          0         68   rt_errno_addr_intlibspace.o
+        12          4          0          0          0         68   rt_heap_descriptor_intlibspace.o
+        84          0          0          0          0         80   rt_memclr_w.o
+         4          0          0          0          0          0   rtexit.o
+        12          0          0          0          0          0   rtexit2.o
+       112          0          0          0          0         80   setvbuf.o
+       396          4          0          0          0        164   stdio.o
+         0          0          0         12        252          0   stdio_streams.o
+       100          4          0          0          0         68   strlen.o
+        20          4          0          0          0         68   sys_exit.o
+       196          0         12          0          0        252   sys_io.o
+        76          8          0          0          0         80   sys_stackheap.o
+        96          0          0          0          0         80   sys_stackheap_outer.o
+        24          0          0          0          0         76   sys_wrch.o
+         4          0          0          0          0         68   use_no_semi.o
+
+    ----------------------------------------------------------------------
+      4772        220         12         16        348       3340   Library Totals
+         0          0          0          0          0          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Name
+
+      4772        220         12         16        348       3340   c_4.l
+
+    ----------------------------------------------------------------------
+      4772        220         12         16        348       3340   Library Totals
+
+    ----------------------------------------------------------------------
+
+==============================================================================
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
+
+      4812        240         28         16        348       3527   Grand Totals
+      4812        240         28         16        348       3527   ELF Image Totals
+      4812        240         28         16          0          0   ROM Totals
+
+==============================================================================
+
+    Total RO  Size (Code + RO Data)                 4840 (   4.73kB)
+    Total RW  Size (RW Data + ZI Data)               364 (   0.36kB)
+    Total ROM Size (Code + RO Data + RW Data)       4856 (   4.74kB)
+
+==============================================================================
+
+Finished building target: sdf.axf
+ 
+
+13:30:04 Build Finished (took 2s.852ms)
+

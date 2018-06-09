@@ -1,0 +1,12 @@
+13:28:16 **** Incremental Build of configuration Debug for project test ****
+make all 
+Building target: test.axf
+Invoking: ARM Linker 5
+armlink --cpu=Cortex-A7.no_neon --entry=StartHere --ro_base=0x80000000 --info=sizes -o "test.axf"   
+Fatal error: L6087U: Could not determine the endianness for linking from the explicitly specified object files.
+Finished: 0 information, 0 warning, 0 error and 1 fatal error messages.
+makefile:63: recipe for target 'test.axf' failed
+make: *** [test.axf] Error 1
+
+13:28:17 Build Finished (took 1s.22ms)
+
