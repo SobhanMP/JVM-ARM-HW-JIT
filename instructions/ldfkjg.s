@@ -87,8 +87,7 @@ myasm
 
 
 	;#frem
-	add sp, #4
-	vldm.f32 sp!, {s0, s1}
+	vpop {s0, s1}
 	vdiv.f32 s2,s0,s1
 	vcvt.s32.f32 s4,s2
 	vcvt.f32.s32 s2,s4
