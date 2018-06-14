@@ -31,7 +31,8 @@ module count_rom(output [4:0] count, input [7:0] opcode);
 endmodule
 
 module state_machine(
-        input wire clk
+        input wire clk,
+        input wire reset
     );
     wire next_byte;
     wire ready_jvm;
@@ -39,11 +40,22 @@ module state_machine(
     reg start_fetch;
     reg start_write;
     reg is_wide;
-    reg state;
     reg waiting;
-    reg param_no; // TODO on reset: 0
+    reg param_no;
     reg push_state; // push_state: 0 -> write "mov imm to rf"      push_state: 1 -> write "push to stack"
-    // TODO on reset: 0
+
+    reg [2:0] state;
+
+    always@(negedge reset) begin
+        start_fetch <= 1'b1;
+        start_fetch <= 1'b0;
+        is_wide <= 1'b0;
+        start_fetch <= 1'b1;
+        waiting <= 1'b1;
+        param_no <= 1'b1;
+        push_state <= 1'b1;
+    end
+
 
     parameter FETCH_INSTRUCTION = 0;
     parameter CHECK_WIDE = 1;
@@ -107,7 +119,9 @@ module state_machine(
         .opcode(opcode)
     );
 
+
     always @(posedge clk) begin
+        if (reset == 0'b0) begin
         case(state)
             FETCH_INSTRUCTION:
                 case(waiting)
@@ -216,6 +230,7 @@ module state_machine(
                 endcase
 
         endcase
+        end
     end
 
 endmodule
