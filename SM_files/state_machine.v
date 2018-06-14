@@ -10,10 +10,6 @@ module inst_rom(output [31:0] instr, input [31:0] inst_id); // address of instrs
 ...
 endmodule
 
-module count_rom(output [4:0] count, input [7:0] opcode);
-...
-endmodule
-
 
 
 module state_machine(
