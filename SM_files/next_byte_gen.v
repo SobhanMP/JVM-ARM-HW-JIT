@@ -12,7 +12,7 @@ module next_byte_gen #(
     );
 
     reg [ADDRESS_WIDTH - 1:0] pc; 
-    reg [31:0] data_out;
+    wire [31:0] data_out;
 
 memory_r #(.SIZE(RAM_SIZE), .ADDRESS_WIDTH(ADDRESS_WIDTH))
     mem
