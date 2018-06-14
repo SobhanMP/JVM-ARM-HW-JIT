@@ -30,6 +30,7 @@ module count_rom(output [4:0] count, input [7:0] opcode);
     reg [7:0] number_of_bytes [4:0];
     always@* begin
 
+
     end
     assign data = mem[addr];
 endmodule
