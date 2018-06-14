@@ -1,25 +1,41 @@
 module addr_rom(output [31:0] n_addr, input [31:0] addr); //used to store next address of the instruction
-....
+    reg [31:0] mem [31:0];
+    always@* begin
+
+    end
+    assign data = mem[addr];
 endmodule
 
 module conv_rom(output [31:0] inst_id, input [31:0] addr); // instrs
-...
+    reg [31:0] mem [31:0];
+    always@* begin
+
+    end
+    assign data = mem[addr];
 endmodule
 
 module inst_rom(output [31:0] instr, input [31:0] inst_id); // address of instrs
-...
+    reg [31:0] mem [31:0];
+    always@* begin
+
+    end
+    assign data = mem[addr];
 endmodule
 
 module count_rom(output [4:0] count, input [7:0] opcode);
-...
+    reg [7:0] number_of_bytes [4:0];
+    always@* begin
+
+    end
+    assign data = mem[addr];
 endmodule
 
 module push_1byte_rom();
-...
+
 endmodule
 
 module push_2byte_rom();
-...
+
 endmodule
 
 module state_machine(
@@ -166,7 +182,7 @@ module state_machine(
                         end
                 endcase
             PUSH_TO_STACK:
-            
+                
 
             READ_NEXT:
                 instr_id_reg <= inst_id;
