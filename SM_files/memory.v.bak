@@ -87,6 +87,7 @@ module memory_w #(
 			for(i=0; i < SIZE - 1; i = i+1) begin
 				array[i] <= 8'b0000_0000;
 			end
+			ready <= 1;
 			state <= 0;
 		end
 		else if(start & ~state) begin

@@ -14,13 +14,13 @@ module next_byte_gen #(
     reg [ADDRESS_WIDTH - 1:0] pc; 
     reg [31:0] data_out;
 
-memory #(.SIZE(RAM_SIZE), .ADDRESS_WIDTH(ADDRESS_WIDTH))
+memory_r #(.SIZE(RAM_SIZE), .ADDRESS_WIDTH(ADDRESS_WIDTH))
     mem
     (
         .data_out(next_byte),
         .ready(ready),
         .clk(clk),
-        .reset(1'b1),
+        .reset(pc_reset),
         .address(pc),
         .rwn(1'b1),
         .start(start)

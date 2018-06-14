@@ -10,10 +10,7 @@ reg pc_reset;
 wire ready;
 wire [7:0] next_byte;
 
-next_byte_gen nbg (.clk(clk),
- .start(start),.pc_reset(pc_reset),
- .pc_reset_value(pc_reset_value),
- .ready(ready),.next_byte(next_byte));
+next_byte_gen nbg (.clk(clk), .start(start),.pc_reset(pc_reset),.pc_reset_value(pc_reset_value[ADDRESS_WIDTH-1 : 0],.ready(ready),.next_byte(next_byte));
 
 initial clk = 1'b0;
 always #5 clk = ~clk;
