@@ -140,7 +140,6 @@ myasm
 	;vpop.f32 {s0, s1}
 	;vadd.f32 s0,s1
 	;vpush.f32 {s0}
-	;vpop.f32 {s1}
 
 	;#fload
 	;pop {r0}
