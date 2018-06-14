@@ -14,13 +14,7 @@ module count_rom(output [4:0] count, input [7:0] opcode);
 ...
 endmodule
 
-module push_1byte_rom();
-...
-endmodule
 
-module push_2byte_rom();
-...
-endmodule
 
 module state_machine(
         input wire clk
