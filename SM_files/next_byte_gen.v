@@ -2,7 +2,7 @@ module next_byte_gen #(
     parameter RAM_SIZE = 256,
     parameter ADDRESS_WIDTH = 8)
     (   
-        output reg [7:0] next_byte,
+        output wire [7:0] next_byte,
         output reg ready,
 
         input wire [ADDRESS_WIDTH - 1:0] pc_reset_value,
@@ -12,22 +12,19 @@ module next_byte_gen #(
     );
 
     reg [ADDRESS_WIDTH - 1:0] pc; 
-    wire [31:0] data_out;
-
+    
 memory_r #(.SIZE(RAM_SIZE), .ADDRESS_WIDTH(ADDRESS_WIDTH))
     mem
     (
-        .data_out(data_out),
+        .data_out(next_byte),
         .ready(ready),
         .clk(clk),
         .reset(pc_reset),
         .address(pc),
-        .rwn(1'b1),
         .start(start)
     );
 
     always @(posedge clk or negedge pc_reset) begin 
-    next_byte <= data_out[7:0];
     if (pc_reset == 0) begin
         pc <= pc_reset_value;
     end
