@@ -3,7 +3,7 @@ module memory_r #(
     parameter ADDRESS_WIDTH = 8)   
     (
         output wire ready,
-	output reg [31:0] data_out,
+		output reg [7:0] data_out,
 
         input wire clk,
         input wire reset,
@@ -40,10 +40,7 @@ module memory_r #(
 			counter <= counter-1;
 		else	if(state) begin
 
-			data_out[07:00] <= array[(ad_t+0)%SIZE];
-			data_out[15:08] <= array[(ad_t+1)%SIZE];
-			data_out[23:16] <= array[(ad_t+2)%SIZE];
-			data_out[31:24] <= array[(ad_t+3)%SIZE];
+			data_out <= array[ad_t%SIZE];
 			
 			state <= 0;
 			end
@@ -55,7 +52,7 @@ module memory_w #(
 	parameter ADDRESS_WIDTH = 8)   
 	(
 		output wire ready,
-		input wire clk,
+		input wire clk,s
 		input wire reset,
 
 		input wire [ADDRESS_WIDTH - 1:0] address,
