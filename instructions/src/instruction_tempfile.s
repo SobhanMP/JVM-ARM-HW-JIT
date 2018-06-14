@@ -20,7 +20,91 @@ StartHere
 
 	area mycode, code
 	export myasm
-myasm1
+
+myasm
+
+;#dup
+  ;pop {r0}
+  ;push {r0}
+  ;push {r0}
+
+  ;#dup2
+    ;pop {r0, r1}
+    ;push {r0, r1}
+    ;push {r0,r1}
+
+
+
+    ;#dup_x1
+    ;pop {r0,r1}
+    ;push {r0}
+    ;push {r0,r1}
+
+
+    ;#dup_x2
+    ;pop {r0,r1,r2}
+    ;push {r0}
+    ;push {r0,r1,r2}
+
+    ;pop
+    ;pop {r0}
+
+    ;pop2
+    ;pop {r0, r1}
+
+;    ;#t
+;    mov r0, #0
+;    push {r0}
+;    mov r0, #1
+;    push {r0}
+;
+;    ;#swap
+;   	pop {r0, r1}
+;   	mov r2, r0
+;   	push {r1, r2}
+;
+;    ;#t
+;    pop {r0}
+;    pop {r0}
+
+
+;;    ;#t
+;    mov r0, #0
+;    push {r0}
+;    mov r0, #1
+;    push {r0}
+;    mov r0, #3
+;    push {r0}
+;	;#dup2_x1
+;    pop {r0,r1,r2}
+;    push {r0,r1}
+;    push{r0,r1,r2}
+;
+;	;#t
+;	pop {r0}
+;	pop {r0}
+;	pop {r0}
+;	pop {r0}
+;	pop {r0}
+;    mov r0, #0
+;    push {r0}
+;    mov r0, #1
+;    push {r0}
+;    mov r0, #2
+;    push {r0}
+;    mov r0, #3
+;    push {r0}
+;    ;#dup2_x2
+;    pop  {r0,r1,r2,r3}
+;    push  {r0,r1}
+;    push  {r0,r1,r2,r3}
+;	;#t
+;	pop {r0}
+;	pop {r0}
+;	pop {r0}
+;	pop {r0}
+;	pop {r0}
+;	pop {r0}
 
 	;#fconst_0
 	;vsub.f32 s0, s0, s0
@@ -124,50 +208,52 @@ myasm1
 	;pushgt {r0}
 	;movlt r0,#-1
 	;pushlt {r0}
+;
+;	;#d2i
+;	vpop.f64 {d0}
+;	vcvt.s32.f64 s0, d0
+;	vpush.f32 {s0}
 
-	;#d2i
-	vpop.f64 {d0}
-	vcvt.s32.f64 s0, d0
-	vpush.f32 {s0}
-
-
-	;#d2l
-	vpop.f64 {d0}
-	vcvt.s32.f64 s0, d0
-	mov r0, #0
-	vmov r1, s0
-	vmov d0, r1, r0
-	vpush.f64 {d0}
-
-
-
-	;#fneg
-	vpop {s0}
-	vneg.f32 s0, s0
-	vpush {s0}
+;	;#t
+;	vmov.f64 d0, #12
+;	vpush.f64 {d0}
+;	;#d2l
+;	vpop.f64 {d0}
+;	vmov r0, r1, d0
+;	push {fp, lr}
+;	import __aeabi_d2lz
+;	bl __aeabi_d2lz
+;	pop {fp, lr}
+;	push {r2, r3}
 
 
-	;#frem
-	vpop {s0, s1}
-	vdiv.f32 s2,s0,s1
-	vcvt.s32.f32 s2, s2
-	vcvt.f32.s32 s2, s2
-	vmul.f32 s2,s1
-	vsub.f32 s0,s2
-
-	vpush.f32 {s0}
+;
+;	;#fneg
+;	vpop {s0}
+;	vneg.f32 s0, s0
+;	vpush {s0}
 
 
-	;#f2d
-	vpop.f32 {s0}
-	vcvt.f64.f32 d0, s0
-	vpush.f64 {d0}
+;	;#frem
+;	vpop {s0, s1}
+;	vdiv.f32 s2,s0,s1
+;	vcvt.s32.f32 s2, s2
+;	vcvt.f32.s32 s2, s2
+;	vmul.f32 s2,s1
+;	vsub.f32 s0,s2
+;
+;	vpush.f32 {s0}
 
-	;#f2i
-	vpop.f32 {s0}
-	vcvt.s32.f32 s1, s0
-	vpush.f32 {s1}
-myasm
+
+;	;#f2d
+;	vpop.f32 {s0}
+;	vcvt.f64.f32 d0, s0
+;	vpush.f64 {d0}
+;
+;	;#f2i
+;	vpop.f32 {s0}
+;	vcvt.s32.f32 s1, s0
+;	vpush.f32 {s1}
 ;	;#t
 ;	vmov.f32 s0, #11.0
 ;	vpush.f32 {s0}
