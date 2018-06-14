@@ -30,14 +30,6 @@ module count_rom(output [4:0] count, input [7:0] opcode);
     assign data = mem[addr];
 endmodule
 
-module push_1byte_rom();
-
-endmodule
-
-module push_2byte_rom();
-
-endmodule
-
 module state_machine(
         input wire clk
     );
@@ -182,7 +174,7 @@ module state_machine(
                         end
                 endcase
             PUSH_TO_STACK:
-                
+
 
             READ_NEXT:
                 instr_id_reg <= inst_id;
