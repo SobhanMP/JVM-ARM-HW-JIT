@@ -39,6 +39,7 @@ module state_machine(
     reg push_state; // push_state: 0 -> write "mov imm to rf"      push_state: 1 -> write "push to stack"
 
     reg [2:0] state;
+    reg [2:0] next_state;
 
     always@(negedge reset) begin
         start_fetch <= 1'b1;
@@ -92,7 +93,7 @@ module state_machine(
     wire [31:0] instr_wire;
     reg [31:0] word_to_write;
 
-    addr_rom next_addr(
+    addr_rom next_addr_rom(
         .addr(current_addr),
         .n_addr(next_addr)
     );
@@ -117,11 +118,12 @@ module state_machine(
         case(state)
             FETCH_INSTRUCTION:
                 case(waiting)
-                    1'b0:
+                    1'b0: begin
                         start_fetch <= 1'b1;
-                        waiting <= 1'b1';
+                        waiting <= 1'b1;
                         next_state <= FETCH_INSTRUCTION;
-                    1'b1:
+                    end
+                    1'b1: begin
                         start_fetch <= 1'b0;
                         if(ready_jvm == 1'b1) begin
                             opcode <= next_byte;
@@ -132,31 +134,33 @@ module state_machine(
                             waiting <= 1'b1;
                             next_state <= FETCH_INSTRUCTION;
                         end
+                    end
                 endcase
             CHECK_WIDE:
                 if(opcode == 8'b1100_0100) begin
-                    is_wide <= 1'b1
-                    next_state <= FETCH_INSTRUCTION
+                    is_wide <= 1'b1;
+                    next_state <= FETCH_INSTRUCTION;
                 end
                 else begin
                    next_state = READ_COUNTER; 
                 end
             READ_COUNTER:
                 if (param_bits == 4'b000)
-                    next_state <= CONVERT;
+                    next_state <= WRITE_INSTRUCTION;
                 else begin
                     counter <= param_bits;
                     next_state <= FETCH_PARAMS;
                 end
             FETCH_PARAMS:
                 case(waiting)
-                    1'b0:
+                    1'b0: begin
                         start_fetch <= 1'b1;
-                        waiting <= 1'b1';
+                        waiting <= 1'b1;
                         next_state <= FETCH_PARAMS;
-                    1'b1:
+                    end
+                    1'b1: begin
                         start_fetch <= 1'b0;
-                        if(ready == 1'b1) begin
+                        if(ready_jvm == 1'b1) begin
                             mem_reg <= next_byte;
                             counter <= counter - 1;
                             waiting <= 1'b0;
@@ -167,21 +171,22 @@ module state_machine(
                             else if (param_no == 0'b0) begin
                                 push_reg <= next_byte << 8;
                                 param_no <= 0'b1;
-                                next_state <= FETCH_PARAMS
+                                next_state <= FETCH_PARAMS;
                             end
                             else if (param_no == 0'b1) begin
-                                push_reg <= next_byte or push_reg;
+                                push_reg <= next_byte | push_reg;
                                 param_no <= 0'b0;
-                                next_state <= PUSH_TO_STACK
+                                next_state <= PUSH_TO_STACK;
                             end
                         end
                         else begin
                             waiting <= 1'b1;
                             next_state <= FETCH_PARAMS;
                         end
+                    end
                 endcase
-            PUSH_TO_STACK:
-                else if (push_state == 0'b0) begin
+            PUSH_TO_STACK: begin
+                if (push_state == 0'b0) begin
                     word_to_write <= {12'hE34, push_reg[15:12], 4'h0, push_reg[11:0]};
                     push_state <= 0'b1;
                     next_state <= WRITE_INSTRUCTION;
@@ -191,24 +196,26 @@ module state_machine(
                     push_state <= 0'b0;
                     next_state <= WRITE_INSTRUCTION;
                 end
-            READ_NEXT:
-                instr_id_reg <= inst_id;
+            end
+            READ_NEXT: begin
+                instr_id_reg <= instr_id;
                 current_addr <= next_addr;
                 word_to_write <= instr_wire;
-
-            WRITE_INSTRUCTION:
+            end
+            WRITE_INSTRUCTION: begin
                 case(waiting)
-                    1'b0:
+                    1'b0: begin
                         start_write <= 1'b1;
-                        waiting <= 1'b1';
+                        waiting <= 1'b1;
                         next_state <= WRITE_INSTRUCTION;
-                    1'b1:
+                    end
+                    1'b1: begin
                         start_write <= 1'b0;
                         if(ready_arm == 1'b1) begin
                             waiting <= 1'b0;
                             
                             if (next_addr == 0)
-                                next_state <= FETCH_INSTRUCTION
+                                next_state <= FETCH_INSTRUCTION;
                             else if (push_state == 0'b0)
                                 next_state <= PUSH_TO_STACK;
                             else
@@ -218,8 +225,9 @@ module state_machine(
                             waiting <= 1'b1;
                             next_state <= WRITE_INSTRUCTION;
                         end
+                    end
                 endcase
-
+            end
         endcase
         end
     end
