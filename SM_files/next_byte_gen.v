@@ -17,7 +17,7 @@ module next_byte_gen #(
 memory_r #(.SIZE(RAM_SIZE), .ADDRESS_WIDTH(ADDRESS_WIDTH))
     mem
     (
-        .data_out(next_byte),
+        .data_out(data_out),
         .ready(ready),
         .clk(clk),
         .reset(pc_reset),

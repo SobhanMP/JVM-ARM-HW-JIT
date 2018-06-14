@@ -1,3 +1,5 @@
+// addr_rom, conv_rom addr: starts with opcode of the jvm instruction, follows the n_addr in addr_rom
+
 module addr_rom(output [31:0] n_addr, input [31:0] addr); //used to store next address of the instruction
     reg [31:0] mem [31:0];
     always@* begin
@@ -22,14 +24,6 @@ module inst_rom(output [31:0] instr, input [31:0] inst_id); // address of instrs
     assign data = mem[addr];
 endmodule
 
-module count_rom(output [4:0] count, input [7:0] opcode);
-    reg [7:0] number_of_bytes [4:0];
-    always@* begin
-
-    end
-    assign data = mem[addr];
-endmodule
-
 module state_machine(
         input wire clk,
         input wire reset
@@ -41,7 +35,7 @@ module state_machine(
     reg start_write;
     reg is_wide;
     reg waiting;
-    reg param_no;
+    reg param_no; // number of bytes that we should fetch after jvm opcode - 1 (in this phase 0 or 1)
     reg push_state; // push_state: 0 -> write "mov imm to rf"      push_state: 1 -> write "push to stack"
 
     reg [2:0] state;
@@ -56,12 +50,11 @@ module state_machine(
         push_state <= 1'b1;
     end
 
-
     parameter FETCH_INSTRUCTION = 0;
     parameter CHECK_WIDE = 1;
     parameter READ_COUNTER = 2;
     parameter FETCH_PARAMS = 3;
-    parameter PUSH_TO_STACK = 4;
+    parameter PUSH_TO_STACK = 4; // bytes that come after jvm opcode as index, offset or etc are pushed to stack
     parameter READ_NEXT = 5;
     parameter WRITE_INSTRUCTION = 6;
 
@@ -119,7 +112,6 @@ module state_machine(
         .opcode(opcode)
     );
 
-
     always @(posedge clk) begin
         if (reset == 0'b0) begin
         case(state)
@@ -156,7 +148,6 @@ module state_machine(
                     counter <= param_bits;
                     next_state <= FETCH_PARAMS;
                 end
-            
             FETCH_PARAMS:
                 case(waiting)
                     1'b0:
