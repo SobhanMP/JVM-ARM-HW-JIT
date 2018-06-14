@@ -24,17 +24,6 @@ module inst_rom(output [31:0] instr, input [31:0] inst_id); // address of instrs
     assign data = mem[addr];
 endmodule
 
-// input: opcode of jvm instruction
-// output: number of bytes after that instruction
-module count_rom(output [4:0] count, input [7:0] opcode);
-    reg [7:0] number_of_bytes [4:0];
-    always@* begin
-
-
-    end
-    assign data = mem[addr];
-endmodule
-
 module state_machine(
         input wire clk,
         input wire reset

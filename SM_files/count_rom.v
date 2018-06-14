@@ -1,3 +1,5 @@
+// input: opcode of jvm instruction
+// output: number of bytes after that instruction
 module count_rom(output reg[4:0] count, input wire [7:0] opcode);
     always @(opcode) begin
         case (address) 
