@@ -1,4 +1,4 @@
-module next_byte_gen #(
+module instruction_ram #(
     parameter RAM_SIZE = 256,
     parameter ADDRESS_WIDTH = 8)
     (   
