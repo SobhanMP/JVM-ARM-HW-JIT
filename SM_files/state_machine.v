@@ -31,7 +31,8 @@ module count_rom(output [4:0] count, input [7:0] opcode);
 endmodule
 
 module state_machine(
-        input wire clk
+        input wire clk,
+        input wire reset
     );
     wire next_byte;
     wire ready_jvm;
@@ -39,9 +40,22 @@ module state_machine(
     reg start_fetch;
     reg start_write;
     reg is_wide;
-    reg state;
     reg waiting;
     reg param_no;
+    reg push_state; // push_state: 0 -> write "mov imm to rf"      push_state: 1 -> write "push to stack"
+
+    reg [2:0] state;
+
+    always@(negedge reset) begin
+        start_fetch <= 1'b1;
+        start_fetch <= 1'b0;
+        is_wide <= 1'b0;
+        start_fetch <= 1'b1;
+        waiting <= 1'b1;
+        param_no <= 1'b1;
+        push_state <= 1'b1;
+    end
+
 
     parameter FETCH_INSTRUCTION = 0;
     parameter CHECK_WIDE = 1;
@@ -66,9 +80,9 @@ module state_machine(
     instr_ram
     (
         
-        .ready(ready_jvm),
+        .ready(ready_arm),
         .pc_reset(1'b1),
-        .start(start_fetch),
+        .start(start_write),
         .clk(clk),
         .word(word_to_write)
     );
@@ -105,7 +119,9 @@ module state_machine(
         .opcode(opcode)
     );
 
+
     always @(posedge clk) begin
+        if (reset == 0'b0) begin
         case(state)
             FETCH_INSTRUCTION:
                 case(waiting)
@@ -174,8 +190,16 @@ module state_machine(
                         end
                 endcase
             PUSH_TO_STACK:
-
-
+                else if (push_state == 0'b0) begin
+                    word_to_write <= {12'hE34, push_reg[15:12], 4'h0, push_reg[11:0]};
+                    push_state <= 0'b1;
+                    next_state <= WRITE_INSTRUCTION;
+                end
+                else if (push_state == 0'b1) begin
+                    word_to_write <= 31'hE5_2D_00_04;
+                    push_state <= 0'b0;
+                    next_state <= WRITE_INSTRUCTION;
+                end
             READ_NEXT:
                 instr_id_reg <= inst_id;
                 current_addr <= next_addr;
@@ -192,12 +216,12 @@ module state_machine(
                         if(ready_arm == 1'b1) begin
                             waiting <= 1'b0;
                             
-                            if (next_addr == 0) begin
+                            if (next_addr == 0)
                                 next_state <= FETCH_INSTRUCTION
-                            end
-                            else begin
+                            else if (push_state == 0'b0)
+                                next_state <= PUSH_TO_STACK;
+                            else
                                 next_state <= READ_NEXT;
-                            end
                         end
                         else begin
                             waiting <= 1'b1;
@@ -206,6 +230,7 @@ module state_machine(
                 endcase
 
         endcase
+        end
     end
 
 endmodule
