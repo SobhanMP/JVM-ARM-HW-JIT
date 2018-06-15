@@ -152,7 +152,7 @@ def generate_rom(name, output_len, data, input_len, data_type):
     s = '`define ' + name + '_input_size ' + str(input_len) + \
         '\n`define ' + name + '_output_size ' + str(output_len) + \
         '\nmodule ' + name + '(input [' + \
-        str(input_len - 1) + ':0] data_in, output [' + str(output_len - 1) + ''':0] data_out);
+        str(input_len - 1) + ':0] data_in, output reg [' + str(output_len - 1) + ''':0] data_out);
         begin
             always@*
             begin

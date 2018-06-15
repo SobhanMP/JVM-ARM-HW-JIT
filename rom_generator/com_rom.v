@@ -1,6 +1,6 @@
 `define com_rom_input_size 7
 `define com_rom_output_size 32
-module com_rom(input [6:0] data_in, output [31:0] data_out);
+module com_rom(input [6:0] data_in, output reg [31:0] data_out);
         begin
             always@*
             begin

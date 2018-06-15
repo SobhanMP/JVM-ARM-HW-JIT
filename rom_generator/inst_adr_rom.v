@@ -1,6 +1,6 @@
 `define inst_adr_rom_input_size 9
 `define inst_adr_rom_output_size 7
-module inst_adr_rom(input [8:0] data_in, output [6:0] data_out);
+module inst_adr_rom(input [8:0] data_in, output reg [6:0] data_out);
         begin
             always@*
             begin
