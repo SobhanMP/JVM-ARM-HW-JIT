@@ -16,6 +16,8 @@ class code_block:
 
     def __init__(self, data):
         t = list(filter(None, data.split('\n')))
+        if t[0] not in jvm_com_dict.jvm_commands:
+            raise ValueError(t[0] + "not in jvm commands list")
         self.name = t[0]
         self.opcode = jvm_com_dict.jvm_commands[t[0]]
         self.code = '\t' + '\n\t'.join(t[1:])
@@ -49,7 +51,7 @@ class code_block:
         return re.findall('[ ]*\d+ [A-F0-9]+ ([A-F0-9]+)', c)
 
 class rom_generator:
-    input_file_name = 'input.s'
+    input_file_name = '../instructions/src/instructions.s'
     blocks = list()
     commands = dict()
     data = list()
@@ -67,14 +69,19 @@ class rom_generator:
     #convert the data into code blocks
     def split(self, input):
         for i in input:
-            self.blocks.append(code_block(i));
-            self.blocks[-1].print()
-            print('-----------------------next--------------------')
+            try:
+                ncb = code_block(i)
+                self.blocks.append(ncb)
+                self.blocks[-1].print()
+                print('-----------------------next--------------------')
+
+            except ValueError:
+                print('''wasn't vlid''')
 
     def populate_dict(self):
         # FIXME add zeros for now
         self.commands[0] = 0
-        counter = 0
+        counter = 1
         for i in self.blocks:
             t = i.bin
             for j in t:
@@ -153,7 +160,7 @@ def generate_rom(name, output_len, data, input_len, data_type):
     for i, v in data:
         if type(v) == str:
             print("fuck")
-        s += '\t\t\t\t\t' + str(input_len) + '\'b' + Bits(length=input_len, uint=v).bin + ' = ' + \
+        s += '\t\t\t\t\t' + str(input_len) + '\'b' + Bits(length=input_len, uint=v).bin + ': data_out <= ' + \
              str(output_len) + data_type + str(i) + \
              ';\n'
 
