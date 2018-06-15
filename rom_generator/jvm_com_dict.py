@@ -1,4 +1,5 @@
-jvm_commands = {'aaload': '32',
+jvm_commands = {
+ 'aaload': '32',
  'aastore': '53',
  'aconst_null': '1',
  'aload': '19',
