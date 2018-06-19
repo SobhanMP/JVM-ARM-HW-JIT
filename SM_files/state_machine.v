@@ -23,7 +23,9 @@ module inst_rom(output [31:0] instr, input [31:0] inst_id); // address of instrs
     end
     assign data = mem[addr];
 endmodule
-
+//the state machine connects all modules and transfers the data
+//it works by loading the opcode and pushing any available parameter into the
+//stack.
 module state_machine(
         input wire clk,
         input wire reset
@@ -73,7 +75,7 @@ module state_machine(
     instruction_ram  #(.SIZE(RAM_SIZE), .ADDRESS_WIDTH(ADDRESS_WIDTH))
     instr_ram
     (
-        
+
         .ready(ready_arm),
         .pc_reset(1'b1),
         .start(start_write),
@@ -116,7 +118,9 @@ module state_machine(
     always @(posedge clk) begin
         if (reset == 0'b0) begin
         case(state)
+
             FETCH_INSTRUCTION:
+            //fetch instruciton opcode (can wait for memory to be ready)
                 case(waiting)
                     1'b0: begin
                         start_fetch <= 1'b1;
@@ -136,15 +140,20 @@ module state_machine(
                         end
                     end
                 endcase
+
             CHECK_WIDE:
+            //handle the wide command and set appropriate bits to for handling
+            //next command
+
                 if(opcode == 8'b1100_0100) begin
                     is_wide <= 1'b1;
                     next_state <= FETCH_INSTRUCTION;
                 end
                 else begin
-                   next_state = READ_COUNTER; 
+                   next_state = READ_COUNTER;
                 end
             READ_COUNTER:
+                //check if we have to read any parameter
                 if (param_bits == 4'b000)
                     next_state <= WRITE_INSTRUCTION;
                 else begin
@@ -152,6 +161,8 @@ module state_machine(
                     next_state <= FETCH_PARAMS;
                 end
             FETCH_PARAMS:
+                //start fetching parameters
+                //support a ready flag
                 case(waiting)
                     1'b0: begin
                         start_fetch <= 1'b1;
@@ -185,6 +196,7 @@ module state_machine(
                         end
                     end
                 endcase
+                //push the data into the stack
             PUSH_TO_STACK: begin
                 if (push_state == 0'b0) begin
                     word_to_write <= {12'hE34, push_reg[15:12], 4'h0, push_reg[11:0]};
@@ -202,6 +214,7 @@ module state_machine(
                 current_addr <= next_addr;
                 word_to_write <= instr_wire;
             end
+
             WRITE_INSTRUCTION: begin
                 case(waiting)
                     1'b0: begin
@@ -213,7 +226,7 @@ module state_machine(
                         start_write <= 1'b0;
                         if(ready_arm == 1'b1) begin
                             waiting <= 1'b0;
-                            
+
                             if (next_addr == 0)
                                 next_state <= FETCH_INSTRUCTION;
                             else if (push_state == 0'b0)
