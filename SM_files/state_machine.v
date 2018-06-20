@@ -9,7 +9,7 @@ module state_machine
 
         input wire waiting,
         input wire [7:0] iram_data,
-        input wire [7:0] parameter_number,
+        input wire [`PARAM_LEN - 1:0] parameter_number,
         input wire clk,
         input wire reset
     );
@@ -36,7 +36,7 @@ module state_machine
 
 
     always @(posedge clk) begin
-        if (!reset & !waiting) begin
+        if (reset & !waiting) begin
           case(state)
               `FETCH_INSTRUCTION: begin
                 state <= `CHECK_WIDE_and_READ_COUNTER;

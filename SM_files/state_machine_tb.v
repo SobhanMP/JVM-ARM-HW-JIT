@@ -9,7 +9,7 @@ module state_machine_tb ();
 
 
    reg [7:0] iram_data;
-   reg [7:0] parameter_number;
+   reg [`PARAM_LEN - 1:0] parameter_number;
    reg clk;
    reg reset;
    reg waiting;
