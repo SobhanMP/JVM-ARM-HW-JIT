@@ -1,6 +1,6 @@
 `ifndef _me_const_h
 `define _me_const_h
-
+    `define PARAM_LEN 5
     `define FETCH_INSTRUCTION  0
     `define CHECK_WIDE_and_READ_COUNTER  1
     `define FETCH_PARAMS  2
