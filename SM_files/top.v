@@ -28,8 +28,8 @@ module acc;
   assign arm_inst = q_select == `Q_FETCH? push_inst : instr;
   assign fetch = (state == `FETCH_INSTRUCTION) ||
     (!param_even && (|parameter_number) && (state == `FETCH_PARAMS));
-  assign valid_write = (state == `ITERATE) ||
-    (state == `FETCH_PARAMS && |parameter_number);
+  assign valid_write = ((state == `ITERATE) ||
+    (state == `FETCH_PARAMS && |parameter_number))&&|jvm_opcode&&!waiting;
 
   adr_to_arm decoder(.arm_inst(instr), .i(link_list_ptr));
 
