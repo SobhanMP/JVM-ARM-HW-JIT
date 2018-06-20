@@ -1,5 +1,5 @@
 `include "me_consts.vh"
-module fetch_inst(output wire fetch, input param_even, input [7:0] parameter_number,
+module fetch_byte(output wire fetch, input param_even, input [7:0] parameter_number,
   input [`SMNL-1:0] state, input clk);
 
   assign fetch = (state == `FETCH_INSTRUCTION) ||

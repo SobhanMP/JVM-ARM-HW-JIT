@@ -7,7 +7,7 @@ module fetch_byte_tb;
   wire fetch;
   reg param_even;
   reg [7:0] parameter_number;
-  fetch_inst f(.fetch(fetch), .param_even(param_even),
+  fetch_byte f(.fetch(fetch), .param_even(param_even),
     .parameter_number(parameter_number), .state(state), .clk(clk));
 
 
