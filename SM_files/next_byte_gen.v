@@ -26,7 +26,7 @@ memory_r #(.SIZE(`RAM_SIZE), .ADDRESS_WIDTH(`ADDRESS_WIDTH))
 
     always @(posedge clk or negedge pc_reset) begin
     if (pc_reset == 0) begin
-        pc <= pc_reset_value;
+        pc <= pc_reset_value; 
     end
     else if(start & ready) begin
             pc <= pc + 1;
