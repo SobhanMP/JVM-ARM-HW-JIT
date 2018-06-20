@@ -11,11 +11,13 @@ module acc;
 
 
   wire [31:0]arm_inst, push_inst, instr;
+  wire valid_write;
   wire [`adr_rom_adr_size-1:0] link_list_ptr;
 
 
   wire [7:0] iram, oram_fp, oram_iter, jvm_opcode;
   wire iram_ready;
+
 
   reg clk;
   reg reset;
@@ -26,6 +28,8 @@ module acc;
   assign arm_inst = q_select == `Q_FETCH? push_inst : instr;
   assign fetch = (state == `FETCH_INSTRUCTION) ||
     (!param_even && (|parameter_number) && (state == `FETCH_PARAMS));
+  assign valid_write = (state == `ITERATE) ||
+    (state == `FETCH_PARAMS && |parameter_number);
 
   adr_to_arm decoder(.arm_inst(instr), .i(link_list_ptr));
 
