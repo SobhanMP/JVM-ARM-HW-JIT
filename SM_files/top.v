@@ -16,15 +16,15 @@ module acc;
 
 
   wire [7:0] iram, oram_fp, oram_iter, jvm_opcode;
-  wire iram_ready;
-
+  wire iram_ready, oram_ready;
 
   reg clk;
   reg reset;
 
-  assign waiting = !iram_ready;
+  assign waiting = !iram_ready || (!oram_ready && state == `ITERATE);
   //FIXME for now ignore 16bit params
-  assign push_inst = !param_even?{12'hE34, 4'h0, 4'h0, 4'h0, iram[7:0]}:{32'hE5_2D_00_04};
+  assign push_inst = !param_even?
+    {12'hE34, 4'h0, 4'h0, 4'h0, iram[7:0]}:{32'hE5_2D_00_04};
   assign arm_inst = q_select == `Q_FETCH? push_inst : instr;
   assign fetch = (state == `FETCH_INSTRUCTION) ||
     (!param_even && (|parameter_number) && (state == `FETCH_PARAMS));
@@ -52,6 +52,7 @@ module acc;
 
   count_rom c(.count(parameter_number), .opcode(jvm_opcode));
 
+  write w(.data(arm_inst), .reset(reset), .clk(clk), .ready(oram_ready), .start(valid_write));
   initial begin
     clk = 0;
     reset = 1;
