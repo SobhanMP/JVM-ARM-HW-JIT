@@ -1,19 +1,19 @@
-module next_byte_gen #(
-    parameter RAM_SIZE = 256,
-    parameter ADDRESS_WIDTH = 8)
-    (   
-        output wire [7:0] next_byte,
-        output reg ready,
+`include "me_consts.vh"
 
-        input wire [ADDRESS_WIDTH - 1:0] pc_reset_value,
+module next_byte_gen
+    (
+        output wire [7:0] next_byte,
+        output wire ready,
+
+        input wire [`ADDRESS_WIDTH - 1:0] pc_reset_value,
         input wire pc_reset,
         input wire start,
         input wire clk
     );
 
-    reg [ADDRESS_WIDTH - 1:0] pc; 
-    
-memory_r #(.SIZE(RAM_SIZE), .ADDRESS_WIDTH(ADDRESS_WIDTH))
+    reg [`ADDRESS_WIDTH - 1:0] pc;
+
+memory_r #(.SIZE(`RAM_SIZE), .ADDRESS_WIDTH(`ADDRESS_WIDTH))
     mem
     (
         .data_out(next_byte),
@@ -24,13 +24,12 @@ memory_r #(.SIZE(RAM_SIZE), .ADDRESS_WIDTH(ADDRESS_WIDTH))
         .start(start)
     );
 
-    always @(posedge clk or negedge pc_reset) begin 
+    always @(posedge clk or negedge pc_reset) begin
     if (pc_reset == 0) begin
         pc <= pc_reset_value;
     end
     else if(start & ready) begin
             pc <= pc + 1;
-        end 
+        end
     end
 endmodule
-

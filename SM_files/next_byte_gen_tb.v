@@ -15,14 +15,16 @@ next_byte_gen nbg (.clk(clk),
  .pc_reset_value(pc_reset_value),
  .ready(ready),.next_byte(next_byte));
 
-initial clk = 1'b0;
+initial clk = 0;
 always #5 clk = ~clk;
 
 initial
 	begin
-		pc_reset_value = 8'b0000_0000; start = 1'b1; pc_reset = 1'b1;
-		//#30 pc_reset_value = 8'b0000_0000; start = 0'b0; pc_reset = 1'b0;
-		#20 $stop;
+		pc_reset_value = 8'b0000_0000; start = 1; pc_reset = 1;
+		#5 pc_reset_value = 8'b0000_0000; pc_reset = 0;
+    #5 pc_reset = 1;
+
 	end
 
+always #10 start = !start;
 endmodule
