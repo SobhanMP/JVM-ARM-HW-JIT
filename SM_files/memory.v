@@ -2,19 +2,16 @@
 
 module memory_w #(
 	parameter SIZE = 256,
-	parameter ADDRESS_WIDTH = 8)
+	parameter ADDRESS_WIDTH = 8,
+	parameter write_size = 32)
 	(
 		output wire ready,
 		input wire clk,
 		input wire reset,
 
 		input wire [ADDRESS_WIDTH - 1:0] address,
-		input wire [31:0] data_in,
-		input wire rwn,
+		input wire [write_size-1:0] data_in,
 		input wire start
-
-		,input wire [ADDRESS_WIDTH - 1:0] a_adr,
-		output wire [31:0] a_data
 	);
 
 	reg [7:0] array[SIZE -1:0];
@@ -23,10 +20,11 @@ module memory_w #(
 	reg [31:0] data_t;
 	reg [1:0] counter;
 
-	assign a_data = {array[(a_adr + 3)%SIZE],
-		array[(a_adr + 2)%SIZE],
-		array[(a_adr + 1)%SIZE],
-		array[(a_adr + 0)%SIZE]};
+	// assign a_data = {array[(a_adr + 3)%SIZE],
+	// 	array[(a_adr + 2)%SIZE],
+	// 	array[(a_adr + 1)%SIZE],
+	// 	array[(a_adr + 0)%SIZE]};
+
 	assign ready=~state;
 
 
@@ -53,7 +51,6 @@ module memory_w #(
 			array[(ad_t+1)%SIZE] <= data_t[15:8];
 			array[(ad_t+2)%SIZE] <= data_t[23:16];
 			array[(ad_t+3)%SIZE] <= data_t[31:24];
-
 			state <= 0;
 			end
 	end
