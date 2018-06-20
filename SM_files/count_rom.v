@@ -1,8 +1,9 @@
 // input: opcode of jvm instruction
 // output: number of bytes after that instruction
-module count_rom(output reg[4:0] count, input wire [7:0] opcode);
+`include "me_consts.vh"
+module count_rom(output reg[`PARAM_LEN - 1:0] count, input wire [7:0] opcode);
     always @(opcode) begin
-        case (opcode) 
+        case (opcode)
             8'b0000000: count = 5'd0;
             8'b0000000: count = 5'd0;
             8'b0000001: count = 5'd0;
