@@ -29,7 +29,7 @@ module write
       f = $fopen("output.txt","w");
     end
     always @(posedge clk or negedge reset) begin
-    if (reset == 0) begin
+    if (!reset) begin
         adr <= 0;
     end
 
