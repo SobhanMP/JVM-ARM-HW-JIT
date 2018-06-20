@@ -10,7 +10,6 @@ module state_machine
         input wire waiting,
         input wire [7:0] iram_data,
         input wire [7:0] parameter_number,
-        input wire [`adr_rom_adr_size - 1: 0] next_adr,
         input wire clk,
         input wire reset
     );
@@ -18,6 +17,10 @@ module state_machine
     reg [7:0] param_counter;
 
     reg is_wide;
+
+    wire [`adr_rom_adr_size - 1: 0] next_adr;
+
+    next_adr_rom nar(.data_out(next_adr), .data_in(com_adr));
 
     always@(negedge reset) begin
       jvm_opcode <= 0;

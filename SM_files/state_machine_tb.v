@@ -10,7 +10,6 @@ module state_machine_tb ();
 
    reg [7:0] iram_data;
    reg [7:0] parameter_number;
-   reg [`adr_rom_adr_size - 1: 0] next_adr;
    reg clk;
    reg reset;
    reg waiting;
@@ -25,7 +24,6 @@ module state_machine_tb ();
      .waiting(waiting),
      .iram_data(iram_data),
      .parameter_number(parameter_number),
-     .next_adr(next_adr),
      .clk(clk),
      .reset(reset));
 
@@ -35,9 +33,8 @@ module state_machine_tb ();
     waiting = 0;
     clk = 0;
     reset = 0;
-    next_adr = 0;
     parameter_number = 2;
-    iram_data = 23;
+    iram_data = 11;
 
     #2 reset = 1;
     #2 reset = 0;
@@ -48,11 +45,6 @@ module state_machine_tb ();
   always begin
     #2 clk = !clk;
     iram_data <= iram_data + 1;
-  end
-
-  always begin
-    #10 next_adr = 0;
-    #30 next_adr = 12;
   end
 
 endmodule
