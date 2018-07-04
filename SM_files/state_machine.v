@@ -52,14 +52,20 @@ module state_machine
                       state <= `FETCH_INSTRUCTION;
                   end
                   else begin
-                     state <= `FETCH_PARAMS;
-                     q_select <= `Q_FETCH;
+                    if (|parameter_number) begin
+                      state <= `FETCH_PARAMS;
+                      q_select <= `Q_FETCH;
+                    end
+                    else begin
+                      state <= `ITERATE;
+                      q_select <= `Q_ITER; 
+
                   end
               end
 
               `FETCH_PARAMS: begin
               // last round
-                if (param_counter == parameter_number) begin
+                if (param_counter == parameter_number << is_wide) begin
                   state <= `ITERATE;
                   com_adr <= jvm_opcode;
                   q_select <= `Q_ITER;
@@ -73,11 +79,12 @@ module state_machine
               end
 
               `ITERATE: begin
-              if (! (| next_adr))
-                state <= `FETCH_INSTRUCTION;
-              else
-                com_adr <= next_adr;
-              end
+                is_wide <= 0;
+                if (! (| next_adr))
+                  state <= `FETCH_INSTRUCTION;
+                else
+                  com_adr <= next_adr;
+                end
           endcase
         end
     end
