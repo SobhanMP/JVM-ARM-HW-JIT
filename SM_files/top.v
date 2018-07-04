@@ -15,7 +15,7 @@ module acc;
   wire [`adr_rom_adr_size-1:0] link_list_ptr;
 
 
-  wire [7:0] iram, oram_fp, oram_iter, jvm_opcode;
+  wire [7:0] iram, oram_iter, jvm_opcode;
   wire iram_ready, oram_ready;
 
   reg clk;
