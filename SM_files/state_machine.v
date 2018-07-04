@@ -31,6 +31,7 @@ module state_machine
       param_counter <= 0;
       param_even <= 0;
       is_wide <= 0;
+      push_wide <= 0;
 
     end
 
@@ -60,37 +61,41 @@ module state_machine
                       state <= `ITERATE;
                       q_select <= `Q_ITER; 
 
+                    end
                   end
-              end
+                end
 
               `FETCH_PARAMS: begin
-                // last round
-                if (param_counter == parameter_number << is_wide) begin
+              // wide bit
+                if (param_counter == (parameter_number << is_wide)) begin
                   param_counter <= param_counter + param_even;
                   param_even <= !param_even;
                   push_wide <= 1;
                 end
-                // wide bit
-                else if (param_counter == (parameter_number << is_wide) + 1) begin
-                  state <= `ITERATE;
-                  com_adr <= jvm_opcode;
-                  q_select <= `Q_ITER;
-                  param_even <= 0;
-                  push_wide <= 0;
-                end
+                // last round
                 else begin
-                  //step by half
-                  param_counter <= param_counter + param_even;
-                  param_even <= !param_even;
+                  if (param_counter == (parameter_number << is_wide) + 1) begin
+                    state <= `ITERATE;
+                    com_adr <= jvm_opcode;
+                    q_select <= `Q_ITER;
+                    param_even <= 0;
+                    push_wide <= 0;
+                  end
+                  else begin
+                    //step by half
+                    param_counter <= param_counter + param_even;
+                    param_even <= !param_even;
+                  end
                 end
               end
+
               `ITERATE: begin
                 is_wide <= 0;
                 if (! (| next_adr))
                   state <= `FETCH_INSTRUCTION;
                 else
                   com_adr <= next_adr;
-                end
+              end
           endcase
         end
     end

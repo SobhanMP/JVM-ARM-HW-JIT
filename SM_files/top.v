@@ -24,7 +24,7 @@ module acc;
   reg clk;
   reg reset;
   
-  assign byte_to_push = push_wide ? is_wide: iram[7:0]
+  assign byte_to_push = push_wide ? {7'b000_0000, is_wide} : iram[7:0];
 
   assign waiting = !iram_ready || (!oram_ready && state == `ITERATE);
   //FIXME for now ignore 16bit params -> change asm code
@@ -53,7 +53,7 @@ module acc;
     .param_even(param_even),
     .parameter_number,
      .waiting(waiting), .iram_data(iram),
-     .clk(clk), .reset(reset)
+     .clk(clk), .reset(reset),
      .push_wide(push_wide),
      .is_wide(is_wide));
 
