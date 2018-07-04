@@ -6,6 +6,8 @@ module state_machine
         output reg [7:0] jvm_opcode,
         output reg q_select,
         output reg param_even,
+        output reg push_wide,
+        output reg is_wide,
 
         input wire waiting,
         input wire [7:0] iram_data,
@@ -15,8 +17,6 @@ module state_machine
     );
 
     reg [7:0] param_counter;
-
-    reg is_wide;
 
     wire [`adr_rom_adr_size - 1: 0] next_adr;
 
@@ -64,12 +64,19 @@ module state_machine
               end
 
               `FETCH_PARAMS: begin
-              // last round
+                // last round
                 if (param_counter == parameter_number << is_wide) begin
+                  param_counter <= param_counter + param_even;
+                  param_even <= !param_even;
+                  push_wide <= 1;
+                end
+                // wide bit
+                else if (param_counter == (parameter_number << is_wide) + 1) begin
                   state <= `ITERATE;
                   com_adr <= jvm_opcode;
                   q_select <= `Q_ITER;
                   param_even <= 0;
+                  push_wide <= 0;
                 end
                 else begin
                   //step by half
@@ -77,7 +84,6 @@ module state_machine
                   param_even <= !param_even;
                 end
               end
-
               `ITERATE: begin
                 is_wide <= 0;
                 if (! (| next_adr))

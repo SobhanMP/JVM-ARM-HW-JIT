@@ -8,6 +8,8 @@ module acc;
   wire param_even;
   wire q_select;
   wire [`PARAM_LEN-1:0] parameter_number;
+  wire push_wide;
+  wire is_wide;
 
 
   wire [31:0]arm_inst, push_inst, instr;
@@ -16,16 +18,19 @@ module acc;
 
 
   wire [7:0] iram, oram_iter, jvm_opcode;
+  wire [7:0] byte_to_push;
   wire iram_ready, oram_ready;
 
   reg clk;
   reg reset;
+  
+  assign byte_to_push = push_wide ? is_wide: iram[7:0]
 
   assign waiting = !iram_ready || (!oram_ready && state == `ITERATE);
   //FIXME for now ignore 16bit params -> change asm code
   assign push_inst = !param_even?
-    {12'hE34, 4'h0, 4'h0, 4'h0, iram[7:0]}:{32'hE5_2D_00_04};
-  assign arm_inst = q_select == `Q_FETCH? push_inst : instr;
+    {12'hE34, 4'h0, 4'h0, 4'h0, byte_to_push[7:0]}:{32'hE5_2D_00_04};
+  assign arm_inst = (q_select == `Q_FETCH ) ? push_inst : instr;
   assign fetch = (state == `FETCH_INSTRUCTION) ||
     (!param_even && (|parameter_number) && (state == `FETCH_PARAMS));
   assign valid_write = ((state == `ITERATE) ||
@@ -48,7 +53,9 @@ module acc;
     .param_even(param_even),
     .parameter_number,
      .waiting(waiting), .iram_data(iram),
-     .clk(clk), .reset(reset));
+     .clk(clk), .reset(reset)
+     .push_wide(push_wide),
+     .is_wide(is_wide));
 
   count_rom c(.count(parameter_number), .opcode(jvm_opcode));
 
