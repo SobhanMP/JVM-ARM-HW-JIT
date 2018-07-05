@@ -1,3 +1,6 @@
+// input: address (at first jvm opcode, then follows the addresses stored in next_adr_rom)
+// output: instruction id
+
 module inst_adr_rom(input [8:0] data_in, output reg [6:0] data_out);
         begin
             always@*

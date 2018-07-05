@@ -7,12 +7,12 @@ module acc;
 
   wire param_even;
   wire q_select;
-  wire [`PARAM_LEN-1:0] parameter_number;
-  wire push_wide;
-  wire is_wide;
+  wire [`PARAM_LEN-1:0] parameter_number; // count_rom output
+  wire push_wide; // 0: push parameters 1: push is_wide amount 
+  wire is_wide; // if keyword "wide" came before this jvm opcode
 
 
-  wire [31:0]arm_inst, push_inst, instr;
+  wire [31:0] arm_inst, push_inst, instr;
   wire valid_write;
   wire [`adr_rom_adr_size-1:0] link_list_ptr;
 
@@ -30,6 +30,7 @@ module acc;
   //FIXME for now ignore 16bit params -> change asm code
   assign push_inst = (!param_even)?
     {12'hE34, 4'h0, 4'h0, 4'h0, byte_to_push[7:0]}:{32'hE5_2D_00_04};
+    // load im                                      // arm push
   assign arm_inst = (q_select == `Q_FETCH ) ? push_inst : instr;
   assign fetch = (state == `FETCH_INSTRUCTION) ||
     (!param_even && (|parameter_number) && (state == `FETCH_PARAMS));

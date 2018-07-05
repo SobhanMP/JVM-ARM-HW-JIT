@@ -2,7 +2,7 @@
 module state_machine
 (
         output reg [`SMNL - 1: 0] state,
-        output reg [`adr_rom_adr_size - 1: 0] com_adr,
+        output reg [`adr_rom_adr_size - 1: 0] com_adr, // arm instruction (next_adr_rom output)
         output reg [7:0] jvm_opcode,
         output reg q_select,
         output reg param_even,
@@ -10,8 +10,8 @@ module state_machine
         output reg is_wide,
 
         input wire waiting,
-        input wire [7:0] iram_data,
-        input wire [`PARAM_LEN - 1:0] parameter_number,
+        input wire [7:0] iram_data, // jvm ram input (byte)
+        input wire [`PARAM_LEN - 1:0] parameter_number, 
         input wire clk,
         input wire reset
     );

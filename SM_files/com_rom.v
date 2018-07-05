@@ -1,3 +1,6 @@
+// input: instruction id (found in inst_addr_rom)
+// output: arm instruction
+
 module com_rom(input [6:0] data_in, output reg [31:0] data_out);
         begin
             always@*
