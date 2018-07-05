@@ -5,3 +5,5 @@ SM_files/work/*
 SM_files/DSD_Project.cr.mti
 SM_files/DSD_Project.mpf
 .metadata
+SM_files/output.txt
+SM_files/vsim.wlf
