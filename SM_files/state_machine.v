@@ -37,7 +37,7 @@ module state_machine
 
 
     always @(posedge clk) begin
-        if (reset & !waiting) begin
+        if (!reset & !waiting) begin
           case(state)
               `FETCH_INSTRUCTION: begin
                 state <= `CHECK_WIDE_and_READ_COUNTER;
@@ -104,9 +104,11 @@ module state_machine
               end
 
               `ITERATE: begin
-                is_wide <= 0;
-                if (!(|next_adr))
+
+                if (!(|next_adr)) begin
+                  is_wide <= 0;
                   state <= `FETCH_INSTRUCTION;
+                end
                 else
                   com_adr <= next_adr;
               end
