@@ -46,24 +46,24 @@ module state_machine
               `CHECK_WIDE_and_READ_COUNTER: begin
               //handle the wide command and set appropriate bits to for handling
               //next command
-                  param_counter <= 0;
-                  jvm_opcode <= iram_data;
-                  if(!|iram_data) begin
-                    state <= `FETCH_INSTRUCTION;
-                  end
-                  else if(iram_data == `WIDE_OPCODE) begin
-                      is_wide <= 1;
-                      state <= `FETCH_INSTRUCTION;
-                  end
-                  else if (|parameter_number) begin
-                      state <= `FETCH_PARAMS;
-                      q_select <= `Q_FETCH;
-                  end
-                  else begin
-                      state <= `ITERATE;
-                      q_select <= `Q_ITER; 
-                  end
+                param_counter <= 0;
+                jvm_opcode <= iram_data;
+                if(!(|iram_data)) begin
+                  state <= `FETCH_INSTRUCTION;
                 end
+                else if(iram_data == `WIDE_OPCODE) begin
+                    is_wide <= 1;
+                    state <= `FETCH_INSTRUCTION;
+                end
+                else if (|parameter_number) begin
+                    state <= `FETCH_PARAMS;
+                    q_select <= `Q_FETCH;
+                end
+                else begin
+                    state <= `ITERATE;
+                    q_select <= `Q_ITER; 
+                end
+              end
 
               `FETCH_PARAMS: begin
               // wide bit

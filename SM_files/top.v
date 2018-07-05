@@ -28,7 +28,7 @@ module acc;
 
   assign waiting = !iram_ready || (!oram_ready && state == `ITERATE);
   //FIXME for now ignore 16bit params -> change asm code
-  assign push_inst = !param_even?
+  assign push_inst = (!param_even)?
     {12'hE34, 4'h0, 4'h0, 4'h0, byte_to_push[7:0]}:{32'hE5_2D_00_04};
   assign arm_inst = (q_select == `Q_FETCH ) ? push_inst : instr;
   assign fetch = (state == `FETCH_INSTRUCTION) ||
@@ -65,6 +65,8 @@ module acc;
     reset = 1;
     #3 reset = 0;
     #3 reset = 1;
+    $monitor("t=%5d, st = %d, jvm = %02x, arm = %08x, vw = %d\n",
+      $time, state, jvm_opcode, arm_inst, valid_write);
   end
 
   always
