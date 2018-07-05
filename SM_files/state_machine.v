@@ -37,7 +37,7 @@ module state_machine
 
 
     always @(posedge clk) begin
-        if (!reset & !waiting) begin
+        if (reset & !waiting) begin
           case(state)
               `FETCH_INSTRUCTION: begin
                 state <= `CHECK_WIDE_and_READ_COUNTER;
