@@ -54,6 +54,7 @@ module state_machine
                 param_counter <= 0;
                 //save the opcode for later
                 jvm_opcode <= iram_data;
+                com_adr <= iram_data;
                 //nop
                 if(!(|iram_data)) begin
                   $display("nop");
