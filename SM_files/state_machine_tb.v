@@ -7,6 +7,8 @@ module state_machine_tb ();
    wire q_select;
    wire param_even;
 
+   wire push_wide;
+   wire is_wide;
 
    reg [7:0] iram_data;
    reg [`PARAM_LEN - 1:0] parameter_number;
@@ -20,7 +22,9 @@ module state_machine_tb ();
      .jvm_opcode(jvm_opcode),
      .q_select(q_select),
      .param_even(param_even),
-
+     .push_wide(push_wide),
+     .is_wide(is_wide),
+     
      .waiting(waiting),
      .iram_data(iram_data),
      .parameter_number(parameter_number),

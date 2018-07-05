@@ -66,8 +66,8 @@ module acc;
     reset = 1;
     #3 reset = 0;
     #3 reset = 1;
-    $monitor("t=%5d, st = %d, jvm = %02x, arm = %08x, vw = %d\n",
-      $time, state, jvm_opcode, arm_inst, valid_write);
+    $monitor("t=%5d, st = %d, jvm_data = %02x, j_op = %02x, arm = %08x, vw = %d\n",
+      $time, state, iram,jvm_opcode, arm_inst, valid_write);
   end
 
   always
