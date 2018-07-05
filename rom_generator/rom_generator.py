@@ -10,7 +10,7 @@ class code_block:
     name = "something"
     opcode = "this"
     code = "something else"
-    armAsmBinary = "/home/sobhan/DS-5_v5.28.1/sw/ARMCompiler6.9/bin/armasm"
+    armAsmBinary = "armasm.exe"
 
     header = '  area mcode, code\n'
 
@@ -41,7 +41,6 @@ class code_block:
                    x.name])
 
         print(command)
-        subprocess.run
         sp = subprocess.run(command, shell=True)
 
         with open(x.name +'l', 'r') as o:
@@ -53,6 +52,7 @@ class code_block:
 class rom_generator:
     input_file_name = '../instructions/src/instructions.s'
     blocks = list()
+    block_dict = dict()
     commands = dict()
     data = list()
     existing = dict()
@@ -66,17 +66,20 @@ class rom_generator:
             content = content_file.read()
         content = list(filter(None, content.split(';#')))
         return content
-    #convert the data into code blocks
+
+    # convert the data into code blocks
     def split(self, input):
         for i in input:
             try:
                 ncb = code_block(i)
                 self.blocks.append(ncb)
+                self.block_dict[int(ncb.opcode, base=16)] = ncb
                 self.blocks[-1].print()
                 print('-----------------------next--------------------')
 
             except ValueError:
                 print('''wasn't vlid''')
+
 
     def populate_dict(self):
         # FIXME add zeros for now
@@ -172,10 +175,13 @@ def generate_rom(name, output_len, data, input_len, data_type):
         end
     endmodule'''
     return s
-r = rom_generator()
-a = r.fread()
-print(a)
-r.split(a)
-r.populate_dict()
-r.create_rom_data()
-r.generate_verilog_code()
+
+
+if __name__ == '__main__':
+    r = rom_generator()
+    a = r.fread()
+    print(a)
+    r.split(a)
+    r.populate_dict()
+    r.create_rom_data()
+    r.generate_verilog_code()
