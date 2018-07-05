@@ -24,7 +24,7 @@ module state_machine_tb ();
      .param_even(param_even),
      .push_wide(push_wide),
      .is_wide(is_wide),
-     
+
      .waiting(waiting),
      .iram_data(iram_data),
      .parameter_number(parameter_number),
@@ -42,6 +42,7 @@ module state_machine_tb ();
 
     #2 reset = 1;
     #2 reset = 0;
+    #2 reset = 1;
 
 
   end
