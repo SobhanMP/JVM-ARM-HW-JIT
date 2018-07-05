@@ -23,11 +23,11 @@ module acc;
 
   reg clk;
   reg reset;
-  
+
   assign byte_to_push = push_wide ? {7'b000_0000, is_wide} : iram[7:0];
 
   assign waiting = !iram_ready || (!oram_ready && state == `ITERATE);
-  //FIXME for now ignore 16bit params -> change asm code
+  
   assign push_inst = (!param_even)?
     {12'hE34, 4'h0, 4'h0, 4'h0, byte_to_push[7:0]}:{32'hE5_2D_00_04};
   assign arm_inst = (q_select == `Q_FETCH ) ? push_inst : instr;
