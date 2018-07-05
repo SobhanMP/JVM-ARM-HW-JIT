@@ -51,20 +51,17 @@ module state_machine
                   if(!|iram_data) begin
                     state <= `FETCH_INSTRUCTION;
                   end
-                  if(iram_data == `WIDE_OPCODE) begin
+                  else if(iram_data == `WIDE_OPCODE) begin
                       is_wide <= 1;
                       state <= `FETCH_INSTRUCTION;
                   end
-                  else begin
-                    if (|parameter_number) begin
+                  else if (|parameter_number) begin
                       state <= `FETCH_PARAMS;
                       q_select <= `Q_FETCH;
-                    end
-                    else begin
+                  end
+                  else begin
                       state <= `ITERATE;
                       q_select <= `Q_ITER; 
-
-                    end
                   end
                 end
 
