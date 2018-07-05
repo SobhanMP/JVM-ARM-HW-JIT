@@ -48,6 +48,9 @@ module state_machine
               //next command
                   param_counter <= 0;
                   jvm_opcode <= iram_data;
+                  if(!|iram_data) begin
+                    state <= `FETCH_INSTRUCTION;
+                  end
                   if(iram_data == `WIDE_OPCODE) begin
                       is_wide <= 1;
                       state <= `FETCH_INSTRUCTION;
