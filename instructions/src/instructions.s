@@ -21,7 +21,7 @@
 	;#pop
 	pop {r0}
 
-	;#pop_2
+	;#pop2
 	pop {r0, r1}
 
 	;#swap

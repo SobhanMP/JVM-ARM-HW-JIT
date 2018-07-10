@@ -25,22 +25,32 @@ for i in c.split('\n'):
         if j != '' :
 
             try:
-                temp = (int(jvm_commands[j], base=16), t)
+                c = int(jvm_commands[j], base=16)
                 if j in opcode_with:
                     if wide:
                         wide = False
                         ans.extend(["E3400001", "E52D0004"])
                     else:
                         ans.extend(["E3400000", "E52D0004"])
-                x.append(temp)
-                ans.extend(r.block_dict[x[-1]])
+                x.append(c)
+                if c not in r.block_dict:
+                    print("wtf")
+                somvar = r.block_dict[c]
+                ans.extend(somvar.bin)
                 if j == "wide":
                     wide = True
             except KeyError:
-                x.append((int(j), t))
-                ans.extend(["E34000" + Bits(uint=int(j), length=8).hex, "E52D0004"])
+                if not j == "wide" and not j == "nop":
+                    x.append(int(j))
+                    ans.extend(["E34000" + Bits(uint=int(j), length=8).hex, "E52D0004"])
+                else:
+                    x.append(jvm_commands[i])
             t += 1
 
 
-print(generate_rom(name='irom', output_len=8, data=x, input_len=math.ceil(math.log2(len(x))), data_type='\'d'))
+o = open('expected', 'w')
+for i in ans:
+    o.write(i+'\n')
+o.close()
+
 print(ans)

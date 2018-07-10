@@ -30,23 +30,23 @@ class code_block:
         print(self.bin)
 
     def binary(self):
-        x = tempfile.NamedTemporaryFile('w')
+        x = open('c', 'w')
         x.write(self.header + self.code + '\n\tend')
-        x.delete = True
-        x.flush()
-
+        x.close()
         command = " ".join([self.armAsmBinary, '--cpu=Cortex-A9',
                    ' --fpu=VFPv3_D16_FP16', '--arm',
-                    '-o ' + x.name + 'o', '--list ' +x.name + 'l',
-                   x.name])
+                    '-o o', '--list l',
+                   'c'])
 
         print(command)
-        sp = subprocess.run(command, shell=True)
+        sp = subprocess.call(command, shell=True)
 
-        with open(x.name +'l', 'r') as o:
+        with open('l', 'r') as o:
             c = o.read()
-        subprocess.run('rm ' + x.name + 'l', shell=True)
-        subprocess.run('rm ' + x.name + 'o', shell=True)
+        subprocess.run('rm l', shell=True)
+        subprocess.run('rm o', shell=True)
+        subprocess.run('rm c', shell=True)
+        x.close()
         return re.findall('[ ]*\d+ [A-F0-9]+ ([A-F0-9]+)', c)
 
 class rom_generator:
@@ -74,11 +74,13 @@ class rom_generator:
                 ncb = code_block(i)
                 self.blocks.append(ncb)
                 self.block_dict[int(ncb.opcode, base=16)] = ncb
-                self.blocks[-1].print()
-                print('-----------------------next--------------------')
+                #self.blocks[-1].print()
+                #print('-----------------------next--------------------')
 
             except ValueError:
+
                 print('''wasn't vlid''')
+                print(i)
 
 
     def populate_dict(self):
