@@ -20,18 +20,20 @@ r.populate_dict()
 r.create_rom_data()
 
 wide = False
+p = None
 for i in c.split('\n'):
     for j in i.split(' '):
         if j != '' :
 
             try:
                 c = int(jvm_commands[j], base=16)
-                if j in opcode_with:
+                if p in opcode_with:
                     if wide:
                         wide = False
                         ans.extend(["E3400001", "E52D0004"])#FOR THE PREVIOUS COMMAND
                     else:
                         ans.extend(["E3400000", "E52D0004"])
+                p = j
                 x.append(c)
                 if c not in r.block_dict:
                     print("wtf")
