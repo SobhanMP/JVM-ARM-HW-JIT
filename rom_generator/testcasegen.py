@@ -52,7 +52,7 @@ for i in c.split('\n'):
 
 o = open('expected', 'w')
 for i in ans:
-    o.write(i+'\n')
+    o.write(i.lower()+'\n')
 o.close()
 o = open('input', 'w')
 for i in x:
