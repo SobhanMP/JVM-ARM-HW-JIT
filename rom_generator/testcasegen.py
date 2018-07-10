@@ -29,7 +29,7 @@ for i in c.split('\n'):
                 if j in opcode_with:
                     if wide:
                         wide = False
-                        ans.extend(["E3400001", "E52D0004"])
+                        ans.extend(["E3400001", "E52D0004"])#FOR THE PREVIOUS COMMAND
                     else:
                         ans.extend(["E3400000", "E52D0004"])
                 x.append(c)
@@ -44,7 +44,9 @@ for i in c.split('\n'):
                     x.append(int(j))
                     ans.extend(["E34000" + Bits(uint=int(j), length=8).hex, "E52D0004"])
                 else:
-                    x.append(jvm_commands[i])
+                    if j == "wide":
+                        wide = True
+                    x.append(int(jvm_commands[i], base=16))
             t += 1
 
 
@@ -52,8 +54,8 @@ o = open('expected', 'w')
 for i in ans:
     o.write(i+'\n')
 o.close()
-o = open('jmv', 'w')
+o = open('input', 'w')
 for i in x:
-    o.write(str(i)+'\n')
+    o.write(Bits(uint=i, length=8).hex+'\n')
 o.close()
 print(ans)
