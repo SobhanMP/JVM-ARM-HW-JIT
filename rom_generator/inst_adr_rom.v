@@ -1,7 +1,7 @@
 `define inst_adr_rom_input_size 9
 `define inst_adr_rom_output_size 7
 module inst_adr_rom(input [8:0] data_in, output reg [6:0] data_out);
-        begin
+        
             always@*
             begin
                 case(data_in)
@@ -94,7 +94,7 @@ module inst_adr_rom(input [8:0] data_in, output reg [6:0] data_out);
 					9'b001010101: data_out <= 7'd0;
 					9'b001010110: data_out <= 7'd0;
 					9'b001010111: data_out <= 7'd1;
-					9'b001011000: data_out <= 7'd0;
+					9'b001011000: data_out <= 7'd3;
 					9'b001011001: data_out <= 7'd1;
 					9'b001011010: data_out <= 7'd3;
 					9'b001011011: data_out <= 7'd5;
@@ -332,5 +332,5 @@ module inst_adr_rom(input [8:0] data_in, output reg [6:0] data_out);
 
                 endcase
             end
-        end
+        
     endmodule

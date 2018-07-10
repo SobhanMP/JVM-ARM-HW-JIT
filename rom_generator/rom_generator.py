@@ -158,7 +158,7 @@ def generate_rom(name, output_len, data, input_len, data_type):
         '\n`define ' + name + '_output_size ' + str(output_len) + \
         '\nmodule ' + name + '(input [' + \
         str(input_len - 1) + ':0] data_in, output reg [' + str(output_len - 1) + ''':0] data_out);
-        begin
+        
             always@*
             begin
                 case(data_in)\n\n'''
@@ -174,7 +174,7 @@ def generate_rom(name, output_len, data, input_len, data_type):
 
                 endcase
             end
-        end
+        
     endmodule'''
     return s
 
