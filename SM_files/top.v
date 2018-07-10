@@ -1,31 +1,28 @@
 `include "me_consts.vh"
 
-module top(
-  output wire [`SMNL-1:0] state,
-  output wire waiting,
+module acc;
 
-  output wire param_even,
-  output wire q_select,
-  output wire [`PARAM_LEN-1:0] parameter_number, // count_rom output
-  output wire push_wide, // 0: push parameters 1: push is_wide amount 
-  output wire is_wide, // if keyword "wide" came before this jvm opcode
+  wire [`SMNL-1:0] state;
+  wire waiting;
 
-
-  output wire [31:0] arm_inst, push_inst, instr,
-  output wire valid_write,
-  output wire [`adr_rom_adr_size-1:0] link_list_ptr,
+  wire param_even;
+  wire q_select;
+  wire [`PARAM_LEN-1:0] parameter_number; // count_rom output
+  wire push_wide; // 0: push parameters 1: push is_wide amount 
+  wire is_wide; // if keyword "wide" came before this jvm opcode
 
 
-  output wire [7:0] oram_iter, jvm_opcode,
-  output wire [7:0] byte_to_push,
-  output wire oram_ready,
-	
-	input [7:0]iram,
-	input iram_ready,
-	
-	input clk,
-	input reset);
+  wire [31:0] arm_inst, push_inst, instr;
+  wire valid_write;
+  wire [`adr_rom_adr_size-1:0] link_list_ptr;
 
+
+  wire [7:0] iram, oram_iter, jvm_opcode;
+  wire [7:0] byte_to_push;
+  wire iram_ready, oram_ready;
+
+  reg clk;
+  reg reset;
 
   assign byte_to_push = push_wide ? {7'b000_0000, is_wide} : iram[7:0];
 
@@ -45,12 +42,17 @@ module top(
   wire [`ADDRESS_WIDTH - 1: 0] pc_reset_value;
   assign pc_reset_value = 0;
 
+  next_byte_gen n(.next_byte(iram), .ready(iram_ready),
+    .pc_reset_value(pc_reset_value),
+    .pc_reset(reset),
+    .start(fetch),
+    .clk(clk));
 
   state_machine sm(.state(state), .com_adr(link_list_ptr),
     .jvm_opcode(jvm_opcode),
     .q_select(q_select),
     .param_even(param_even),
-    .parameter_number(parameter_number),
+    .parameter_number,
      .waiting(waiting), .iram_data(iram),
      .clk(clk), .reset(reset),
      .push_wide(push_wide),
@@ -59,5 +61,15 @@ module top(
   count_rom c(.count(parameter_number), .opcode(jvm_opcode));
 
   write w(.data(arm_inst), .reset(reset), .clk(clk), .ready(oram_ready), .start(valid_write));
-  
+  initial begin
+    clk = 0;
+    reset = 1;
+    #3 reset = 0;
+    #3 reset = 1;
+    $monitor("t=%5d, st = %d, jvm_data = %02x, j_op = %02x, arm = %08x, vw = %d\n",
+      $time, state, iram,jvm_opcode, arm_inst, valid_write);
+  end
+
+  always
+    #5 clk = !clk;
 endmodule
