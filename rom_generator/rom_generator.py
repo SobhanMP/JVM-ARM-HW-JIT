@@ -3,6 +3,7 @@ import re
 import tempfile
 import subprocess
 import math
+import pickle
 
 from bitstring import Bits
 
@@ -186,4 +187,9 @@ if __name__ == '__main__':
     r.split(a)
     r.populate_dict()
     r.create_rom_data()
-    r.generate_verilog_code()
+
+    x = open('data', 'wb')
+    d = dict(r.block_dict)
+    pickle.dump(d, x)
+    x.close()
+
