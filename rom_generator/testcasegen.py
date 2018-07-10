@@ -52,5 +52,8 @@ o = open('expected', 'w')
 for i in ans:
     o.write(i+'\n')
 o.close()
-
+o = open('jmv', 'w')
+for i in x:
+    o.write(str(i)+'\n')
+o.close()
 print(ans)
