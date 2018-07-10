@@ -32,8 +32,10 @@ module acc;
     {12'hE34, 4'h0, 4'h0, 4'h0, byte_to_push[7:0]}:{32'hE5_2D_00_04};
     // load im                                      // arm push
   assign arm_inst = (q_select == `Q_FETCH ) ? push_inst : instr;
-  assign fetch = (state == `FETCH_INSTRUCTION) ||
-    (!param_even && (|parameter_number) && (state == `FETCH_PARAMS));
+  assign fetch = (state == `FETCH_INSTRUCTION) || 
+  	(state == `CHECK_WIDE_and_READ_COUNTER && (|parameter_number)) || 
+    (param_even && !push_wide &&
+     (|parameter_number) && (state == `FETCH_PARAMS));
   assign valid_write = ((state == `ITERATE) ||
     (state == `FETCH_PARAMS && |parameter_number))&&|jvm_opcode&&!waiting;
 
@@ -52,13 +54,15 @@ module acc;
     .jvm_opcode(jvm_opcode),
     .q_select(q_select),
     .param_even(param_even),
-    .parameter_number,
+    .parameter_number(parameter_number),
      .waiting(waiting), .iram_data(iram),
      .clk(clk), .reset(reset),
      .push_wide(push_wide),
      .is_wide(is_wide));
 
-  count_rom c(.count(parameter_number), .opcode(jvm_opcode));
+ wire [7:0]pjvm ;
+ assign pjvm = ((state==`FETCH_INSTRUCTION) || (state == `CHECK_WIDE_and_READ_COUNTER))? iram:jvm_opcode;
+  count_rom c(.count(parameter_number), .opcode(pjvm));
 
   write w(.data(arm_inst), .reset(reset), .clk(clk), .ready(oram_ready), .start(valid_write));
   initial begin
@@ -66,8 +70,7 @@ module acc;
     reset = 1;
     #3 reset = 0;
     #3 reset = 1;
-    $monitor("t=%5d, st = %d, jvm_data = %02x, j_op = %02x, arm = %08x, vw = %d\n",
-      $time, state, iram,jvm_opcode, arm_inst, valid_write);
+   
   end
 
   always

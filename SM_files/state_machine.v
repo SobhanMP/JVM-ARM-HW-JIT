@@ -21,89 +21,111 @@ module state_machine
     wire [`adr_rom_adr_size - 1: 0] next_adr;
 
     next_adr_rom nar(.data_out(next_adr), .data_in(com_adr));
-
+	integer i;
+	reg [106:0]state_name;
     always @(posedge clk or negedge reset) begin
         if (!reset) begin
           jvm_opcode <= 0;
           com_adr <= 0;
           state <= `FETCH_INSTRUCTION;
           q_select <= 0;
-
+		i <= 0;
           param_counter <= 0;
           param_even <= 0;
           is_wide <= 0;
           push_wide <= 0;
-
+	state_name<="reset";
+	$monitor("i:%d, j:%x, s:%s", i, jvm_opcode, state_name);
         end
         else if (!waiting) begin
           case(state)
               `FETCH_INSTRUCTION: begin
+		  $monitor("i:%d, j:%x, s:%s, %x, p%d, op%x com%x", 
+		  	i, jvm_opcode, state_name, iram_data, parameter_number,
+			  jvm_opcode, com_adr);
+      
+	    		i = 1 + i;
+			    state_name <= "fetch";
                 state <= `CHECK_WIDE_and_READ_COUNTER;
-                $display("fetching instruction");
-                $strobe("%d", state);
-                $strobe("%d", `CHECK_WIDE_and_READ_COUNTER);
               end
 
               `CHECK_WIDE_and_READ_COUNTER: begin
-              $display("check_wide and read counter");
-              //handle the wide command and set appropriate bits to for handling
-              //next command
-                //reset param counter
-                param_counter <= 0;
-                //save the opcode for later
-                jvm_opcode <= iram_data;
-                com_adr <= iram_data;
-                //nop
-                if(!(|iram_data)) begin
-                  $display("nop");
-                  state <= `FETCH_INSTRUCTION;
-                end
-                //wide
-                else if(iram_data == `WIDE_OPCODE) begin
-                    $display("wide\n");
-                    is_wide <= 1;
-                    state <= `FETCH_INSTRUCTION;
-                end
-                //no parameter
-                else if (|parameter_number) begin
-                    $display("has parameter\n");
-                    state <= `FETCH_PARAMS;
-                    //load push and move commands
-                    q_select <= `Q_FETCH;
-                end
-                else begin
-                    $display("no parameter\n");
-                    state <= `ITERATE;
-                    q_select <= `Q_ITER;
-                end
-              end
+		  state_name <= "check W&RC";
+              
+			if (iram_data == 8'hFF)//end of simulation
+				$finish;
+			else begin
+			//handle the wide command and set appropriate bits to for handling
+			//next command
+			//reset param counter
+				param_counter <= 0;
+				//save the opcode for later
+				jvm_opcode <= iram_data;
+				com_adr <= iram_data;
+				//nop
+				if(!(|iram_data)) begin	
+					state <= `FETCH_INSTRUCTION;
+				end
+				//wide
+				else if(iram_data == `WIDE_OPCODE) begin
+					is_wide <= 1;
+					state <= `FETCH_INSTRUCTION;
+				end
+				else 
+					if (~ (|parameter_number)) begin
+						state <= `ITERATE; 
+						q_select <= `Q_ITER;
+						
+						com_adr <= iram_data;	
+					end
+					else begin
+						param_counter <= 0;
+						push_wide <= 0;
+						state <= `FETCH_PARAMS;
+						param_even <= 0;
+						//load push and move commands
+						q_select <= `Q_FETCH;
+					end
+			end
+		end
 
               `FETCH_PARAMS: begin
+		  
+		  state_name <= "fetch param";
+		  $display("c%d n%d e%d i%x pw%d w%d", param_counter,
+		   parameter_number, param_even, iram_data, push_wide, is_wide);
                 // push wide bit
-                if (param_counter == (parameter_number << is_wide)) begin
-                  param_counter <= param_counter + param_even;
-                  param_even <= !param_even;
-                  push_wide <= 1;
-                end
-                else begin
+                
+                
                   // last round
-                  if (param_counter == (parameter_number << is_wide) + 1) begin
-                    state <= `ITERATE;
-                    com_adr <= jvm_opcode;
-                    q_select <= `Q_ITER;
-                    param_even <= 0;
-                    push_wide <= 0;
+                  if (param_counter == (parameter_number << is_wide)) begin
+			$display("pushing is wide");
+				param_counter <= param_counter + param_even;
+				param_even <= !param_even;
+				if(param_even) begin
+					state <= `ITERATE;
+					com_adr <= jvm_opcode;
+					q_select <= `Q_ITER;
+					push_wide <= 0;
+				end
+				$monitor("i:%d, j:%x, s:%s", i, jvm_opcode, state_name);
+		
                   end
                   else begin
                     //step by half
                     param_counter <= param_counter + param_even;
                     param_even <= !param_even;
-                  end
+
+			  if (param_counter + !param_even == (parameter_number << is_wide)) begin
+                 
+                  	push_wide <= 1;
+				end
+                  
                 end
-              end
-
-              `ITERATE: begin
-
+              
+		end
+		`ITERATE: begin
+			state_name <= "iter"; 
                 if (!(|next_adr)) begin
                   is_wide <= 0;
                   state <= `FETCH_INSTRUCTION;
@@ -111,8 +133,7 @@ module state_machine
                 else
                   com_adr <= next_adr;
               end
-              default:
-                state <= `FETCH_INSTRUCTION;
+		default: state <= `FETCH_INSTRUCTION;
           endcase
         end
     end

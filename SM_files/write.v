@@ -34,7 +34,9 @@ module write
     end
 
     else if(start) begin
-      $fwrite(f,"%08x\n", data);
+	
+      	$fwrite(f,"%08x\n", data);
+	
       adr <= adr + 1;
       end
     end

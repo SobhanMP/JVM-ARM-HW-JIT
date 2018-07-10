@@ -53,7 +53,6 @@ module count_rom(output reg[`PARAM_LEN - 1:0] count, input wire [7:0] opcode);
             8'b10111101: count = 5'd2;
             8'b11000000: count = 5'd2;
             8'b11000001: count = 5'd2;
-            8'b11000100: count = 5'd3;
             8'b11000101: count = 5'd3;
             8'b11000110: count = 5'd2;
             8'b11000111: count = 5'd2;

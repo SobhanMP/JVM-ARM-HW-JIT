@@ -29,6 +29,8 @@ module memory_w #(
 
 
 	integer i;
+	
+
 	always @(posedge clk or negedge reset)
 		begin
 		if(reset == 0) begin
