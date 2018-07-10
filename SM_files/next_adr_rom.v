@@ -1,5 +1,4 @@
 module next_adr_rom(input [8:0] data_in, output reg [8:0] data_out);
-        begin
             always@*
             begin
                 case(data_in)
@@ -330,5 +329,4 @@ module next_adr_rom(input [8:0] data_in, output reg [8:0] data_out);
 
                 endcase
             end
-        end
     endmodule

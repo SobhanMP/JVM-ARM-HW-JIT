@@ -1,0 +1,494 @@
+Analysis & Synthesis report for DSD-Project3
+Tue Jul 10 14:21:38 2018
+Quartus Prime Version 15.1.1 Build 189 12/02/2015 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Registers Removed During Synthesis
+  9. General Register Statistics
+ 10. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 11. Parameter Settings for User Entity Instance: write:w
+ 12. Parameter Settings for User Entity Instance: write:w|memory_w:mem
+ 13. Post-Synthesis Netlist Statistics for Top Partition
+ 14. Elapsed Time Per Partition
+ 15. Analysis & Synthesis Messages
+ 16. Analysis & Synthesis Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2015 Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus Prime License Agreement,
+the Altera MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Altera and sold by Altera or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+
+
+
++----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                     ;
++------------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Tue Jul 10 14:21:38 2018       ;
+; Quartus Prime Version              ; 15.1.1 Build 189 12/02/2015 SJ Lite Edition ;
+; Revision Name                      ; DSD-Project3                                ;
+; Top-level Entity Name              ; top                                         ;
+; Family                             ; Cyclone IV GX                               ;
+; Total logic elements               ; 564                                         ;
+;     Total combinational functions  ; 556                                         ;
+;     Dedicated logic registers      ; 36                                          ;
+; Total registers                    ; 36                                          ;
+; Total pins                         ; 154                                         ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 0                                           ;
+; Embedded Multiplier 9-bit elements ; 0                                           ;
+; Total GXB Receiver Channel PCS     ; 0                                           ;
+; Total GXB Receiver Channel PMA     ; 0                                           ;
+; Total GXB Transmitter Channel PCS  ; 0                                           ;
+; Total GXB Transmitter Channel PMA  ; 0                                           ;
+; Total PLLs                         ; 0                                           ;
++------------------------------------+---------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP4CGX150DF31I7AD  ;                    ;
+; Top-level entity name                                                      ; top                ; DSD-Project3       ;
+; Family name                                                                ; Cyclone IV GX      ; Cyclone V          ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                 ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM Block Balancing                                                   ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; On                 ; On                 ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization During Synthesis                              ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
+; Synthesis Seed                                                             ; 1                  ; 1                  ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 2           ;
+; Maximum allowed            ; 2           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 2           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ; < 0.1%      ;
++----------------------------+-------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                    ;
++-----------------------------------------------------+-----------------+------------------------------+----------------------------------------------------------+---------+
+; File Name with User-Entered Path                    ; Used in Netlist ; File Type                    ; File Name with Absolute Path                             ; Library ;
++-----------------------------------------------------+-----------------+------------------------------+----------------------------------------------------------+---------+
+; ../SM_files/write.v                                 ; yes             ; User Verilog HDL File        ; C:/Users/Su6lime/Desktop/DSD-SM/SM_files/write.v         ;         ;
+; ../SM_files/top.v                                   ; yes             ; User Verilog HDL File        ; C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v           ;         ;
+; ../SM_files/state_machine.v                         ; yes             ; User Verilog HDL File        ; C:/Users/Su6lime/Desktop/DSD-SM/SM_files/state_machine.v ;         ;
+; ../SM_files/next_adr_rom.v                          ; yes             ; User Verilog HDL File        ; C:/Users/Su6lime/Desktop/DSD-SM/SM_files/next_adr_rom.v  ;         ;
+; ../SM_files/memory.v                                ; yes             ; User Verilog HDL File        ; C:/Users/Su6lime/Desktop/DSD-SM/SM_files/memory.v        ;         ;
+; ../SM_files/inst_adr_rom.v                          ; yes             ; User Verilog HDL File        ; C:/Users/Su6lime/Desktop/DSD-SM/SM_files/inst_adr_rom.v  ;         ;
+; ../SM_files/count_rom.v                             ; yes             ; User Verilog HDL File        ; C:/Users/Su6lime/Desktop/DSD-SM/SM_files/count_rom.v     ;         ;
+; ../SM_files/com_rom.v                               ; yes             ; User Verilog HDL File        ; C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v       ;         ;
+; ../SM_files/adr_to_arm.v                            ; yes             ; User Verilog HDL File        ; C:/Users/Su6lime/Desktop/DSD-SM/SM_files/adr_to_arm.v    ;         ;
+; /users/su6lime/desktop/dsd-sm/sm_files/me_consts.vh ; yes             ; Auto-Found Unspecified File  ; /users/su6lime/desktop/dsd-sm/sm_files/me_consts.vh      ;         ;
++-----------------------------------------------------+-----------------+------------------------------+----------------------------------------------------------+---------+
+
+
++--------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary            ;
++--------------------------+-----------------------------+
+; Resource                 ; Usage                       ;
++--------------------------+-----------------------------+
+; I/O pins                 ; 154                         ;
+;                          ;                             ;
+; DSP block 9-bit elements ; 0                           ;
+;                          ;                             ;
+; Maximum fan-out node     ; state_machine:sm|com_adr[0] ;
+; Maximum fan-out          ; 100                         ;
+; Total fan-out            ; 2447                        ;
+; Average fan-out          ; 2.72                        ;
++--------------------------+-----------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                        ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+-----------+------+--------------+----------------------------------------+--------------+
+; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; DSP 36x36 ; Pins ; Virtual Pins ; Full Hierarchy Name                    ; Library Name ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+-----------+------+--------------+----------------------------------------+--------------+
+; |top                       ; 556 (54)          ; 36 (0)       ; 0           ; 0            ; 0       ; 0         ; 0         ; 154  ; 0            ; |top                                   ; work         ;
+;    |adr_to_arm:decoder|    ; 268 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |top|adr_to_arm:decoder                ; work         ;
+;       |com_rom:c|          ; 161 (161)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |top|adr_to_arm:decoder|com_rom:c      ; work         ;
+;       |inst_adr_rom:a|     ; 107 (107)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |top|adr_to_arm:decoder|inst_adr_rom:a ; work         ;
+;    |count_rom:c|           ; 25 (25)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |top|count_rom:c                       ; work         ;
+;    |state_machine:sm|      ; 200 (72)          ; 31 (31)      ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |top|state_machine:sm                  ; work         ;
+;       |next_adr_rom:nar|   ; 128 (128)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |top|state_machine:sm|next_adr_rom:nar ; work         ;
+;    |write:w|               ; 9 (2)             ; 5 (2)        ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |top|write:w                           ; work         ;
+;       |memory_w:mem|       ; 7 (7)             ; 3 (3)        ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |top|write:w|memory_w:mem              ; work         ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+-----------+------+--------------+----------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++------------------------------------------------------------+
+; Registers Removed During Synthesis                         ;
++---------------------------------------+--------------------+
+; Register name                         ; Reason for Removal ;
++---------------------------------------+--------------------+
+; write:w|adr[2..7]                     ; Lost fanout        ;
+; Total Number of Removed Registers = 6 ;                    ;
++---------------------------------------+--------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 36    ;
+; Number of registers using Synchronous Clear  ; 8     ;
+; Number of registers using Synchronous Load   ; 8     ;
+; Number of registers using Asynchronous Clear ; 34    ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 27    ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output             ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------+
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |top|write:w|memory_w:mem|counter[0]   ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; Yes        ; |top|state_machine:sm|param_counter[4] ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |top|state_machine:sm|com_adr[7]       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------+
+
+
++------------------------------------------------------+
+; Parameter Settings for User Entity Instance: write:w ;
++----------------+-------+-----------------------------+
+; Parameter Name ; Value ; Type                        ;
++----------------+-------+-----------------------------+
+; queue_size     ; 8     ; Signed Integer              ;
+; queue_len      ; 4     ; Signed Integer              ;
++----------------+-------+-----------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: write:w|memory_w:mem ;
++----------------+-------+------------------------------------------+
+; Parameter Name ; Value ; Type                                     ;
++----------------+-------+------------------------------------------+
+; SIZE           ; 256   ; Signed Integer                           ;
+; ADDRESS_WIDTH  ; 8     ; Signed Integer                           ;
+; write_size     ; 32    ; Signed Integer                           ;
++----------------+-------+------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 154                         ;
+; cycloneiii_ff         ; 36                          ;
+;     CLR               ; 7                           ;
+;     ENA CLR           ; 11                          ;
+;     ENA CLR SCLR      ; 8                           ;
+;     ENA CLR SLD       ; 8                           ;
+;     plain             ; 2                           ;
+; cycloneiii_lcell_comb ; 561                         ;
+;     arith             ; 12                          ;
+;         2 data inputs ; 9                           ;
+;         3 data inputs ; 3                           ;
+;     normal            ; 549                         ;
+;         0 data inputs ; 3                           ;
+;         1 data inputs ; 4                           ;
+;         2 data inputs ; 42                          ;
+;         3 data inputs ; 94                          ;
+;         4 data inputs ; 406                         ;
+;                       ;                             ;
+; Max LUT depth         ; 12.00                       ;
+; Average LUT depth     ; 8.90                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:04     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 15.1.1 Build 189 12/02/2015 SJ Lite Edition
+    Info: Processing started: Tue Jul 10 14:21:19 2018
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DSD-Project3 -c DSD-Project3
+Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file /users/su6lime/desktop/dsd-sm/sm_files/write_tb.v
+    Info (12023): Found entity 1: write_tb File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/write_tb.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /users/su6lime/desktop/dsd-sm/sm_files/write.v
+    Info (12023): Found entity 1: write File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/write.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file /users/su6lime/desktop/dsd-sm/sm_files/top.v
+    Info (12023): Found entity 1: top File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file /users/su6lime/desktop/dsd-sm/sm_files/state_machine.v
+    Info (12023): Found entity 1: state_machine File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/state_machine.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file /users/su6lime/desktop/dsd-sm/sm_files/rom.v
+    Info (12023): Found entity 1: rom File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/rom.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /users/su6lime/desktop/dsd-sm/sm_files/read_counter.v
+    Info (12023): Found entity 1: read_count File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/read_counter.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file /users/su6lime/desktop/dsd-sm/sm_files/next_adr_rom.v
+    Info (12023): Found entity 1: next_adr_rom File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/next_adr_rom.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /users/su6lime/desktop/dsd-sm/sm_files/memory.v
+    Info (12023): Found entity 1: memory_w File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/memory.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file /users/su6lime/desktop/dsd-sm/sm_files/instruction_ram.v
+    Info (12023): Found entity 1: instruction_ram File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/instruction_ram.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /users/su6lime/desktop/dsd-sm/sm_files/inst_adr_rom.v
+    Info (12023): Found entity 1: inst_adr_rom File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/inst_adr_rom.v Line: 4
+Info (12021): Found 1 design units, including 1 entities, in source file /users/su6lime/desktop/dsd-sm/sm_files/count_rom.v
+    Info (12023): Found entity 1: count_rom File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/count_rom.v Line: 4
+Info (12021): Found 1 design units, including 1 entities, in source file /users/su6lime/desktop/dsd-sm/sm_files/com_rom.v
+    Info (12023): Found entity 1: com_rom File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 4
+Info (12021): Found 1 design units, including 1 entities, in source file /users/su6lime/desktop/dsd-sm/sm_files/adr_to_arm.v
+    Info (12023): Found entity 1: adr_to_arm File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/adr_to_arm.v Line: 4
+Warning (10236): Verilog HDL Implicit Net warning at top.v(38): created implicit net for "fetch" File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 38
+Info (12127): Elaborating entity "top" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at top.v(38): object "fetch" assigned a value but never read File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 38
+Warning (10036): Verilog HDL or VHDL warning at top.v(45): object "pc_reset_value" assigned a value but never read File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 45
+Warning (10034): Output port "oram_iter" at top.v(19) has no driver File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 19
+Info (12128): Elaborating entity "adr_to_arm" for hierarchy "adr_to_arm:decoder" File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 43
+Info (12128): Elaborating entity "inst_adr_rom" for hierarchy "adr_to_arm:decoder|inst_adr_rom:a" File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/adr_to_arm.v Line: 6
+Warning (10230): Verilog HDL assignment warning at inst_adr_rom.v(331): truncated value with size 32 to match size of target (7) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/inst_adr_rom.v Line: 331
+Info (12128): Elaborating entity "com_rom" for hierarchy "adr_to_arm:decoder|com_rom:c" File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/adr_to_arm.v Line: 7
+Warning (10230): Verilog HDL assignment warning at com_rom.v(9): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 9
+Warning (10230): Verilog HDL assignment warning at com_rom.v(10): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 10
+Warning (10230): Verilog HDL assignment warning at com_rom.v(11): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 11
+Warning (10230): Verilog HDL assignment warning at com_rom.v(12): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 12
+Warning (10230): Verilog HDL assignment warning at com_rom.v(13): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 13
+Warning (10230): Verilog HDL assignment warning at com_rom.v(14): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 14
+Warning (10230): Verilog HDL assignment warning at com_rom.v(15): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 15
+Warning (10230): Verilog HDL assignment warning at com_rom.v(16): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 16
+Warning (10230): Verilog HDL assignment warning at com_rom.v(17): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 17
+Warning (10230): Verilog HDL assignment warning at com_rom.v(18): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 18
+Warning (10230): Verilog HDL assignment warning at com_rom.v(19): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 19
+Warning (10230): Verilog HDL assignment warning at com_rom.v(20): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 20
+Warning (10230): Verilog HDL assignment warning at com_rom.v(21): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 21
+Warning (10230): Verilog HDL assignment warning at com_rom.v(22): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 22
+Warning (10230): Verilog HDL assignment warning at com_rom.v(23): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 23
+Warning (10230): Verilog HDL assignment warning at com_rom.v(24): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 24
+Warning (10230): Verilog HDL assignment warning at com_rom.v(25): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 25
+Warning (10230): Verilog HDL assignment warning at com_rom.v(26): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 26
+Warning (10230): Verilog HDL assignment warning at com_rom.v(27): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 27
+Warning (10230): Verilog HDL assignment warning at com_rom.v(28): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 28
+Warning (10230): Verilog HDL assignment warning at com_rom.v(29): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 29
+Warning (10230): Verilog HDL assignment warning at com_rom.v(30): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 30
+Warning (10230): Verilog HDL assignment warning at com_rom.v(31): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 31
+Warning (10230): Verilog HDL assignment warning at com_rom.v(32): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 32
+Warning (10230): Verilog HDL assignment warning at com_rom.v(33): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 33
+Warning (10230): Verilog HDL assignment warning at com_rom.v(34): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 34
+Warning (10230): Verilog HDL assignment warning at com_rom.v(35): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 35
+Warning (10230): Verilog HDL assignment warning at com_rom.v(36): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 36
+Warning (10230): Verilog HDL assignment warning at com_rom.v(37): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 37
+Warning (10230): Verilog HDL assignment warning at com_rom.v(38): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 38
+Warning (10230): Verilog HDL assignment warning at com_rom.v(39): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 39
+Warning (10230): Verilog HDL assignment warning at com_rom.v(40): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 40
+Warning (10230): Verilog HDL assignment warning at com_rom.v(41): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 41
+Warning (10230): Verilog HDL assignment warning at com_rom.v(42): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 42
+Warning (10230): Verilog HDL assignment warning at com_rom.v(43): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 43
+Warning (10230): Verilog HDL assignment warning at com_rom.v(44): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 44
+Warning (10230): Verilog HDL assignment warning at com_rom.v(45): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 45
+Warning (10230): Verilog HDL assignment warning at com_rom.v(46): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 46
+Warning (10230): Verilog HDL assignment warning at com_rom.v(47): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 47
+Warning (10230): Verilog HDL assignment warning at com_rom.v(48): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 48
+Warning (10230): Verilog HDL assignment warning at com_rom.v(49): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 49
+Warning (10230): Verilog HDL assignment warning at com_rom.v(50): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 50
+Warning (10230): Verilog HDL assignment warning at com_rom.v(51): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 51
+Warning (10230): Verilog HDL assignment warning at com_rom.v(52): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 52
+Warning (10230): Verilog HDL assignment warning at com_rom.v(53): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 53
+Warning (10230): Verilog HDL assignment warning at com_rom.v(54): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 54
+Warning (10230): Verilog HDL assignment warning at com_rom.v(55): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 55
+Warning (10230): Verilog HDL assignment warning at com_rom.v(56): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 56
+Warning (10230): Verilog HDL assignment warning at com_rom.v(57): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 57
+Warning (10230): Verilog HDL assignment warning at com_rom.v(58): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 58
+Warning (10230): Verilog HDL assignment warning at com_rom.v(59): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 59
+Warning (10230): Verilog HDL assignment warning at com_rom.v(60): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 60
+Warning (10230): Verilog HDL assignment warning at com_rom.v(61): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 61
+Warning (10230): Verilog HDL assignment warning at com_rom.v(62): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 62
+Warning (10230): Verilog HDL assignment warning at com_rom.v(63): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 63
+Warning (10230): Verilog HDL assignment warning at com_rom.v(64): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 64
+Warning (10230): Verilog HDL assignment warning at com_rom.v(65): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 65
+Warning (10230): Verilog HDL assignment warning at com_rom.v(66): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 66
+Warning (10230): Verilog HDL assignment warning at com_rom.v(67): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 67
+Warning (10230): Verilog HDL assignment warning at com_rom.v(68): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 68
+Warning (10230): Verilog HDL assignment warning at com_rom.v(69): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 69
+Warning (10230): Verilog HDL assignment warning at com_rom.v(70): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 70
+Warning (10230): Verilog HDL assignment warning at com_rom.v(71): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 71
+Warning (10230): Verilog HDL assignment warning at com_rom.v(72): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 72
+Warning (10230): Verilog HDL assignment warning at com_rom.v(73): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 73
+Warning (10230): Verilog HDL assignment warning at com_rom.v(74): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 74
+Warning (10230): Verilog HDL assignment warning at com_rom.v(75): truncated value with size 3232 to match size of target (32) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 75
+Info (12128): Elaborating entity "state_machine" for hierarchy "state_machine:sm" File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 57
+Warning (10175): Verilog HDL warning at state_machine.v(45): ignoring unsupported system task File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/state_machine.v Line: 45
+Warning (10175): Verilog HDL warning at state_machine.v(46): ignoring unsupported system task File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/state_machine.v Line: 46
+Info (12128): Elaborating entity "next_adr_rom" for hierarchy "state_machine:sm|next_adr_rom:nar" File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/state_machine.v Line: 23
+Warning (10230): Verilog HDL assignment warning at next_adr_rom.v(328): truncated value with size 32 to match size of target (9) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/next_adr_rom.v Line: 328
+Info (12128): Elaborating entity "count_rom" for hierarchy "count_rom:c" File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 59
+Info (12128): Elaborating entity "write" for hierarchy "write:w" File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 61
+Warning (10230): Verilog HDL assignment warning at write.v(34): truncated value with size 32 to match size of target (8) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/write.v Line: 34
+Info (12128): Elaborating entity "memory_w" for hierarchy "write:w|memory_w:mem" File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/write.v Line: 26
+Warning (10036): Verilog HDL or VHDL warning at memory.v(17): object "array" assigned a value but never read File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/memory.v Line: 17
+Warning (10230): Verilog HDL assignment warning at memory.v(48): truncated value with size 32 to match size of target (2) File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/memory.v Line: 48
+Warning (10240): Verilog HDL Always Construct warning at memory.v(32): inferring latch(es) for variable "i", which holds its previous value in one or more paths through the always construct File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/memory.v Line: 32
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "push_inst[8]" is stuck at GND File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 14
+    Warning (13410): Pin "push_inst[9]" is stuck at GND File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 14
+    Warning (13410): Pin "push_inst[10]" is stuck at GND File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 14
+    Warning (13410): Pin "push_inst[11]" is stuck at GND File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 14
+    Warning (13410): Pin "push_inst[12]" is stuck at GND File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 14
+    Warning (13410): Pin "push_inst[13]" is stuck at GND File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 14
+    Warning (13410): Pin "push_inst[14]" is stuck at GND File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 14
+    Warning (13410): Pin "push_inst[15]" is stuck at GND File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 14
+    Warning (13410): Pin "push_inst[17]" is stuck at GND File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 14
+    Warning (13410): Pin "push_inst[20]" is stuck at GND File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 14
+    Warning (13410): Pin "push_inst[23]" is stuck at GND File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 14
+    Warning (13410): Pin "push_inst[24]" is stuck at VCC File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 14
+    Warning (13410): Pin "push_inst[27]" is stuck at GND File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 14
+    Warning (13410): Pin "push_inst[28]" is stuck at GND File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 14
+    Warning (13410): Pin "push_inst[29]" is stuck at VCC File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 14
+    Warning (13410): Pin "push_inst[30]" is stuck at VCC File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 14
+    Warning (13410): Pin "push_inst[31]" is stuck at VCC File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 14
+    Warning (13410): Pin "oram_iter[0]" is stuck at GND File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 19
+    Warning (13410): Pin "oram_iter[1]" is stuck at GND File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 19
+    Warning (13410): Pin "oram_iter[2]" is stuck at GND File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 19
+    Warning (13410): Pin "oram_iter[3]" is stuck at GND File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 19
+    Warning (13410): Pin "oram_iter[4]" is stuck at GND File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 19
+    Warning (13410): Pin "oram_iter[5]" is stuck at GND File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 19
+    Warning (13410): Pin "oram_iter[6]" is stuck at GND File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 19
+    Warning (13410): Pin "oram_iter[7]" is stuck at GND File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/top.v Line: 19
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 6 registers lost all their fanouts during netlist optimizations.
+Info (144001): Generated suppressed messages file C:/Users/Su6lime/Desktop/DSD-SM/Quartus/output_files/DSD-Project3.map.smsg
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 718 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 11 input pins
+    Info (21059): Implemented 143 output pins
+    Info (21061): Implemented 564 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 105 warnings
+    Info: Peak virtual memory: 5008 megabytes
+    Info: Processing ended: Tue Jul 10 14:21:38 2018
+    Info: Elapsed time: 00:00:19
+    Info: Total CPU time (on all processors): 00:00:26
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in C:/Users/Su6lime/Desktop/DSD-SM/Quartus/output_files/DSD-Project3.map.smsg.
+
+

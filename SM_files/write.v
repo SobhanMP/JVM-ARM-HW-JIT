@@ -25,16 +25,12 @@ module write
           .start(start)
       );
 
-    initial begin
-      f = $fopen("output.txt","w");
-    end
     always @(posedge clk or negedge reset) begin
     if (!reset) begin
         adr <= 0;
     end
 
     else if(start) begin
-      $fwrite(f,"%08x\n", data);
       adr <= adr + 1;
       end
     end

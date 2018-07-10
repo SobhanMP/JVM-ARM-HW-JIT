@@ -22,22 +22,22 @@ module state_machine
 
     next_adr_rom nar(.data_out(next_adr), .data_in(com_adr));
 
-    always@(negedge reset) begin
-      jvm_opcode <= 0;
-      com_adr <= 0;
-      state <= `FETCH_INSTRUCTION;
-      q_select <= 0;
 
-      param_counter <= 0;
-      param_even <= 0;
-      is_wide <= 0;
-      push_wide <= 0;
+    always @(posedge clk or negedge reset) begin
+	 
+        if (!reset ) begin
+			jvm_opcode <= 0;
+			com_adr <= 0;
+			state <= `FETCH_INSTRUCTION;
+			q_select <= 0;
 
-    end
+			param_counter <= 0;
+			param_even <= 0;
+			is_wide <= 0;
+			push_wide <= 0;
 
-
-    always @(posedge clk) begin
-        if (reset & !waiting) begin
+		 end
+		 else if(!waiting) begin
           case(state)
               `FETCH_INSTRUCTION: begin
                 state <= `CHECK_WIDE_and_READ_COUNTER;
@@ -117,6 +117,7 @@ module state_machine
                 state <= `FETCH_INSTRUCTION;
           endcase
         end
+		  			 
     end
 
 endmodule

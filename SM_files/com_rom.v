@@ -2,7 +2,6 @@
 // output: arm instruction
 
 module com_rom(input [6:0] data_in, output reg [31:0] data_out);
-        begin
             always@*
             begin
                 case(data_in)
@@ -79,5 +78,4 @@ module com_rom(input [6:0] data_in, output reg [31:0] data_out);
 
                 endcase
             end
-        end
     endmodule

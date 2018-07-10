@@ -1,0 +1,70 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/Su6lime/Desktop/DSD-SM/Quartus/simulation/qsim
+vtop
+Z1 !s110 1531213255
+!i10b 1
+!s100 =AI`O>fXCIkeL0f_GWE];2
+I6@OAbQW`eMPn8<;@^NM^L1
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1531210747
+8DSD-Project3.vo
+FDSD-Project3.vo
+L0 32
+Z3 OV;L;10.4b;61
+r1
+!s85 0
+31
+Z4 !s108 1531213255.000000
+!s107 DSD-Project3.vo|
+!s90 -reportprogress|300|-work|work|DSD-Project3.vo|
+!i113 1
+Z5 o-work work
+vtop_vlg_vec_tst
+R1
+!i10b 1
+!s100 N@CYk<7^NT57[j3@Hk:2b2
+IMB1>=T[Sm_`mQo;ThnG_X0
+R2
+R0
+Z6 w1531213241
+Z7 8Waveform.vwf.vt
+Z8 FWaveform.vwf.vt
+L0 63
+R3
+r1
+!s85 0
+31
+R4
+Z9 !s107 Waveform.vwf.vt|
+Z10 !s90 -reportprogress|300|-work|work|Waveform.vwf.vt|
+!i113 1
+R5
+vwrite_o
+R1
+!i10b 1
+!s100 4nbd`NVSAQdiA8h8W]WLe1
+I]MP>]=N`NPMI_GelB7j=d0
+R2
+R0
+R6
+R7
+R8
+L0 35
+R3
+r1
+!s85 0
+31
+R4
+R9
+R10
+!i113 1
+R5
