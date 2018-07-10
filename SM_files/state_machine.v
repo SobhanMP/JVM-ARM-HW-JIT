@@ -11,7 +11,7 @@ module state_machine
 
         input wire waiting,
         input wire [7:0] iram_data, // jvm ram input (byte)
-        input wire [`PARAM_LEN - 1:0] parameter_number, 
+        input wire [`PARAM_LEN - 1:0] parameter_number,
         input wire clk,
         input wire reset
     );
@@ -22,22 +22,20 @@ module state_machine
 
     next_adr_rom nar(.data_out(next_adr), .data_in(com_adr));
 
-    always@(negedge reset) begin
-      jvm_opcode <= 0;
-      com_adr <= 0;
-      state <= `FETCH_INSTRUCTION;
-      q_select <= 0;
+    always @(posedge clk or negedge reset) begin
+        if (!reset) begin
+          jvm_opcode <= 0;
+          com_adr <= 0;
+          state <= `FETCH_INSTRUCTION;
+          q_select <= 0;
 
-      param_counter <= 0;
-      param_even <= 0;
-      is_wide <= 0;
-      push_wide <= 0;
+          param_counter <= 0;
+          param_even <= 0;
+          is_wide <= 0;
+          push_wide <= 0;
 
-    end
-
-
-    always @(posedge clk) begin
-        if (reset & !waiting) begin
+        end
+        else if (!waiting) begin
           case(state)
               `FETCH_INSTRUCTION: begin
                 state <= `CHECK_WIDE_and_READ_COUNTER;
