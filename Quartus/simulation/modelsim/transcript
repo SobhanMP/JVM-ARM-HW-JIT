@@ -1,0 +1,66 @@
+# do vsim_synth.txt
+# ** Warning: (vlib-34) Library already exists at "work".
+# 
+# Model Technology ModelSim ALTERA vlog 10.4b Compiler 2015.05 May 27 2015
+# Start time: 07:07:55 on Jul 11,2018
+# vlog -work work DSD-Project3.vo 
+# -- Compiling module acc
+# 
+# Top level modules:
+# 	acc
+# End time: 07:07:55 on Jul 11,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim ALTERA vlog 10.4b Compiler 2015.05 May 27 2015
+# Start time: 07:07:55 on Jul 11,2018
+# vlog -work work ../../../SM_files/memory.v 
+# -- Compiling module memory_w
+# 
+# Top level modules:
+# 	memory_w
+# End time: 07:07:55 on Jul 11,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim ALTERA vlog 10.4b Compiler 2015.05 May 27 2015
+# Start time: 07:07:55 on Jul 11,2018
+# vlog -work work ../../../SM_files/write.v 
+# -- Compiling module write
+# 
+# Top level modules:
+# 	write
+# End time: 07:07:56 on Jul 11,2018, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim ALTERA vlog 10.4b Compiler 2015.05 May 27 2015
+# Start time: 07:07:56 on Jul 11,2018
+# vlog -work work ../../../SM_files/top.v 
+# -- Compiling module top
+# 
+# Top level modules:
+# 	top
+# End time: 07:07:56 on Jul 11,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -novopt -c -t 1ps -L cycloneiv_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate_ver -L altera_lnsim_ver work.top -voptargs=""+acc"" 
+# Start time: 07:07:56 on Jul 11,2018
+# Loading work.top
+# Loading work.write
+# Loading work.memory_w
+# Loading work.acc
+# Loading cycloneiv_ver.cycloneiv_io_obuf
+# Loading cycloneiv_ver.cycloneiv_io_ibuf
+# Loading cycloneiv_ver.cycloneiv_clkctrl
+# Loading cycloneiv_ver.cycloneiv_mux41
+# Loading cycloneiv_ver.cycloneiv_ena_reg
+# Loading cycloneiv_ver.cycloneiv_lcell_comb
+# Loading altera_ver.dffeas
+# Loading cycloneiv_ver.cycloneiv_ram_block
+# Loading cycloneiv_ver.cycloneiv_ram_register
+# Loading cycloneiv_ver.cycloneiv_ram_pulse_generator
+# SDF 10.4b Compiler 2015.05 May 27 2015
+# 
+# Loading instances from DSD-Project3_v.sdo
+# Loading altera_ver.PRIM_GDFF_LOW
+# Loading timing data from DSD-Project3_v.sdo
+# ** Note: (vsim-3587) SDF Backannotation Successfully Completed.
+#    Time: 0 ps  Iteration: 0  Instance: /top File: ../../../SM_files/top.v
+# ** Note: $finish    : ../../../SM_files/top.v(75)
+#    Time: 13070 ns  Iteration: 1  Instance: /top
+# End time: 07:07:57 on Jul 11,2018, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

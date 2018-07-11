@@ -1,0 +1,20 @@
+vlib work
+vlog -work work adr_to_arm.v
+vlog -work work ../rom_generator/com_rom.v
+vlog -work work ../rom_generator/inst_adr_rom.v
+vlog -work work count_rom.v
+vlog -work work instruction_ram.v
+vlog -work work memory_r.v
+vlog -work work memory.v
+vlog -work work write.v
+vlog -work work ../rom_generator/next_adr_rom.v
+vlog -work work next_byte_gen.v
+vlog -work work read_counter.v
+vlog -work work state_machine.v
+vlog -work work acc.v
+vlog -work work top.v
+
+vsim -novopt work.top -voptargs="+acc"
+add wave -position insertpoint sim:/top/*
+run -all
+exit

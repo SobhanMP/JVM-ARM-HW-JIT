@@ -1,7 +1,7 @@
 `define next_adr_rom_input_size 9
 `define next_adr_rom_output_size 9
 module next_adr_rom(input [8:0] data_in, output reg [8:0] data_out);
-        begin
+        
             always@*
             begin
                 case(data_in)
@@ -332,5 +332,5 @@ module next_adr_rom(input [8:0] data_in, output reg [8:0] data_out);
 
                 endcase
             end
-        end
+        
     endmodule

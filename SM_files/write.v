@@ -13,7 +13,6 @@ module write
     parameter queue_len = 4;
     reg [`ADDRESS_WIDTH - 1:0] adr;
 
-    integer f;
     memory_w #(.SIZE(`RAM_SIZE), .ADDRESS_WIDTH(`ADDRESS_WIDTH), .write_size(32))
       mem
       (
@@ -25,16 +24,14 @@ module write
           .start(start)
       );
 
-    initial begin
-      f = $fopen("output.txt","w");
-    end
     always @(posedge clk or negedge reset) begin
     if (!reset) begin
         adr <= 0;
     end
 
     else if(start) begin
-      $fwrite(f,"%08x\n", data);
+	
+	
       adr <= adr + 1;
       end
     end

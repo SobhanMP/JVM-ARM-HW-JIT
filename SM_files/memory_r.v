@@ -22,17 +22,14 @@ module memory_r #(
 	assign ready=~state;
 
 	integer i;
+	initial
+		$readmemh("..\\rom_generator\\input", array);
 	always @(posedge clk or negedge reset)
 		begin
 		if(reset == 0) begin
-			array[0] <= 8'h59;
-			array[1] <= 8'h5c;
-			array[2] <= 8'h57;
-
-
-			for(i=3; i < SIZE - 1; i = i+1) begin
-				array[i] <= 0;
-			end
+			
+			$display("read mem %d %d %d %d\n", array[0], array[1], array[2], array[3]);
+	
 			ad_t <= 0;
 			state <= 1'b0;
 			counter <= 0;
