@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.3.20)  11 JUL 2018 13:43
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.3.20)  11 JUL 2018 13:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1595,7 +1595,7 @@ LaTeX Font Info:    Font shape `U/futm/m/n' will be
 File: SM.pdf Graphic file (type pdf)
 <use SM.pdf>
 )
-(./P5.tex) (./P6.tex [5] [6] [7] [8]) (./P7.tex
+(./P5.tex [5]) (./P6.tex [6] [7] [8]) (./P7.tex
 File: result.jpg Graphic file (type bmp)
 <result.jpg>
 ) [9] (./P8.tex) (./P10.tex)
