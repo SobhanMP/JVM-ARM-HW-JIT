@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.3.20)  11 JUL 2018 13:03
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.3.20)  11 JUL 2018 13:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1598,21 +1598,21 @@ File: SM.pdf Graphic file (type pdf)
 (./P5.tex) (./P6.tex [5] [6] [7] [8]) (./P7.tex
 File: result.jpg Graphic file (type bmp)
 <result.jpg>
-) [9] (./P10.tex)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 117.
- [10]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 117.
+) [9] (./P8.tex) (./P10.tex)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 119.
 
-(./document.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 117.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 117.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 117.
+[10]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 119.
+ (./document.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 119.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 119.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 119.
  ) 
 Here is how much of TeX's memory you used:
- 26153 strings out of 493007
- 487888 string characters out of 6134605
+ 26159 strings out of 493007
+ 487949 string characters out of 6134605
  664825 words of memory out of 5000000
- 29700 multiletter control sequences out of 15000+600000
+ 29703 multiletter control sequences out of 15000+600000
  609185 words of font info for 178 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  46i,16n,78p,10450b,1735s stack positions out of 5000i,500n,10000p,200000b,80000s
