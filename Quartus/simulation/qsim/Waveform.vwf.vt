@@ -19,145 +19,19 @@
 // the top level entity of the current Quartus project .The user can use this   
 // testbench to simulate his design using a third-party simulation tool .       
 // *****************************************************************************
-// Generated on "07/10/2018 12:49:00"
+// Generated on "07/11/2018 05:41:27"
                                                                                 
-// Verilog Test Bench (with test vectors) for design :                          top
+// Verilog Test Bench (with test vectors) for design :                          acc
 // 
 // Simulation tool : 3rd Party
 // 
 
 `timescale 1 ps/ 1 ps
-
-`include "me_consts.vh"
-
-module memory_r #(
-		parameter SIZE = 256,
-    parameter ADDRESS_WIDTH = 8)
-    (
-        output wire ready,
-				output reg [7:0] data_out,
-
-        input wire clk,
-        input wire reset,
-
-        input wire [ADDRESS_WIDTH - 1:0] address,
-        input wire start
-    );
-
-
-	reg [7:0] array[SIZE -1:0];
-	reg state;
-	reg [7:0] ad_t;
-	reg [31:0] data_t;
-	reg [1:0] counter;
-
-	assign ready=~state;
-
-	integer i;
-	always @(posedge clk or negedge reset)
-		begin
-		if(reset == 0) begin
-			array[0] <= 8'h59;
-			array[1] <= 8'h5c;
-			array[2] <= 8'h57;
-
-
-			for(i=3; i < SIZE - 1; i = i+1) begin
-				array[i] <= 0;
-			end
-			ad_t <= 0;
-			state <= 1'b0;
-			counter <= 0;
-		end
-		else if(start & ~state) begin
-			ad_t <= address[7:0];
-			counter <= address[1:0];
-			state <= 1;
-		end
-		//try to create some sort of random delay
-		else if(|counter && state)
-			counter <= counter-1;
-		else	if(state) begin
-
-			data_out <= array[ad_t%SIZE];
-
-			state <= 0;
-			end
-	end
-endmodule
-
-
-module next_byte_gen
-    (
-        output wire [7:0] next_byte,
-        output wire ready,
-
-        input wire [`ADDRESS_WIDTH - 1:0] pc_reset_value,
-        input wire pc_reset,
-        input wire start,
-        input wire clk
-    );
-
-    reg [`ADDRESS_WIDTH - 1:0] pc;
-
-memory_r #(.SIZE(`RAM_SIZE), .ADDRESS_WIDTH(`ADDRESS_WIDTH))
-    mem
-    (
-        .data_out(next_byte),
-        .ready(ready),
-        .clk(clk),
-        .reset(pc_reset),
-        .address(pc),
-        .start(start)
-    );
-
-    always @(posedge clk or negedge pc_reset) begin
-    if (pc_reset == 0) begin
-        pc <= pc_reset_value; 
-    end
-    else if(start & ready) begin
-            pc <= pc + 1;
-        end
-    end
-endmodule
-
-
-
-
-
-module write_o
-    (
-
-        input wire [31:0] data,
-        input wire reset,
-        input wire start,
-        input wire clk
-    );
-    parameter queue_size = 8;
-    parameter queue_len = 4;
-
-    integer f;
-    initial begin
-      f = $fopen("output.txt","w");
-    end
-    always @(posedge clk or negedge reset) begin
-    if (!reset) begin
-
-    end
-
-    else if(start) begin
-      $fwrite(f,"%08x\n", data);
-      end
-    end
-endmodule
-
-
-
-
-module top_vlg_vec_tst();
+module acc_vlg_vec_tst();
 // constants                                           
 // general purpose registers
 reg clk;
+reg oram_ready;
 reg reset;
 // wires                                               
 wire [31:0] arm_inst;
@@ -169,7 +43,6 @@ wire is_wide;
 wire [7:0] jvm_opcode;
 wire [8:0] link_list_ptr;
 wire [7:0] oram_iter;
-wire oram_ready;
 wire param_even;
 wire [4:0] parameter_number;
 wire [31:0] push_inst;
@@ -179,20 +52,8 @@ wire [1:0] state;
 wire valid_write;
 wire waiting;
 
-wire [`ADDRESS_WIDTH - 1: 0] pc_reset_value;
-  assign pc_reset_value = 0;
-
-  next_byte_gen n(.next_byte(iram), .ready(iram_ready),
-    .pc_reset_value(pc_reset_value),
-    .pc_reset(reset),
-    .start(fetch),
-    .clk(clk));
-
-
-
-write_o wo(.data(arm_inst), .reset(reset), .start(valid_write), .clk(clk));
 // assign statements (if any)                          
-top i1 (
+acc i1 (
 // port map - connection between master ports and signals/registers   
 	.arm_inst(arm_inst),
 	.byte_to_push(byte_to_push),
@@ -221,19 +82,21 @@ begin
 end 
 
 // clk
-always
+initial
 begin
 	clk = 1'b0;
-	clk = #100 1'b1;
-	#100;
+end 
+
+// oram_ready
+initial
+begin
+	oram_ready = 1'b0;
 end 
 
 // reset
 initial
 begin
-	reset = 1'b1;
-	reset = #50 1'b0;
-	reset = #100 1'b1;
+	reset = 1'b0;
 end 
 endmodule
 

@@ -1,17 +1,17 @@
-Fitter Status : Successful - Tue Jul 10 14:22:16 2018
+Fitter Status : Successful - Wed Jul 11 07:05:28 2018
 Quartus Prime Version : 15.1.1 Build 189 12/02/2015 SJ Lite Edition
 Revision Name : DSD-Project3
-Top-level Entity Name : top
+Top-level Entity Name : acc
 Family : Cyclone IV GX
 Device : EP4CGX150DF31I7AD
 Timing Models : Final
-Total logic elements : 557 / 149,760 ( < 1 % )
-    Total combinational functions : 556 / 149,760 ( < 1 % )
-    Dedicated logic registers : 36 / 149,760 ( < 1 % )
-Total registers : 36
-Total pins : 154 / 508 ( 30 % )
+Total logic elements : 599 / 149,760 ( < 1 % )
+    Total combinational functions : 590 / 149,760 ( < 1 % )
+    Dedicated logic registers : 51 / 149,760 ( < 1 % )
+Total registers : 51
+Total pins : 155 / 508 ( 31 % )
 Total virtual pins : 0
-Total memory bits : 0 / 6,635,520 ( 0 % )
+Total memory bits : 2,048 / 6,635,520 ( < 1 % )
 Embedded Multiplier 9-bit elements : 0 / 720 ( 0 % )
 Total GXB Receiver Channel PCS : 0 / 8 ( 0 % )
 Total GXB Receiver Channel PMA : 0 / 8 ( 0 % )

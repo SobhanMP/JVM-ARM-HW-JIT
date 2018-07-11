@@ -8,63 +8,163 @@ z2
 !i10f 100
 cModel Technology
 Z0 dC:/Users/Su6lime/Desktop/DSD-SM/Quartus/simulation/qsim
-vtop
-Z1 !s110 1531213255
+vacc
+Z1 !s110 1531271517
 !i10b 1
-!s100 =AI`O>fXCIkeL0f_GWE];2
-I6@OAbQW`eMPn8<;@^NM^L1
+!s100 A9JIf?z0d8naETzPcZaLQ0
+IID_@gO_MZ2g_:HlDQ5GP;3
 Z2 VDg1SIo80bB@j0V0VzS_@n1
-R0
-w1531210747
+Z3 dC:/Users/sobha/Documents/DSD-SM/Quartus/simulation/qsim
+w1531271508
 8DSD-Project3.vo
 FDSD-Project3.vo
 L0 32
-Z3 OV;L;10.4b;61
+Z4 OV;L;10.4b;61
 r1
 !s85 0
 31
-Z4 !s108 1531213255.000000
+!s108 1531271516.000000
 !s107 DSD-Project3.vo|
-!s90 -reportprogress|300|-work|work|DSD-Project3.vo|
+!s90 -work|work|DSD-Project3.vo|
 !i113 1
 Z5 o-work work
-vtop_vlg_vec_tst
+vacc_vlg_vec_tst
 R1
 !i10b 1
-!s100 N@CYk<7^NT57[j3@Hk:2b2
-IMB1>=T[Sm_`mQo;ThnG_X0
+!s100 KZOMYd8V?^DbF8`JBoe9o1
+IZ2bA9@cRGQ<?5MCH6F1zN0
 R2
-R0
-Z6 w1531213241
-Z7 8Waveform.vwf.vt
-Z8 FWaveform.vwf.vt
-L0 63
 R3
+w1531271488
+Z6 8Waveform.vwf.vt
+Z7 FWaveform.vwf.vt
+Z8 L0 30
+R4
 r1
 !s85 0
 31
+!s108 1531271517.000000
+!s107 Waveform.vwf.vt|
+Z9 !s90 -work|work|Waveform.vwf.vt|
+!i113 1
+R5
+vmemory_w
+!s110 1531269350
+!i10b 1
+!s100 b]jlb2OWn4KBfGTT:^j4l3
+I6;R4i`o_SlPJ[?7TW;KiR0
+R2
+R3
+w1531238539
+8../../../SM_files/memory.v
+F../../../SM_files/memory.v
+L0 3
 R4
-Z9 !s107 Waveform.vwf.vt|
-Z10 !s90 -reportprogress|300|-work|work|Waveform.vwf.vt|
+r1
+!s85 0
+31
+!s108 1531269350.000000
+!s107 ../../../SM_files/memory.v|
+!s90 -work|work|../../../SM_files/memory.v|
+!i113 1
+R5
+vtop
+Z10 !s110 1531269351
+!i10b 1
+!s100 jAg?UmRc7^DnS6;i>5TeN1
+IU9NMlkBjnMKPOoIc[XVQ]2
+R2
+R3
+w1531268714
+Z11 8../../../SM_files/top.v
+Z12 F../../../SM_files/top.v
+L0 3
+R4
+r1
+!s85 0
+31
+Z13 !s108 1531269351.000000
+Z14 !s107 ..\..\..\SM_files\me_consts.vh|../../../SM_files/top.v|
+Z15 !s90 -work|work|../../../SM_files/top.v|
+!i113 1
+R5
+vtop_tb
+!s110 1531266942
+!i10b 1
+!s100 bUa1m<mDSU5kP[ngk>`eW2
+Ig?U=m:^e:kC;j3Ek9dK3n1
+R2
+R3
+w1531266933
+R11
+R12
+L0 4
+R4
+r1
+!s85 0
+31
+!s108 1531266942.000000
+R14
+R15
+!i113 1
+R5
+vtop_vlg_vec_tst
+!s110 1531269338
+!i10b 1
+!s100 FL45Q[NG?Ai:G8GBBO4L;0
+I72k@ILM39U;7cFChCB=;S3
+R2
+R3
+w1531269307
+R6
+R7
+R8
+R4
+r1
+!s85 0
+31
+!s108 1531269338.000000
+!s107 Waveform.vwf.vt|
+R9
+!i113 1
+R5
+vwrite
+R10
+!i10b 1
+!s100 ^PBWLf8k^Xj@a[3m0g67C1
+IM>3PSSDO^k]Kg6iDVLkDc3
+R2
+R3
+w1531258352
+8../../../SM_files/write.v
+F../../../SM_files/write.v
+L0 3
+R4
+r1
+!s85 0
+31
+R13
+!s107 ..\..\..\SM_files\me_consts.vh|../../../SM_files/write.v|
+!s90 -work|work|../../../SM_files/write.v|
 !i113 1
 R5
 vwrite_o
-R1
+!s110 1531213255
 !i10b 1
 !s100 4nbd`NVSAQdiA8h8W]WLe1
 I]MP>]=N`NPMI_GelB7j=d0
 R2
 R0
+w1531213241
 R6
 R7
-R8
 L0 35
-R3
+R4
 r1
 !s85 0
 31
-R4
-R9
-R10
+!s108 1531213255.000000
+!s107 Waveform.vwf.vt|
+!s90 -reportprogress|300|-work|work|Waveform.vwf.vt|
 !i113 1
 R5

@@ -1,5 +1,5 @@
-`include "me_consts.vh"
 
+`include "me_consts.vh"
 module acc(
 
   output wire [`SMNL-1:0] state,
@@ -19,7 +19,8 @@ module acc(
 
   output wire [7:0] iram, oram_iter, jvm_opcode,
   output wire [7:0] byte_to_push,
-  output wire iram_ready, oram_ready,
+  output wire iram_ready,
+  input oram_ready,
 
   input clk,
   input reset);
@@ -63,7 +64,5 @@ module acc(
  wire [7:0]pjvm ;
  assign pjvm = ((state==`FETCH_INSTRUCTION) || (state == `CHECK_WIDE_and_READ_COUNTER))? iram:jvm_opcode;
   count_rom c(.count(parameter_number), .opcode(pjvm));
-
-  write w(.data(arm_inst), .reset(reset), .clk(clk), .ready(oram_ready), .start(valid_write));
 
 endmodule

@@ -5,9 +5,9 @@
     `define CHECK_WIDE_and_READ_COUNTER  1
     `define FETCH_PARAMS  2
     `define ITERATE  3
-    `define END 4
     //state machine state number logarithm
     `define SMNL  3
+    `define FSTATE 4
     `define WIDE_OPCODE  8'b1100_0100
     `define MAX_PARAM_NUM_LOG  5
     `define Q_FETCH  0

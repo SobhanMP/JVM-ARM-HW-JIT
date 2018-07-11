@@ -1,3 +1,4 @@
-Warning (10268): Verilog HDL information at next_adr_rom.v(4): always construct contains both blocking and non-blocking assignments File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/next_adr_rom.v Line: 4
-Warning (10268): Verilog HDL information at inst_adr_rom.v(7): always construct contains both blocking and non-blocking assignments File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/inst_adr_rom.v Line: 7
-Warning (10268): Verilog HDL information at com_rom.v(7): always construct contains both blocking and non-blocking assignments File: C:/Users/Su6lime/Desktop/DSD-SM/SM_files/com_rom.v Line: 7
+Warning (10268): Verilog HDL information at next_adr_rom.v(7): always construct contains both blocking and non-blocking assignments File: C:/Users/sobha/Documents/DSD-SM/rom_generator/next_adr_rom.v Line: 7
+Warning (10268): Verilog HDL information at inst_adr_rom.v(7): always construct contains both blocking and non-blocking assignments File: C:/Users/sobha/Documents/DSD-SM/rom_generator/inst_adr_rom.v Line: 7
+Warning (10268): Verilog HDL information at com_rom.v(7): always construct contains both blocking and non-blocking assignments File: C:/Users/sobha/Documents/DSD-SM/rom_generator/com_rom.v Line: 7
+Warning (10268): Verilog HDL information at state_machine.v(26): always construct contains both blocking and non-blocking assignments File: C:/Users/sobha/Documents/DSD-SM/SM_files/state_machine.v Line: 26

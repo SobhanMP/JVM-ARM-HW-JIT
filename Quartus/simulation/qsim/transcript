@@ -2,29 +2,27 @@
 # ** Warning: (vlib-34) Library already exists at "work".
 # 
 # Model Technology ModelSim ALTERA vlog 10.4b Compiler 2015.05 May 27 2015
-# Start time: 13:30:55 on Jul 10,2018
-# vlog -reportprogress 300 -work work DSD-Project3.vo 
-# -- Compiling module top
+# Start time: 05:41:56 on Jul 11,2018
+# vlog -work work DSD-Project3.vo 
+# -- Compiling module acc
 # 
 # Top level modules:
-# 	top
-# End time: 13:30:55 on Jul 10,2018, Elapsed time: 0:00:00
+# 	acc
+# End time: 05:41:57 on Jul 11,2018, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim ALTERA vlog 10.4b Compiler 2015.05 May 27 2015
-# Start time: 13:30:55 on Jul 10,2018
-# vlog -reportprogress 300 -work work Waveform.vwf.vt 
-# -- Compiling module write_o
-# -- Compiling module top_vlg_vec_tst
+# Start time: 05:41:57 on Jul 11,2018
+# vlog -work work Waveform.vwf.vt 
+# -- Compiling module acc_vlg_vec_tst
 # 
 # Top level modules:
-# 	top_vlg_vec_tst
-# End time: 13:30:55 on Jul 10,2018, Elapsed time: 0:00:00
+# 	acc_vlg_vec_tst
+# End time: 05:41:57 on Jul 11,2018, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vsim -novopt -c -t 1ps -L cycloneiv_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate_ver -L altera_lnsim_ver work.top_vlg_vec_tst -voptargs=""+acc"" 
-# Start time: 13:30:55 on Jul 10,2018
-# Loading work.top_vlg_vec_tst
-# Loading work.write_o
-# Loading work.top
+# vsim -novopt -c -t 1ps -L cycloneiv_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate_ver -L altera_lnsim_ver work.acc_vlg_vec_tst -voptargs=""+acc"" 
+# Start time: 05:41:58 on Jul 11,2018
+# Loading work.acc_vlg_vec_tst
+# Loading work.acc
 # Loading cycloneiv_ver.cycloneiv_io_obuf
 # Loading cycloneiv_ver.cycloneiv_io_ibuf
 # Loading cycloneiv_ver.cycloneiv_clkctrl
@@ -32,13 +30,17 @@
 # Loading cycloneiv_ver.cycloneiv_ena_reg
 # Loading cycloneiv_ver.cycloneiv_lcell_comb
 # Loading altera_ver.dffeas
+# Loading cycloneiv_ver.cycloneiv_ram_block
+# Loading cycloneiv_ver.cycloneiv_ram_register
+# Loading cycloneiv_ver.cycloneiv_ram_pulse_generator
+# SDF 10.4b Compiler 2015.05 May 27 2015
+# 
 # Loading instances from DSD-Project3_v.sdo
 # Loading altera_ver.PRIM_GDFF_LOW
 # Loading timing data from DSD-Project3_v.sdo
 # ** Note: (vsim-3587) SDF Backannotation Successfully Completed.
-#    Time: 0 ps  Iteration: 0  Instance: /top_vlg_vec_tst File: Waveform.vwf.vt
-# ** Note: $finish    : Waveform.vwf.vt(116)
-#    Time: 100 us  Iteration: 0  Instance: /top_vlg_vec_tst
-# 1
-# Break in Module top_vlg_vec_tst at Waveform.vwf.vt line 116
-# Break key hit
+#    Time: 0 ps  Iteration: 0  Instance: /acc_vlg_vec_tst File: Waveform.vwf.vt
+# ** Note: $finish    : Waveform.vwf.vt(81)
+#    Time: 100 us  Iteration: 0  Instance: /acc_vlg_vec_tst
+# End time: 05:42:00 on Jul 11,2018, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 0
