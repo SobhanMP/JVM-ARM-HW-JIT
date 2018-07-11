@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.3.20)  11 JUL 2018 11:28
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.3.20)  11 JUL 2018 12:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1592,28 +1592,25 @@ LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
 (Font)              scaled to size 13.24796pt on input line 4.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
 (Font)              scaled to size 13.24796pt on input line 4.
-
-[5]
-Underfull \hbox (badness 10000) in paragraph at lines 60--69
-[][]
- []
-
-) (./P10.tex)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 111.
- [6]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 111.
+File: SM.pdf Graphic file (type pdf)
+<use SM.pdf>
+)
+(./P5.tex) (./P6.tex [5] [6] [7]) (./P10.tex)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 115.
+ [8]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 115.
  (./document.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 111.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 111.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 111.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 115.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 115.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 115.
  ) 
 Here is how much of TeX's memory you used:
- 26116 strings out of 493007
- 487505 string characters out of 6134605
+ 26140 strings out of 493007
+ 487760 string characters out of 6134605
  664825 words of memory out of 5000000
- 29682 multiletter control sequences out of 15000+600000
- 609177 words of font info for 177 fonts, out of 8000000 for 9000
+ 29697 multiletter control sequences out of 15000+600000
+ 609185 words of font info for 178 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  46i,16n,78p,10450b,1735s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on document.pdf (6 pages).
+Output written on document.pdf (8 pages).
