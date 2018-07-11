@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.3.20)  11 JUL 2018 13:58
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.3.20)  11 JUL 2018 14:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1582,26 +1582,26 @@ File: se-ascii-print.def 2016/05/16 v1.11 stringenc: Printable ASCII characters
 )
 [1
 
-] [2]) (./P3.tex [3] [4]
-LaTeX Font Info:    Try loading font information for U+futs on input line 138.
+] [2]) (./P3.tex [3]
+LaTeX Font Info:    Try loading font information for U+futs on input line 136.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/fourier/ufuts.fd
 File: ufuts.fd 2004/03/26 Fontinst v1.926 font definitions for U/futs.
-)) (./P4.tex
+) [4]) (./P4.tex
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
 (Font)              scaled to size 13.24796pt on input line 4.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
 (Font)              scaled to size 13.24796pt on input line 4.
 File: SM.pdf Graphic file (type pdf)
 <use SM.pdf>
-)
-(./P5.tex [5]) (./P6.tex [6] [7] [8]) (./P7.tex
+
+[5]) (./P5.tex) (./P6.tex [6] [7] [8]) (./P7.tex [9]
 File: result.jpg Graphic file (type bmp)
 <result.jpg>
-) [9] (./P8.tex) (./P10.tex)
+) (./P8.tex) [10]
+(./P10.tex)
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 119.
-
-[10]
+ [11]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 119.
  (./document.aux)
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 119.
@@ -1617,4 +1617,4 @@ Here is how much of TeX's memory you used:
  1348 hyphenation exceptions out of 8191
  46i,16n,78p,10450b,1735s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on document.pdf (10 pages).
+Output written on document.pdf (11 pages).
