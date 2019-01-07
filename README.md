@@ -1,7 +1,9 @@
-# JVM to ARM-7 Processor Project
+# JVM to ARM-7 HW JIT
 ## State Machine
 
-### Instructions
+the roms are generated via the scripts in  rom_generator
+
+### Supported Instructions
 
 | Mnemonic | Opcode (in hex) |Opcode (in binary) |Other byte[count]: [operand labels] | Stack [before]→[after] |Description |
 |:---------|:------------------|:---------------------------------------|:---------------------------------------|:-----------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
